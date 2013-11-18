@@ -13,7 +13,11 @@ var init = function() {
         // API routes //
         ////////////////
 
-        app.get('/api', require('./lib/controllers/api').getContent);
+        // This displays an instance of the Swagger UI
+        app.get('/api', function(req, res) {
+            res.sendfile(__dirname + '/public/swagger/index.html');
+        });
+
         app.get('/api/libraries', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/libraries/:id', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/search', require('./lib/controllers/api/search').getResults);
@@ -48,14 +52,6 @@ var init = function() {
 
         // ErrorHandler
         app.use(require('./lib/controllers/error/errorHandler').getErrorPage);
-
-        /////////////
-        // Swagger //
-        /////////////
-
-        app.get('/swagger', function(req, res) {
-            res.sendfile(__dirname + '/public/swagger/index.html');
-        });
     });
 };
 

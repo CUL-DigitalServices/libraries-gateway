@@ -10,6 +10,7 @@
     "request": "latest",
     "swagger-node-express": "latest",
     "underscore": "latest",
+    "url": "latest",
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
