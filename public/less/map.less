@@ -1,0 +1,94 @@
+// Import bootstrap variables and mixins
+@import "../components/bootstrap/less/variables.less";
+@import "../components/bootstrap/less/mixins.less";
+// Import the bootstrap components we need
+@import "../components/bootstrap/less/buttons.less";
+@import "../components/bootstrap/less/button-groups.less";
+@import "../components/bootstrap/less/dropdowns.less";
+@import "../components/bootstrap/less/list-group.less";
+
+.btn,
+.dropdown-menu {
+  border-radius: 0;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+a,
+.library,
+.btn {
+  transition: background 150ms;
+}
+
+.libraries-panel {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.filters {
+  background: #F3F3F3;
+  border-bottom: 1px solid #C4CBCC;
+  padding: 10px;
+
+  .mini-search {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 26px;
+    padding: 5px 10px;
+    width: 100%;
+  }
+}
+
+.libraries {
+  height: 550px;
+  overflow-y: auto;
+  border-radius: 4px;
+  border: 1px solid #DDD;
+  margin-bottom: 0;
+  border: none;
+}
+
+.library {
+  border-left-style: none;
+  border-right-style: none;
+  font-size: .85em;
+  overflow: hidden;
+
+  &:hover {
+    background: #F8F8F8;
+  }
+
+  &:first-child {
+    border-top-style: none;
+  }
+
+  &:last-child {
+    border-bottom-style: none;
+  }
+}
+
+.library a:visited {
+  color: #0072CF;
+}
+
+// Overwrite bootstrap active item colour
+.list-group-item {
+  &.active,
+  &.active:hover,
+  &.active:focus {
+    background-color: #EAFDFF;
+  }
+}
+
+.maps-container {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 75%;
+}

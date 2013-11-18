@@ -1,0 +1,24 @@
+{
+    "quotmark": "single",
+    "curly": true,
+    "browser": true,
+    "laxbreak" : true,
+    "eqeqeq": true,
+    "forin": true,
+    "indent": 4,
+    "newcap": true,
+    "plusplus": true,
+    "undef": true,
+    "strict": true,
+    "trailing": true,
+    "devel": true,
+    "smarttabs": true,
+    "unused": true,
+    "node": true,
+    "globals": {
+        "define": false,
+        "escape": false,
+        "ga": false,
+        "google": false
+    }
+}

@@ -1,4 +1,1 @@
-libraries-gateway
-=================
-
-Libraries gateway
+Cambridge University Library Gateway
