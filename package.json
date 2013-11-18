@@ -1,0 +1,21 @@
+{
+  "name": "cambridge-library-gateway",
+  "version": "0.0.0",
+  "dependencies": {
+    "assert": "latest",
+    "ejs": "latest",
+    "express": "latest",
+    "lodash": "~2.2.1",
+    "node-static": "~0.7.1",
+    "request": "latest",
+    "swagger-node-express": "latest",
+    "underscore": "latest",
+    "xml2js": "~0.2.8"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-recess": "~0.4.0"
+  }
+}

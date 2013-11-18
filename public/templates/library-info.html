@@ -1,0 +1,21 @@
+<h5><%= name %></h5>
+<dl>
+  <% if (postal_address) { %>
+    <dt>Address</dt>
+    <dd><%= postal_address %></dd>
+  <% } %>
+
+  <% if (opening_hours) { %>
+    <dt>Opening hours</dt>
+    <dd><%= opening_hours %></dd>
+  <% } %>
+
+  <% if (web_address) { %>
+    <dt>Website</dt>
+    <dd><a href="<%= web_address %>" target="_blank"><%= web_address %></a></dd>
+  <% } %>
+</dl>
+<div class="pull-right">
+  <button class="btn btn-sm btn-primary js-btn-street-view">Street view</button>
+  <button class="btn btn-sm btn-primary js-btn-directions">Directions</button>
+</div>
