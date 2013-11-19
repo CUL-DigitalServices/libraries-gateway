@@ -7,7 +7,7 @@ var init = function() {
 
     // Create a new express server
     // @see /lib/controllers/server
-    require('./lib/controllers/server').createServer(__dirname, function(app) {
+    require('./lib/util/server').createServer(__dirname, function(app) {
 
         ////////////////
         // API routes //
