@@ -9,7 +9,7 @@
 
 node_modules
 
-public/components
+public/components/*
 !public/components/project-light
 
 public/styles
