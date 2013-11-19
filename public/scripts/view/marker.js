@@ -1,7 +1,8 @@
 define([
+    'lodash',
     'util/events',
     'view/map'
-], function (events, map) {
+], function (_, events, map) {
     'use strict';
 
     var Marker = function () {

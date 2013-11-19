@@ -12,7 +12,10 @@ define([
             // Map body classname to js file
             switch (page) {
             case 'find-a-library':
-                jsPath = 'map-page';
+                jsPath = 'find-a-library';
+                break;
+            case 'using-our-libraries':
+                jsPath = 'using-our-libraries';
                 break;
             }
             // If a path is set, fetch the js

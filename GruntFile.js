@@ -1,11 +1,15 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var lessFiles = {
+        'public/styles/libraries-gateway.css': ['public/less/libraries-gateway.less']
+    };
+
     grunt.initConfig({
         watch: {
             less: {
                 files: ['public/less/**/*.less'],
-                tasks: ['recess']
+                tasks: ['recess:compile']
             },
             jshint: {
                 files: [
@@ -22,16 +26,14 @@ module.exports = function (grunt) {
             options: {
                 compile: true
             },
-            development: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'public/less',
-                        src: ['**/*.less'],
-                        dest: 'public/styles',
-                        ext: '.css'
-                    }
-                ]
+            compile: {
+                files: lessFiles
+            },
+            lint: {
+                options: {
+                    compile: false
+                },
+                files: lessFiles
             }
         },
         jshint: {
