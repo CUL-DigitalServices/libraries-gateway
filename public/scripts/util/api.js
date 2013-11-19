@@ -5,7 +5,7 @@ define([
     return {
         getLibraries: function () {
             return $.ajax({
-                url: 'http://localhost:1234/api/libraries'
+                url: 'http://localhost:5000/api/libraries'
             });
         }
     };

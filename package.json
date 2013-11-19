@@ -6,6 +6,7 @@
     "ejs": "latest",
     "express": "latest",
     "lodash": "~2.2.1",
+    "mysql": "latest",
     "node-static": "~0.7.1",
     "request": "latest",
     "swagger-node-express": "latest",
