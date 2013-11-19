@@ -1,7 +1,7 @@
 var config = module.exports = {};
 
 config.server = {
-    'port': 1234
+    'port': 5000
 };
 
 config.app = {
