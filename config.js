@@ -10,10 +10,6 @@ config.app = {
 
 // Constants //
 config.constants = {
-    'libraries': {
-        'timeout': 5000,
-        'uri': 'http://www.lib.cam.ac.uk/api/local/libraries_data.cgi'
-    },
     'engines': {
         'aquabrowser': {
             'timeout': 5000,
@@ -54,6 +50,16 @@ config.constants = {
             'aquabrowser': 'paper',
             'summon': ''            
         }
+    },
+    'libraries': {
+        'db': {
+            'host': 'localhost',
+            'database': 'lib_old_union_catalogue',
+            'user': 'root',
+            'password': ''
+        },
+        'timeout': 5000,
+        'uri': 'http://www.lib.cam.ac.uk/api/local/libraries_data.cgi'
     }
 };
 
