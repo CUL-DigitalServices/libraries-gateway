@@ -18,6 +18,7 @@ var init = function() {
             res.sendfile(__dirname + '/public/swagger/index.html');
         });
 
+        app.get('/api/faq', require('./lib/controllers/api/faq').getFaqs);
         app.get('/api/libraries', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/libraries/:id', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/search', require('./lib/controllers/api/search').getResults);

@@ -1,8 +1,8 @@
 <h5><%= name %></h5>
 <dl>
-  <% if (postal_address) { %>
+  <% if (address) { %>
     <dt>Address</dt>
-    <dd><%= postal_address %></dd>
+    <dd><%= address %></dd>
   <% } %>
 
   <% if (opening_hours) { %>
@@ -10,9 +10,9 @@
     <dd><%= opening_hours %></dd>
   <% } %>
 
-  <% if (web_address) { %>
+  <% if (web) { %>
     <dt>Website</dt>
-    <dd><a href="<%= web_address %>" target="_blank"><%= web_address %></a></dd>
+    <dd><a href="<%= web %>" target="_blank"><%= web %></a></dd>
   <% } %>
 </dl>
 <div class="pull-right">
