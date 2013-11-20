@@ -1,0 +1,84 @@
+.btn,
+.dropdown-menu {
+  border-radius: 0;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+a,
+.library,
+.btn {
+  transition: background 150ms;
+}
+
+.libraries-panel {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.filters {
+  padding: 10px;
+  background: #F3F3F3;
+  border-bottom: 1px solid #C4CBCC;
+
+  .mini-search {
+    width: 100%;
+    height: 26px;
+    padding: 5px 10px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+}
+
+.libraries {
+  height: 550px;
+  margin-bottom: 0;
+  overflow-y: auto;
+  border: none;
+  border-radius: 4px;
+}
+
+.library {
+  overflow: hidden;
+  font-size: .85em;
+  border-right-style: none;
+  border-left-style: none;
+
+  &:hover {
+    background: #F8F8F8;
+  }
+
+  &:first-child {
+    border-top-style: none;
+  }
+
+  &:last-child {
+    border-bottom-style: none;
+  }
+}
+
+.library a:visited {
+  color: #0072CF;
+}
+
+// Overwrite bootstrap active item colour
+.list-group-item {
+  &.active,
+  &.active:hover,
+  &.active:focus {
+    background-color: #EAFDFF;
+  }
+}
+
+.maps-container {
+  position: absolute;
+  right: 0;
+  width: 75%;
+  height: 100%;
+}

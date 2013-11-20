@@ -1,0 +1,16 @@
+<h5><%= name %></h5>
+<dl>
+  <% if (address) { %>
+    <dt>Address</dt>
+    <dd><%= address %></dd>
+  <% } %>
+
+  <% if (web) { %>
+    <dt>Website</dt>
+    <dd><a href="<%= web %>" target="_blank"><%= web %></a></dd>
+  <% } %>
+</dl>
+<div class="pull-right">
+  <button class="btn btn-sm btn-primary js-btn-street-view">Street view</button>
+  <button class="btn btn-sm btn-primary js-btn-directions">Directions</button>
+</div>

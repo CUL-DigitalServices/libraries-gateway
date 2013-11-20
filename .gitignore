@@ -1,0 +1,17 @@
+*.dat
+*.DS_STORE
+*.gz
+*.idea
+*.log
+*.out
+*.pid
+*.seed
+
+node_modules
+
+public/components/*
+!public/components/project-light
+
+public/styles
+
+npm-debug.log
