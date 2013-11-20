@@ -32,7 +32,7 @@ define([
         },
 
         addLibraryView: function (libraryModel) {
-            if (libraryModel.get('lat') && libraryModel.get('lng')) {
+            if (libraryModel.get('latlng')) {
                 var library = new Library({
                     model: libraryModel
                 });
