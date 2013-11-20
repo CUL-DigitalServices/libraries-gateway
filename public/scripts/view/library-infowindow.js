@@ -25,9 +25,8 @@ define([
 
         open: function (libraryModel) {
             var infoWindow = this.infoWindow,
-                lat = libraryModel.get('lat'),
-                lng = libraryModel.get('lng'),
-                latLng = new google.maps.LatLng(lat, lng);
+                coords = libraryModel.getLatLng(),
+                latLng = new google.maps.LatLng(coords.lat, coords.lng);
             map.panTo(latLng);
             google.maps.event.addListenerOnce(infoWindow, 'domready', this.onDomReady);
             infoWindow.setContent(this.template(libraryModel.toJSON()));

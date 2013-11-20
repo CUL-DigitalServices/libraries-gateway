@@ -66,8 +66,9 @@ define([
                 areaCircle.setRadius(areaFilter * 1609.344);
                 areaCircle.show();
                 filters.push(function (library) {
+                    var coords = library.getLatLng();
                     // check whether a library is within the bounds of the area
-                    return areaCircle.latLngInArea(library.get('lat'), library.get('lng'));
+                    return areaCircle.latLngInArea(coords.lat, coords.lng);
                 });
             } else {
                 areaCircle.hide();
