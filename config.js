@@ -1,4 +1,4 @@
-var config = module.exports = {};
+var config = module.exports = require('./config_private');
 
 config.server = {
     'port': 5000
@@ -16,10 +16,6 @@ config.constants = {
             'uri': 'http://search.lib.cam.ac.uk/result.ashx'
         },
         'summon': {
-            'auth': {
-                'id':   '',
-                'key':  ''
-            },
             'timeout': 10000,
             'uri': 'api.summon.serialssolutions.com',
             'version': '/2.0.0/search'
@@ -50,16 +46,6 @@ config.constants = {
             'aquabrowser': 'paper',
             'summon': ''            
         }
-    },
-    'libraries': {
-        'db': {
-            'host': 'localhost',
-            'database': 'lib_old_union_catalogue',
-            'user': 'root',
-            'password': ''
-        },
-        'timeout': 5000,
-        'uri': 'http://www.lib.cam.ac.uk/api/local/libraries_data.cgi'
     }
 };
 
