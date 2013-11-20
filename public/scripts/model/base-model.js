@@ -1,7 +1,8 @@
 define([
     'lodash',
-    'util/events'
-], function (_, events) {
+    'util/events',
+    'util/extend'
+], function (_, events, extend) {
     'use strict';
     var BaseModel = function (attributes) {
         var self = this;
@@ -25,5 +26,7 @@ define([
             return _.clone(this.attributes);
         }
     }, events);
+
+    _.extend(BaseModel, extend);
     return BaseModel;
 });

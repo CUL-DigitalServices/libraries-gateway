@@ -28,10 +28,8 @@ define([
 
         initializeMarker: function () {
             var model = this.model;
-            var coords = model.get('latlng').split(',');
-            var lat = coords[0];
-            var lng = coords[1];
-            this.marker = new Marker(lat, lng, model.get('name'));
+            var coords = model.getLatLng();
+            this.marker = new Marker(coords.lat, coords.lng, model.get('name'));
             this.marker.drop();
         },
 
