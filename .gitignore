@@ -14,4 +14,6 @@ public/components/*
 
 public/styles
 
+config_private.js
+
 npm-debug.log
