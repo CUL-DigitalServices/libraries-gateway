@@ -17,6 +17,9 @@ define([
             case 'using-our-libraries':
                 jsPath = 'using-our-libraries';
                 break;
+            case 'library-profile':
+                jsPath = 'library-profile'
+                break;
             }
             // If a path is set, fetch the js
             if (jsPath) {
