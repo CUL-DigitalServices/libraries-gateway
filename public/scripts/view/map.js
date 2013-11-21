@@ -16,9 +16,14 @@ define([
         },
 
         initializeMap: function () {
+            var $el = $('.js-maps-container'),
+                lat = $el.data('lat') || 52.20534,
+                lng = $el.data('lng') || 0.12182,
+                zoom = $el.data('zoom') || 14;
+
             this.map = new google.maps.Map($('.js-maps-container')[0], {
-                center: new google.maps.LatLng(52.20534, 0.12182),
-                zoom: 14,
+                center: new google.maps.LatLng(lat, lng),
+                zoom: zoom,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 disableDefaultUI: true
             });
