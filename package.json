@@ -9,6 +9,7 @@
     "mysql": "latest",
     "node-static": "~0.7.1",
     "request": "latest",
+    "slug": "latest",
     "swagger-node-express": "latest",
     "underscore": "latest",
     "url": "latest",
