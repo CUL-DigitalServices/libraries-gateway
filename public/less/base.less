@@ -27,3 +27,37 @@ dl {
     margin-left: 0;
   }
 }
+
+/*
+ * Combined select/input component, depends on default project light searchbox styles.
+ */
+.lg-combo-select-input {
+  position: relative;
+}
+
+.lg-combo-select {
+  width: 130px;
+  height: 100%;
+  margin: 0;
+}
+
+.lg-combo-select,
+.lg-combo-submit {
+  position: relative;
+  z-index: 1;
+}
+
+.lg-combo-input-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-right: 57px;
+  padding-left: 135px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  input {
+    width: 100%;
+  }
+}
