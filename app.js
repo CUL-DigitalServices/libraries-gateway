@@ -22,6 +22,7 @@ var init = function() {
         app.get('/api/libraries', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/libraries/:id', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/search', require('./lib/controllers/api/search').getResults);
+        app.get('/api/search/:id', require('./lib/controllers/api/search').getResults);
 
         ///////////////////
         // Client routes //
