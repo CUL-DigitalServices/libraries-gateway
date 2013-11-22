@@ -36,7 +36,8 @@ define([
         bindEvents: function () {
             this.model.on('change:active', this.onActiveChange);
             this.model.on('change:visible', this.onVisibleChange);
-            this.$el.on('click', '.js-btn-activate', this.onActivateClick);
+            this.$el.on('click', this.onActivateClick);
+            this.$el.on('click', '.js-link', this.onLinkClick);
             this.$el.on('mouseenter', this.onMouseEnter);
             this.$el.on('mouseleave', this.onMouseLeave);
             this.marker.on('click', this.onMarkerClick);
@@ -60,9 +61,12 @@ define([
         },
 
         onActivateClick: function (event) {
-            event.preventDefault();
             infoWindow.open(this.model);
             this.model.set('active', true);
+        },
+
+        onLinkClick: function (event) {
+            event.stopPropagation();
         },
 
         onMouseEnter: function () {
