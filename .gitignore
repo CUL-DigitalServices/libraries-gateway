@@ -16,4 +16,6 @@ public/styles
 
 config_private.js
 
+out.log
+
 npm-debug.log
