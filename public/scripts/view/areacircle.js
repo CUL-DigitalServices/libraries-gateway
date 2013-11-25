@@ -3,17 +3,17 @@ define([
     'lodash',
     'util/events',
     'view/map'
-], function ($, _, events, map) {
+], function($, _, events, map) {
     'use strict';
 
-    var AreaCircle = function () {
+    var AreaCircle = function() {
         this.initialize();
     };
     _.extend(AreaCircle.prototype, {
-        'initialize': function () {
+        'initialize': function() {
             _.bindAll(this);
             var self = this;
-            map.locateCurrentPosition(function (latLng) {
+            map.locateCurrentPosition(function(latLng) {
                 // Once the users position is found initialize the circle on the
                 // map.
                 self.circle = new google.maps.Circle({
@@ -31,19 +31,19 @@ define([
             });
         },
 
-        'setRadius': function (radius) {
+        'setRadius': function(radius) {
             this.circle.setRadius(radius);
         },
 
-        'show': function () {
+        'show': function() {
             this.circle.setVisible(true);
         },
 
-        'hide': function () {
+        'hide': function() {
             this.circle.setVisible(false);
         },
 
-        'latLngInArea': function (lat, lng) {
+        'latLngInArea': function(lat, lng) {
             var latLng = new google.maps.LatLng(lat, lng);
             var bounds = this.circle.getBounds();
             return bounds.contains(latLng);

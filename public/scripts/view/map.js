@@ -2,20 +2,20 @@ define([
     'jquery',
     'lodash',
     'async!//maps.googleapis.com/maps/api/js?key=AIzaSyAiUCMI-eafvJOepvdC0TXXFGHQ0NUYVC4&sensor=true'
-], function ($, _) {
+], function($, _) {
     'use strict';
 
-    var Map = function () {
+    var Map = function() {
         this.initialize();
     };
     _.extend(Map.prototype, {
-        'initialize': function () {
+        'initialize': function() {
             _.bindAll(this);
             this.initializeMap();
             this.initializeDirections();
         },
 
-        'initializeMap': function () {
+        'initializeMap': function() {
             var $el = $('.js-maps-container');
             var lat = $el.data('lat') || 52.20534;
             var lng = $el.data('lng') || 0.12182;
@@ -29,11 +29,11 @@ define([
             });
         },
 
-        'getGoogleMap': function () {
+        'getGoogleMap': function() {
             return this.map;
         },
 
-        'initializeDirections': function () {
+        'initializeDirections': function() {
             this.directionsService = new google.maps.DirectionsService();
             this.directionsRenderer = new google.maps.DirectionsRenderer({
                 'map': this.map,
@@ -44,27 +44,27 @@ define([
             });
         },
 
-        'closeStreetView': function () {
+        'closeStreetView': function() {
             var streetView = this.map.getStreetView();
             if (streetView.getVisible()) {
                 streetView.setVisible(false);
             }
         },
 
-        'locateCurrentPosition': (function () {
+        'locateCurrentPosition': (function() {
             var latLng;
-            return function (callback, cached) {
+            return function(callback, cached) {
                 if ((!latLng || cached === false) && navigator.geolocation) {
                     var options = {
                         'enableHighAccuracy': true
                     };
 
-                    navigator.geolocation.getCurrentPosition(function (position) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
                         var lat = position.coords.latitude;
                         var lng = position.coords.longitude;
                         latLng = new google.maps.LatLng(lat, lng);
                         callback(latLng);
-                    }, function () {
+                    }, function() {
                         console.log('geolocation error');
                     }, options);
                 } else {
@@ -73,26 +73,26 @@ define([
             };
         })(),
 
-        'panTo': function (latLng) {
+        'panTo': function(latLng) {
             this.closeStreetView();
             this.map.panTo(latLng);
         },
 
-        'openStreetViewAt': function (latLng) {
+        'openStreetViewAt': function(latLng) {
             var streetView = this.map.getStreetView();
             streetView.setPosition(latLng);
             streetView.setVisible(true);
         },
 
-        'showDirectionsTo': function (latLng) {
+        'showDirectionsTo': function(latLng) {
             var self = this;
-            this.locateCurrentPosition(function (position) {
+            this.locateCurrentPosition(function(position) {
                 var requestData = {
                     'origin': position,
                     'destination': latLng,
                     'travelMode': google.maps.TravelMode.WALKING
                 };
-                self.directionsService.route(requestData, function (result, status) {
+                self.directionsService.route(requestData, function(result, status) {
                     // Todo: directions fallback
                     if (status === google.maps.DirectionsStatus.OK) {
                         self.directionsRenderer.setDirections(result);

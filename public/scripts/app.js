@@ -1,12 +1,12 @@
 define([
     'jquery',
     'lodash'
-], function ($, _) {
+], function($, _) {
     'use strict';
 
-    var App = function () {};
+    var App = function() {};
     _.extend(App.prototype, {
-        'initialize': function () {
+        'initialize': function() {
             var page = $('body').data('page');
             // Pages which have js functionality:
             var pages = [

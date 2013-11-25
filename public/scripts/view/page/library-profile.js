@@ -3,14 +3,14 @@ define([
     'lodash',
     'view/map',
     'view/marker'
-], function ($, _, map, Marker) {
+], function($, _, map, Marker) {
     'use strict';
 
-    var LibraryProfilePage = function () {
+    var LibraryProfilePage = function() {
         this.initialize();
     };
     _.extend(LibraryProfilePage.prototype, {
-        'initialize': function () {
+        'initialize': function() {
             var $mapsContainer = $('.js-maps-container');
             var lat = $mapsContainer.data('lat');
             var lng = $mapsContainer.data('lng');

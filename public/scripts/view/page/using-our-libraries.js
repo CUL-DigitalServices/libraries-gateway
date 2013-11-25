@@ -1,6 +1,6 @@
 define([
     'bootstrap-collapse'
-], function () {
+], function() {
     'use strict';
-    return function () {};
+    return function() {};
 });

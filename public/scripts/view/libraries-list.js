@@ -5,24 +5,24 @@ define([
     'util/api',
     'view/library',
     'model/library-model'
-], function ($, _, events, api, Library, LibraryModel) {
+], function($, _, events, api, Library, LibraryModel) {
     'use strict';
 
-    var LibrariesList = function (options) {
+    var LibrariesList = function(options) {
         this.$el = $(options.el);
         this.initialize();
     };
     _.extend(LibrariesList.prototype, {
-        'initialize': function () {
+        'initialize': function() {
             _.bindAll(this);
             this.fetchLibraries();
         },
 
-        'fetchLibraries': function () {
+        'fetchLibraries': function() {
             this.libraries || (this.libraries = []);
             var self = this;
-            api.getLibraries().then(function (libData) {
-                _.each(libData, function (library) {
+            api.getLibraries().then(function(libData) {
+                _.each(libData, function(library) {
                     var model = new LibraryModel(library);
                     self.libraries.push(model);
                     self.addLibraryView(model);
@@ -31,7 +31,7 @@ define([
             });
         },
 
-        'addLibraryView': function (libraryModel) {
+        'addLibraryView': function(libraryModel) {
             if (libraryModel.get('latlng')) {
                 var library = new Library({
                     'model': libraryModel
@@ -45,8 +45,8 @@ define([
         },
 
         // Remove the active state from whichever library is currently activated
-        'unselect': function () {
-            var activeLibrary = _.find(this.libraries, function (library) {
+        'unselect': function() {
+            var activeLibrary = _.find(this.libraries, function(library) {
                 return library.get('active') === true;
             });
             if (activeLibrary) {
@@ -54,7 +54,7 @@ define([
             }
         },
 
-        'onActiveChange': function (model, active) {
+        'onActiveChange': function(model, active) {
             if (active === true) {
                 // Set all other models their active attribute to false
                 _.invoke(_.without(this.libraries, model), 'set', 'active', false);
@@ -62,11 +62,11 @@ define([
             }
         },
 
-        'filter': function (filters) {
+        'filter': function(filters) {
             var passed = this.libraries,
                 failed;
             // Apply all filters to the libraries array
-            _.each(filters, function (filter) {
+            _.each(filters, function(filter) {
                 passed = _.filter(passed, filter);
             });
             // Also save which libraries were filtered out
@@ -79,14 +79,14 @@ define([
             this.scrollToActiveItem();
         },
 
-        'scrollToActiveItem': function () {
+        'scrollToActiveItem': function() {
             var $active = this.$el.find('.active');
             if ($active.length) {
                 this.scrollToTarget($active);
             }
         },
 
-        'scrollToTarget': function ($target) {
+        'scrollToTarget': function($target) {
             var listOffset = this.$el.offset().top;
             var listScrollTop = this.$el.scrollTop();
             var listHeight = this.$el.height();

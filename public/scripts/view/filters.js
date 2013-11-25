@@ -4,13 +4,13 @@ define([
     'util/events',
     'view/dropdown-selector',
     'view/areacircle',
-], function ($, _, events, DropdownSelector, areaCircle) {
+], function($, _, events, DropdownSelector, areaCircle) {
     'use strict';
-    var LibrariesFilters = function () {
+    var LibrariesFilters = function() {
         this.initialize();
     };
     _.extend(LibrariesFilters.prototype, {
-        'initialize': function () {
+        'initialize': function() {
             _.bindAll(this);
             this.keyword = '';
             this.areaFilter = new DropdownSelector({
@@ -22,26 +22,26 @@ define([
             this.bindEvents();
         },
 
-        'bindEvents': function () {
+        'bindEvents': function() {
             this.areaFilter.on('change', this.onFilterChange);
             this.alphabetFilter.on('change', this.onFilterChange);
             $('.js-mini-search').on('keyup', this.onSearchKeyUp);
         },
 
-        'onFilterChange': function () {
+        'onFilterChange': function() {
             this.updateFilters();
             this.trigger('change', this.filters);
         },
 
-        'onSearchKeyUp': function (event) {
+        'onSearchKeyUp': function(event) {
             this.setKeyword($(event.currentTarget).val());
         },
 
-        'getKeyword': function () {
+        'getKeyword': function() {
             return this.keyword;
         },
 
-        'setKeyword': function (keyword) {
+        'setKeyword': function(keyword) {
             if (keyword !== this.keyword) {
                 this.keyword = keyword;
                 this.updateFilters();
@@ -49,7 +49,7 @@ define([
             }
         },
 
-        'updateFilters': function () {
+        'updateFilters': function() {
             var filters = this.filters = [];
             var areaFilter = this.areaFilter.getValue();
             var alphabetFilter = this.alphabetFilter.getValue();
@@ -58,7 +58,7 @@ define([
             // Fill the filters array with filter functions based on which value
             // each filter has.
             if (alphabetFilter && alphabetFilter !== 'all') {
-                filters.push(function (library) {
+                filters.push(function(library) {
                     // Returns true if the library name starts with the selected
                     // letter.
                     return library.get('name')[0].toLowerCase() === alphabetFilter;
@@ -69,7 +69,7 @@ define([
                 // Convert miles to meters
                 areaCircle.setRadius(areaFilter * 1609.344);
                 areaCircle.show();
-                filters.push(function (library) {
+                filters.push(function(library) {
                     var coords = library.getLatLng();
                     // check whether a library is within the bounds of the area
                     return areaCircle.latLngInArea(coords.lat, coords.lng);
@@ -80,10 +80,10 @@ define([
             }
 
             if (keyword && keyword.length) {
-                filters.push(function (library) {
+                filters.push(function(library) {
                     // Go through the library object and check whether any of
                     // its attributes matches with the specified keyword
-                    return _.some(_.values(library.attributes), function (value) {
+                    return _.some(_.values(library.attributes), function(value) {
                         if (_.isString(value)) {
                             return value.toLowerCase().indexOf(keyword.toLowerCase()) >= 0;
                         }

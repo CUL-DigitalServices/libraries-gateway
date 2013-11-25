@@ -28,7 +28,7 @@ require.config({
 define([
     'app',
     'projectLight'
-], function (App) {
+], function(App) {
     'use strict';
     (new App()).initialize();
 });

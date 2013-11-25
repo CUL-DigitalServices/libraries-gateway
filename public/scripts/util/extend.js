@@ -1,6 +1,6 @@
 define([
     'lodash'
-], function (_) {
+], function(_) {
     'use strict';
     // Strongly based on the extend function from Backbone.js:
 
@@ -8,9 +8,9 @@ define([
     // Similar to `goog.inherits`, but uses a hash of prototype properties and
     // class properties to be extended.
     return {
-        'extend': function (protoProps) {
+        'extend': function(protoProps) {
             var parent = this;
-            var child = function () {
+            var child = function() {
                 return parent.apply(this, arguments);
             };
 
@@ -18,7 +18,7 @@ define([
 
             // Set the prototype chain to inherit from `parent`, without calling
             // `parent`'s constructor function.
-            var Surrogate = function () {
+            var Surrogate = function() {
                 this.constructor = child;
             };
 
