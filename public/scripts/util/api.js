@@ -1,11 +1,11 @@
 define([
     'jquery'
-], function ($) {
+], function($) {
     'use strict';
     return {
-        getLibraries: function () {
+        'getLibraries': function() {
             return $.ajax({
-                url: '/api/libraries'
+                'url': '/api/libraries'
             });
         }
     };

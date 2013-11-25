@@ -1,14 +1,14 @@
 define([
     'model/base-model'
-], function (BaseModel) {
+], function(BaseModel) {
     'use strict';
 
     var LibraryModel = BaseModel.extend({
-        getLatLng: function () {
+        'getLatLng': function() {
             var latLng = this.get('latlng').split(',');
             return {
-                lat: latLng[0],
-                lng: latLng[1]
+                'lat': latLng[0],
+                'lng': latLng[1]
             };
         }
     });

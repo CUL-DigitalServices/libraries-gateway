@@ -2,56 +2,56 @@ define([
     'lodash',
     'util/events',
     'view/map'
-], function (_, events, map) {
+], function(_, events, map) {
     'use strict';
 
-    var Marker = function () {
+    var Marker = function() {
         this.initialize.apply(this, arguments);
     };
     _.extend(Marker.prototype, {
-        initialize: function (lat, lng, title) {
+        'initialize': function(lat, lng, title) {
             _.bindAll(this);
             var latLng = new google.maps.LatLng(lat, lng);
             this.marker = new google.maps.Marker({
-                map: map.getGoogleMap(),
-                position: latLng,
-                title: title,
-                visible: false
+                'map': map.getGoogleMap(),
+                'position': latLng,
+                'title': title,
+                'visible': false
             });
             this.bindEvents();
         },
 
-        bindEvents: function () {
+        'bindEvents': function() {
             google.maps.event.addListener(this.marker, 'click', this.onMarkerClick);
         },
 
-        onMarkerClick: function () {
+        'onMarkerClick': function() {
             this.trigger('click');
         },
 
-        drop: function () {
+        'drop': function() {
             var marker = this.marker;
-            setTimeout(function () {
+            setTimeout(function() {
                 marker.setOptions({
-                    visible: true,
-                    animation: google.maps.Animation.DROP
+                    'visible': true,
+                    'animation': google.maps.Animation.DROP
                 });
             }, _.random(0, 1000));
         },
 
-        hide: function () {
+        'hide': function() {
             this.marker.setVisible(false);
         },
 
-        show: function () {
+        'show': function() {
             this.marker.setVisible(true);
         },
 
-        startBounce: function () {
+        'startBounce': function() {
             this.marker.setAnimation(google.maps.Animation.BOUNCE);
         },
 
-        stopBounce: function () {
+        'stopBounce': function() {
             this.marker.setAnimation(null);
         }
     }, events);
