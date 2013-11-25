@@ -39,7 +39,7 @@ define([
                 'map': this.map,
                 'suppressInfoWindows': true,
                 'markerOptions': {
-                    'icon': 'images/directions-icon.png'
+                    'icon': '/public/images/directions-icon.png'
                 }
             });
         },
