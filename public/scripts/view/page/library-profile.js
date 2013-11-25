@@ -22,16 +22,16 @@ define([
             this.bindEvents();
         },
 
-        bindEvents: function () {
+        'bindEvents': function() {
             $('.js-btn-street-view').on('click', this.onStreetViewClick);
             $('.js-btn-directions').on('click', this.onDirectionsClick);
         },
 
-        onStreetViewClick: function () {
+        'onStreetViewClick': function() {
             map.openStreetViewAt(this.latLng);
         },
 
-        onDirectionsClick: function () {
+        'onDirectionsClick': function() {
             map.showDirectionsTo(this.latLng);
         }
     });
