@@ -28,7 +28,7 @@ define([
 
         'initializeMarker': function() {
             var model = this.model;
-            var coords = model.getLatLng();
+            var coords = model.get('coords');
             this.marker = new Marker(coords.lat, coords.lng, model.get('name'));
             this.marker.drop();
         },

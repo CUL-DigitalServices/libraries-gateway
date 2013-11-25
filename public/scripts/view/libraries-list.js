@@ -4,8 +4,8 @@ define([
     'util/events',
     'util/api',
     'view/library',
-    'model/library-model'
-], function($, _, events, api, Library, LibraryModel) {
+    'model/base-model'
+], function($, _, events, api, Library, BaseModel) {
     'use strict';
 
     var LibrariesList = function(options) {
@@ -23,7 +23,7 @@ define([
             var self = this;
             api.getLibraries().then(function(libData) {
                 _.each(libData, function(library) {
-                    var model = new LibraryModel(library);
+                    var model = new BaseModel(library);
                     self.libraries.push(model);
                     self.addLibraryView(model);
                     model.on('change:active', self.onActiveChange);
@@ -32,7 +32,7 @@ define([
         },
 
         'addLibraryView': function(libraryModel) {
-            if (libraryModel.get('latlng')) {
+            if (libraryModel.get('coords')) {
                 var library = new Library({
                     'model': libraryModel
                 });
