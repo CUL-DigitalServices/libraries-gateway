@@ -11,18 +11,18 @@ define([
         });
     };
     _.extend(BaseModel.prototype, {
-        get: function (key) {
+        'get': function (key) {
             return this.attributes[key];
         },
 
-        set: function (key, value) {
+        'set': function (key, value) {
             this.attributes || (this.attributes = {});
             this.attributes[key] = value;
             this.trigger('change:' + key, this, value);
             this.trigger('change', this, value);
         },
 
-        toJSON: function () {
+        'toJSON': function () {
             return _.clone(this.attributes);
         }
     }, events);

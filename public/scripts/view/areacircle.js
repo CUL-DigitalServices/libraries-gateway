@@ -10,40 +10,42 @@ define([
         this.initialize();
     };
     _.extend(AreaCircle.prototype, {
-        initialize: function () {
+        'initialize': function () {
             _.bindAll(this);
             var self = this;
             map.locateCurrentPosition(function (latLng) {
+                // Once the users position is found initialize the circle on the
+                // map.
                 self.circle = new google.maps.Circle({
-                    map: map.getGoogleMap(),
-                    center: latLng,
-                    clickable: false,
-                    radius: 1000,
-                    strokeColor: '#0000FF',
-                    strokeOpacity: 0.4,
-                    strokeWeight: 1,
-                    fillColor: '#0000FF',
-                    fillOpacity: 0.07,
-                    visible: false
+                    'map': map.getGoogleMap(),
+                    'center': latLng,
+                    'clickable': false,
+                    'radius': 1000,
+                    'strokeColor': '#0000FF',
+                    'strokeOpacity': 0.4,
+                    'strokeWeight': 1,
+                    'fillColor': '#0000FF',
+                    'fillOpacity': 0.07,
+                    'visible': false
                 });
             });
         },
 
-        setRadius: function (radius) {
+        'setRadius': function (radius) {
             this.circle.setRadius(radius);
         },
 
-        show: function () {
+        'show': function () {
             this.circle.setVisible(true);
         },
 
-        hide: function () {
+        'hide': function () {
             this.circle.setVisible(false);
         },
 
-        latLngInArea: function (lat, lng) {
-            var latLng = new google.maps.LatLng(lat, lng),
-                bounds = this.circle.getBounds();
+        'latLngInArea': function (lat, lng) {
+            var latLng = new google.maps.LatLng(lat, lng);
+            var bounds = this.circle.getBounds();
             return bounds.contains(latLng);
         }
     }, events);

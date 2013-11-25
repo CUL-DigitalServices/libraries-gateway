@@ -3,13 +3,13 @@ define([
 ], function (_) {
     'use strict';
     return {
-        on: function (event, callback) {
+        'on': function (event, callback) {
             this.events || (this.events = {});
             var callbacks = this.events[event] || (this.events[event] = []);
             callbacks.push(callback);
         },
 
-        off: function (event, callback) {
+        'off': function (event, callback) {
             if (!this.events) {
                 return;
             } else if (!event) {
@@ -21,7 +21,7 @@ define([
             }
         },
 
-        trigger: function (event) {
+        'trigger': function (event) {
             if (this.events && this.events[event]) {
                 _.invoke(this.events[event], 'apply', this, _.rest(arguments));
             }

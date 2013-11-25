@@ -10,38 +10,38 @@ define([
         this.initialize();
     };
     _.extend(LibrariesFilters.prototype, {
-        initialize: function (options) {
+        'initialize': function () {
             _.bindAll(this);
             this.keyword = '';
             this.areaFilter = new DropdownSelector({
-                el: '.js-dropdown-selector-area'
+                'el': '.js-dropdown-selector-area'
             });
             this.alphabetFilter = new DropdownSelector({
-                el: '.js-dropdown-selector-alphabet'
+                'el': '.js-dropdown-selector-alphabet'
             });
             this.bindEvents();
         },
 
-        bindEvents: function () {
+        'bindEvents': function () {
             this.areaFilter.on('change', this.onFilterChange);
             this.alphabetFilter.on('change', this.onFilterChange);
             $('.js-mini-search').on('keyup', this.onSearchKeyUp);
         },
 
-        onFilterChange: function () {
+        'onFilterChange': function () {
             this.updateFilters();
             this.trigger('change', this.filters);
         },
 
-        onSearchKeyUp: function (event) {
+        'onSearchKeyUp': function (event) {
             this.setKeyword($(event.currentTarget).val());
         },
 
-        getKeyword: function () {
+        'getKeyword': function () {
             return this.keyword;
         },
 
-        setKeyword: function (keyword) {
+        'setKeyword': function (keyword) {
             if (keyword !== this.keyword) {
                 this.keyword = keyword;
                 this.updateFilters();
@@ -49,14 +49,18 @@ define([
             }
         },
 
-        updateFilters: function () {
-            var filters = this.filters = [],
-                areaFilter = this.areaFilter.getValue(),
-                alphabetFilter = this.alphabetFilter.getValue(),
-                keyword = this.getKeyword();
+        'updateFilters': function () {
+            var filters = this.filters = [];
+            var areaFilter = this.areaFilter.getValue();
+            var alphabetFilter = this.alphabetFilter.getValue();
+            var keyword = this.getKeyword();
 
+            // Fill the filters array with filter functions based on which value
+            // each filter has.
             if (alphabetFilter && alphabetFilter !== 'all') {
                 filters.push(function (library) {
+                    // Returns true if the library name starts with the selected
+                    // letter.
                     return library.get('name')[0].toLowerCase() === alphabetFilter;
                 });
             }
@@ -71,11 +75,14 @@ define([
                     return areaCircle.latLngInArea(coords.lat, coords.lng);
                 });
             } else {
+                // The circle isn't visible if there's no area filter active
                 areaCircle.hide();
             }
 
             if (keyword && keyword.length) {
                 filters.push(function (library) {
+                    // Go through the library object and check whether any of
+                    // its attributes matches with the specified keyword
                     return _.some(_.values(library.attributes), function (value) {
                         if (_.isString(value)) {
                             return value.toLowerCase().indexOf(keyword.toLowerCase()) >= 0;
