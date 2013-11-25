@@ -70,7 +70,7 @@ define([
                 areaCircle.setRadius(areaFilter * 1609.344);
                 areaCircle.show();
                 filters.push(function(library) {
-                    var coords = library.getLatLng();
+                    var coords = library.get('coords');
                     // check whether a library is within the bounds of the area
                     return areaCircle.latLngInArea(coords.lat, coords.lng);
                 });

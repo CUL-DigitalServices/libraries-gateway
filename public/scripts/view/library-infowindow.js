@@ -27,7 +27,7 @@ define([
 
         'open': function(libraryModel) {
             var infoWindow = this.infoWindow;
-            var coords = libraryModel.getLatLng();
+            var coords = libraryModel.get('coords');
             var latLng = new google.maps.LatLng(coords.lat, coords.lng);
             map.panTo(latLng);
             google.maps.event.addListenerOnce(infoWindow, 'domready', this.onDomReady);
