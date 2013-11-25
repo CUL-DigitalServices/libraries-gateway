@@ -11,7 +11,7 @@ define([
             var page = $('body').data('page');
             // If the page has js associated with it, fetch the appropriate file
             if (config.pages.indexOf(page) >= 0) {
-                require(['view/page/' + page], function (Page) {
+                require(['view/page/' + page], function(Page) {
                     new Page();
                 });
             }
