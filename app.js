@@ -40,7 +40,7 @@ var init = function() {
 
         // Find a resource
         app.get('/find-a-resource',  require('./lib/controllers/client/nodes/resources').getContent);
-        app.get('/find-a-resource/:id',  require('./lib/controllers/client/nodes/resources').getResourceDetail);
+        app.get('/find-a-resource/:id/',  require('./lib/controllers/client/nodes/resources').getResourceDetail);
 
         // My account
         app.get('/my-account', require('./lib/controllers/client/nodes/account').getContent);
