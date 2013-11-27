@@ -16,9 +16,16 @@
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.7.1",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-recess": "~0.4.0"
+    "grunt": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-requirejs": "latest",
+    "grunt-contrib-imagemin": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-text-replace": "latest",
+    "grunt-usemin": "latest",
+    "grunt-rev": "latest"
   }
 }
