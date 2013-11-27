@@ -159,7 +159,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-rev');
 
     grunt.registerTask('build', function(outputDir) {
-        grunt.config.set('outputDir', outputDir || './dist')
+        grunt.config.set('outputDir', outputDir || './dist');
         // Empty the dist folder
         grunt.task.run('clean:build');
         // Copy all the files to this folder except for '/public'
