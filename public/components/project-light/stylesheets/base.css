@@ -403,7 +403,7 @@ input[type="checkbox"]:focus {outline: thin dotted #333;outline: 5px auto -webki
 
 /* radio buttons and checkboxes */
 input[type="radio"],
-input[type="checkbox"] {margin: 3px 0;/line-height: normal;cursor: pointer;box-sizing: border-box; padding: 0; }
+input[type="checkbox"] {margin: 3px 0;cursor: pointer;box-sizing: border-box; padding: 0; }
 .lt-ie8 input[type="checkbox"] { vertical-align: baseline;margin-top: 0;width: 13px;height: 13px; }
 
 .campl-radio,.campl-checkbox {min-height: 18px;padding-left: 18px;}
@@ -516,6 +516,7 @@ body{margin:0;padding:0; background:#000;width:100%;}
 .campl-search-container{padding:20px 100px;}
 
 .campl-no-top-padding, .campl-global-navigation-container, .campl-navigation-list{padding:0 20px 20px 20px}
+.campl-no-bottom-padding{padding:20px 20px 0 20px}
 .campl-top-padding{padding:20px 0 0 0 }
 
 .campl-bottom-padding, .campl-vertical-teaser-img{padding:0 0 20px 0 }

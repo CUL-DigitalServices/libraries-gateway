@@ -32,6 +32,7 @@ define([
         },
 
         'onDirectionsClick': function() {
+            map.closeStreetView();
             map.showDirectionsTo(this.latLng);
         }
     });
