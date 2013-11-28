@@ -33,7 +33,8 @@ module.exports = function (grunt) {
                     'dest': '<%= outputDir %>',
                     'src': [
                         './**',
-                        '!./public/**'
+                        '!./public/**',
+                        './public/errors/**'
                     ]
                 }]
             }
