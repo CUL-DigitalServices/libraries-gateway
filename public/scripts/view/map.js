@@ -68,7 +68,7 @@ define([
                         callback(error);
                     }, options);
                 } else {
-                    callback(latLng);
+                    callback(null, latLng);
                 }
             };
         })(),
