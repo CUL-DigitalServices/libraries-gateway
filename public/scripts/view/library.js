@@ -16,7 +16,7 @@ define([
     };
     _.extend(Library.prototype, {
         'attributes': {
-            'class': 'list-group-item js-library library'
+            'class': 'list-group-item js-library lg-library'
         },
         'template': _.template(template),
 
@@ -61,8 +61,14 @@ define([
         },
 
         'onActivateClick': function() {
-            infoWindow.open(this.model);
-            this.model.set('active', true);
+            // If the site is using the mobile layout immediately go to the
+            // library profile page when an item is being clicked.
+            if (Modernizr.mq('only screen and (max-width: 767px)')) {
+                window.location = this.$el.find('.js-link').attr('href');
+            } else {
+                infoWindow.open(this.model);
+                this.model.set('active', true);
+            }
         },
 
         'onLinkClick': function(event) {
