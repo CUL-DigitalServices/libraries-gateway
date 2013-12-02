@@ -63,8 +63,8 @@ define([
         },
 
         'filter': function(filters) {
-            var passed = this.libraries,
-                failed;
+            var passed = this.libraries;
+            var failed;
             // Apply all filters to the libraries array
             _.forEach(filters, function(filter) {
                 passed = _.filter(passed, filter);

@@ -1,10 +1,11 @@
 define([
     'jquery',
     'lodash',
+    'config',
     'util/events',
     'view/dropdown-selector',
     'view/areacircle',
-], function($, _, events, DropdownSelector, areaCircle) {
+], function($, _, config, events, DropdownSelector, areaCircle) {
     'use strict';
 
     var LibrariesFilters = function() {
@@ -38,7 +39,7 @@ define([
             var filter;
             if (value !== 'anywhere') {
                 // Convert miles to meters
-                areaCircle.setRadius(value * 1609.344);
+                areaCircle.setRadius(value * config.constants.milesToMetres);
                 areaCircle.show();
                 filter = function(library) {
                     var coords = library.get('coords');
@@ -81,7 +82,10 @@ define([
         },
 
         'setFilter': function(filterName, fn) {
+            // Initialize the filters object if it doesn't exist yet.
             var filters = this.filters || (this.filters = {});
+            // Overwrite the exisiting filter if a function is provided,
+            // otherwise delete the filter.
             fn ? filters[filterName] = fn : delete filters[filterName];
             this.trigger('change', filters);
         },
