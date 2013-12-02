@@ -18,8 +18,13 @@ define([
             var latLng = this.latLng = new google.maps.LatLng(lat, lng);
             var marker = this.marker = new Marker(lat, lng);
             marker.drop();
-
             this.bindEvents();
+
+            map.locateCurrentPosition(function(error) {
+                if (!error) {
+                    $('.js-btn-directions').removeClass('hidden');
+                }
+            });
         },
 
         'bindEvents': function() {
