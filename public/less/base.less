@@ -96,3 +96,39 @@ dl {
   }
 }
 
+/**
+ * Component for a list with 2 columns
+ */
+.lg-two-column-list {
+  .lg-column {
+    width: 50%;
+    float: left;
+    ul {
+      padding: 0 20px 0 0;
+    }
+
+    &:last-child ul {
+      padding: 0 0 0 20px;
+      border-left: 1px solid #e4e4e4;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .lg-two-column-list {
+    .lg-column {
+      float: none;
+      width: auto;
+
+      ul {
+        padding: 0;
+      }
+
+      &:last-child ul {
+        padding: 0;
+        border: none;
+      }
+    }
+  }
+}
+
