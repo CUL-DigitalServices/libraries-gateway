@@ -29,6 +29,10 @@ define([
             $('.js-mini-search').on('keyup', this.onSearchKeyUp);
         },
 
+        'enableAreaFilter': function() {
+            this.areaFilter.$el.removeClass('hidden');
+        },
+
         'onAreaFilterChange': function() {
             var value = this.areaFilter.getValue();
             var filter;

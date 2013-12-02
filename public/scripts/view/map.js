@@ -63,9 +63,9 @@ define([
                         var lat = position.coords.latitude;
                         var lng = position.coords.longitude;
                         latLng = new google.maps.LatLng(lat, lng);
-                        callback(latLng);
-                    }, function() {
-                        console.log('geolocation error');
+                        callback(null, latLng);
+                    }, function(error) {
+                        callback(error);
                     }, options);
                 } else {
                     callback(latLng);
@@ -86,7 +86,11 @@ define([
 
         'showDirectionsTo': function(latLng) {
             var self = this;
-            this.locateCurrentPosition(function(position) {
+            this.locateCurrentPosition(function(error, position) {
+                if (error) {
+                    return;
+                }
+
                 var requestData = {
                     'origin': position,
                     'destination': latLng,

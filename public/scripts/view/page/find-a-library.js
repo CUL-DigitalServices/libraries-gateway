@@ -1,9 +1,10 @@
 define([
     'lodash',
+    'view/map',
     'view/libraries-list',
     'view/filters',
     'view/library-infowindow'
-], function(_, LibrariesList, Filters, infoWindow) {
+], function(_, map, LibrariesList, Filters, infoWindow) {
     'use strict';
     var MapPage = function() {
         this.initialize();
@@ -11,11 +12,18 @@ define([
     _.extend(MapPage.prototype, {
         'initialize': function() {
             _.bindAll(this);
+            var filters = this.filters = new Filters();
             this.list = new LibrariesList({
                 'el': '.js-libraries'
             });
-            this.filters = new Filters();
             this.bindEvents();
+
+            map.locateCurrentPosition(function(error) {
+                if (!error) {
+                    infoWindow.enableDirections();
+                    filters.enableAreaFilter();
+                }
+            });
         },
 
         'bindEvents': function() {

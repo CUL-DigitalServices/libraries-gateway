@@ -13,7 +13,11 @@ define([
         'initialize': function() {
             _.bindAll(this);
             var self = this;
-            map.locateCurrentPosition(function(latLng) {
+            map.locateCurrentPosition(function(error, latLng) {
+                if (error) {
+                    return;
+                }
+
                 // Once the users position is found initialize the circle on the
                 // map.
                 self.circle = new google.maps.Circle({
