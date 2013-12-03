@@ -11,6 +11,7 @@ define([
     };
     _.extend(LibraryInfoWindow.prototype, {
         'template': _.template(template),
+        'directionsEnabled': false,
 
         'initialize': function() {
             _.bindAll(this);
@@ -26,14 +27,27 @@ define([
         },
 
         'open': function(libraryModel) {
-            var infoWindow = this.infoWindow;
             var coords = libraryModel.get('coords');
             var latLng = new google.maps.LatLng(coords.lat, coords.lng);
+            this.model = libraryModel;
+            this.render();
+            this.infoWindow.setPosition(latLng);
+            this.infoWindow.open(map.getGoogleMap());
             map.panTo(latLng);
-            google.maps.event.addListenerOnce(infoWindow, 'domready', this.onDomReady);
-            infoWindow.setContent(this.template(libraryModel.toJSON()));
-            infoWindow.setPosition(latLng);
-            infoWindow.open(map.getGoogleMap());
+        },
+
+        'render': function() {
+            var templateData = this.model.toJSON();
+            templateData.directionsEnabled = this.directionsEnabled;
+            google.maps.event.addListenerOnce(this.infoWindow, 'domready', this.onDomReady);
+            this.infoWindow.setContent(this.template(templateData));
+        },
+
+        'enableDirections': function() {
+            this.directionsEnabled = true;
+            if (this.model) {
+                this.render();
+            }
         },
 
         'onDomReady': function() {
