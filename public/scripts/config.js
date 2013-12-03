@@ -8,6 +8,9 @@ define([], function() {
             'find-a-library',
             'using-our-libraries',
             'library-profile'
-        ]
+        ],
+        'imagePaths': {
+            'directionsMarker': '/public/images/directions-icon.png'
+        }
     };
 });
