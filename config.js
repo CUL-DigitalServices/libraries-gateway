@@ -5,7 +5,7 @@ config.server = {
 };
 
 config.app = {
-    'title': 'Libraries Gateway'
+    'title': 'Cambridge Libraries'
 };
 
 // Constants //
@@ -44,7 +44,7 @@ config.constants = {
         },
         'paper': {
             'aquabrowser': 'paper',
-            'summon': ''            
+            'summon': ''
         }
     }
 };
