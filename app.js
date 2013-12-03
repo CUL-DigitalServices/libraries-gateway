@@ -21,7 +21,7 @@ var init = function() {
         app.get('/api/libraries', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/libraries/:slug', require('./lib/controllers/api/libraries').getLibraryBySlug);
         app.get('/api/search', require('./lib/controllers/api/search').getResults);
-        app.get('/api/search/:id', require('./lib/controllers/api/search').getResults);
+        app.get('/api/search/:api', require('./lib/controllers/api/search').getResults);
 
         ///////////////////
         // Client routes //
@@ -39,7 +39,8 @@ var init = function() {
 
         // Find a resource
         app.get('/find-a-resource',  require('./lib/controllers/client/nodes/resources').getContent);
-        app.get('/find-a-resource/:id',  require('./lib/controllers/client/nodes/resources').getResourceDetail);
+        app.get('/find-a-resource/:api',  require('./lib/controllers/client/nodes/resources').getResourceDetail);
+        app.get('/find-a-resource/:api/:id',  require('./lib/controllers/client/nodes/resources').getResourceDetail);
 
         // My account
         app.get('/my-account', require('./lib/controllers/client/nodes/account').getContent);
