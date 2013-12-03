@@ -1,8 +1,9 @@
 define([
     'jquery',
     'lodash',
+    'config',
     'async!//maps.googleapis.com/maps/api/js?key=AIzaSyAiUCMI-eafvJOepvdC0TXXFGHQ0NUYVC4&sensor=true'
-], function($, _) {
+], function($, _, config) {
     'use strict';
 
     var Map = function() {
@@ -39,7 +40,7 @@ define([
                 'map': this.map,
                 'suppressInfoWindows': true,
                 'markerOptions': {
-                    'icon': '/public/images/directions-icon.png'
+                    'icon': config.imagePaths.directionsMarker
                 }
             });
         },
