@@ -5,7 +5,7 @@ config.server = {
 };
 
 config.app = {
-    'title': 'Libraries Gateway'
+    'title': 'Cambridge Libraries'
 };
 
 // Constants //
