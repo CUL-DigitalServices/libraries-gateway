@@ -7,6 +7,7 @@ module.exports = function (grunt) {
         'public/components/project-light/stylesheets/color-themes.css',
         'public/components/project-light/stylesheets/carousel.css',
         'public/components/project-light/stylesheets/teasers.css',
+        'public/components/project-light/stylesheets/pagination.css',
         'public/less/libraries-gateway.less'
     ];
 
