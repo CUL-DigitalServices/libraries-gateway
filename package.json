@@ -1,19 +1,19 @@
 {
   "name": "cambridge-library-gateway",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "dependencies": {
     "assert": "latest",
     "ejs": "latest",
     "express": "latest",
-    "lodash": "~2.2.1",
+    "lodash": "latest",
     "mysql": "latest",
-    "node-static": "~0.7.1",
+    "node-static": "latest",
     "request": "latest",
     "slug": "latest",
     "swagger-node-express": "latest",
     "underscore": "latest",
     "url": "latest",
-    "xml2js": "~0.2.8"
+    "xml2js": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
