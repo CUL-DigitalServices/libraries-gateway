@@ -7,7 +7,8 @@ define([], function() {
         'pages': [
             'find-a-library',
             'using-our-libraries',
-            'library-profile'
+            'library-profile',
+            'find-a-resource-results'
         ],
         'imagePaths': {
             'directionsMarker': '/public/images/directions-icon.png'
