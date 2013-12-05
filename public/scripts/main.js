@@ -4,9 +4,10 @@ require.config({
         'lodash': '../components/lodash/dist/lodash',
         'async': '../components/requirejs-plugins/src/async',
         'text': '../components/requirejs-text/text',
-        'bootstrap-dropdown': '../components/bootstrap/js/dropdown',
-        'bootstrap-transition': '../components/bootstrap/js/transition',
         'bootstrap-collapse': '../components/bootstrap/js/collapse',
+        'bootstrap-dropdown': '../components/bootstrap/js/dropdown',
+        'bootstrap-tab': '../components/bootstrap/js/tab',
+        'bootstrap-transition': '../components/bootstrap/js/transition',
         'projectLight': '../components/project-light/javascripts/custom',
         'modernizr': '../components/modernizr/modernizr'
     },
