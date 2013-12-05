@@ -12,10 +12,10 @@
     "slug": "latest",
     "swagger-node-express": "latest",
     "timeago": "latest",
+    "twitter-text": "latest",
     "underscore": "latest",
     "url": "latest",
-    "xml2js": "latest",
-    "twitter-text": "latest"
+    "xml2js": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
