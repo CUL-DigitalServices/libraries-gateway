@@ -2,12 +2,6 @@ var config = module.exports = {};
 
 // Constants //
 config.secret = {
-    'summon': {
-        'auth': {
-            'id': '',
-            'key': ''
-        }
-    },
     'libraries': {
         'db': {
             'host': '',
@@ -15,5 +9,15 @@ config.secret = {
             'user': '',
             'password': ''
         }
+    },
+    'summon': {
+        'auth': {
+            'id': '',
+            'key': ''
+        }
+    },
+    'twitter': {
+        'consumer_key': '',
+        'consumer_secret': ''
     }
 };
