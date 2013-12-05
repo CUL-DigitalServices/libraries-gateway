@@ -11,6 +11,7 @@
     "request": "latest",
     "slug": "latest",
     "swagger-node-express": "latest",
+    "timeago": "latest",
     "underscore": "latest",
     "url": "latest",
     "xml2js": "latest"
