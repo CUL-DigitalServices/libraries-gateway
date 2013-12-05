@@ -14,7 +14,8 @@
     "timeago": "latest",
     "underscore": "latest",
     "url": "latest",
-    "xml2js": "latest"
+    "xml2js": "latest",
+    "twitter-text": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
