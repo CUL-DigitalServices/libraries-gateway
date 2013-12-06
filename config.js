@@ -46,6 +46,11 @@ config.constants = {
             'aquabrowser': 'paper',
             'summon': ''
         }
+    },
+    'refresh': {
+        'twitter': {
+            'tweet_expiration': 900000
+        }
     }
 };
 
