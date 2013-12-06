@@ -7,7 +7,6 @@
 *.pid
 *.seed
 
-logs
 node_modules
 
 public/components/*
@@ -16,8 +15,5 @@ public/components/*
 public/styles
 
 config_private.js
-
-err.log
-out.log
 
 npm-debug.log
