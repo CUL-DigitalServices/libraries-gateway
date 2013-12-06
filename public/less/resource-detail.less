@@ -1,8 +1,26 @@
-.lg-resource-img {
-  background: #E4E4E4;
-  text-align: center;
-  padding: 20px 15px;
+.lg-resource-detail {
+  position: relative;
+  overflow: hidden;
+}
+
+.lg-resource-img-wrap {
+  position: absolute;
   box-sizing: border-box;
+  padding: 20px 15px;
+  height: 100%;
+  text-align: center;
+  background: #E4E4E4;
+}
+
+.lg-resource-img-outer {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.lg-resource-img-inner {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .lg-resource-properties {
@@ -39,6 +57,23 @@
 }
 
 @media (max-width: 767px) {
+  .lg-resource-img-wrap {
+    position: static;
+    height: auto;
+  }
+
+  .lg-resource-img-outer {
+    display: block;
+  }
+
+  .lg-resource-img-inner {
+    display: block;
+  }
+
+  .lg-resource-properties-wrap {
+    float: none;
+  }
+
   .lg-resource-properties {
     h4, ul {
       float: none;
