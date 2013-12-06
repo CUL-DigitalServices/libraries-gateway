@@ -1,7 +1,7 @@
 define([
     'jquery',
     'lodash'
-], function ($, _) {
+], function($, _) {
     'use strict';
     var ResourceDetailPage = function() {
         this.initialize();
