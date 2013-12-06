@@ -49,7 +49,7 @@ config.constants = {
     },
     'refresh': {
         'twitter': {
-            'tweets': 900000
+            'tweet_expiration': 900000
         }
     }
 };
