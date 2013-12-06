@@ -53,6 +53,7 @@ module.exports = function (grunt) {
                         'view/page/find-a-library',
                         'view/page/find-a-resource-results',
                         'view/page/library-profile',
+                        'view/page/resource-detail',
                         'view/page/using-our-libraries'
                     ],
                     'insertRequire': ['main'],

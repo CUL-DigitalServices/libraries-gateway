@@ -8,6 +8,7 @@ define([], function() {
             'find-a-library',
             'find-a-resource-results',
             'library-profile',
+            'resource-detail',
             'using-our-libraries'
         ],
         'imagePaths': {
