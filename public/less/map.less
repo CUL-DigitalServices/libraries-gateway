@@ -80,15 +80,10 @@
   ul {
     background: none;
     padding: 0;
-    li {
-      border-bottom:1px solid #004e8f;
-      &:last-child {
-        border-bottom:0;
-      }
-    }
 
     a {
       background: #002e55;
+      border-bottom:1px solid #004e8f;
       color: #FFFFFF;
       padding: 10px 40px 10px 10px;
 
@@ -99,6 +94,10 @@
         background-color: #004e8f;
       }
     }
+  }
+
+  li:last-child a {
+    border-bottom:0;
   }
 }
 
