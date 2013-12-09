@@ -2,12 +2,7 @@ module.exports = function (grunt) {
     'use strict';
 
     var lessFiles = [
-        'public/components/project-light/stylesheets/base.css',
-        'public/components/project-light/stylesheets/tables.css',
-        'public/components/project-light/stylesheets/color-themes.css',
-        'public/components/project-light/stylesheets/carousel.css',
-        'public/components/project-light/stylesheets/teasers.css',
-        'public/components/project-light/stylesheets/pagination.css',
+        'public/components/project-light/stylesheets/full-stylesheet.custom.css',
         'public/less/libraries-gateway.less'
     ];
 
