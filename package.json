@@ -5,7 +5,6 @@
     "assert": "latest",
     "ejs": "latest",
     "express": "latest",
-    "libxmljs": "latest",
     "lodash": "latest",
     "mysql": "latest",
     "node-static": "latest",
