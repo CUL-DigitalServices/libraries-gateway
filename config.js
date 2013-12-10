@@ -51,6 +51,9 @@ config.constants = {
         'twitter': {
             'tweet_expiration': 900000
         }
+    },
+    'search': {
+        'pageLimit': 50
     }
 };
 
