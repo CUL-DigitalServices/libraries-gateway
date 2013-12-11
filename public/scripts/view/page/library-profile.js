@@ -28,7 +28,7 @@ define([
             });
 
             map.getPanormaForLocation(lat, lng, function(error, data) {
-                self.panormaLocation = data.location.latLng;
+                self.panoramaLocation = data.location.latLng;
                 if (!error) {
                     $('.js-btn-street-view').removeClass('hidden');
                 }
@@ -41,7 +41,7 @@ define([
         },
 
         'onStreetViewClick': function() {
-            map.openStreetViewAt(this.panormaLocation);
+            map.openStreetViewAt(this.panoramaLocation);
         },
 
         'onDirectionsClick': function() {
