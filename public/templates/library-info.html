@@ -11,6 +11,6 @@
   <% } %>
 </dl>
 <div class="pull-right lg-map-info-btns">
-  <button class="btn btn-sm btn-primary js-btn-street-view">Street view</button>
+  <button class="btn btn-sm btn-primary js-btn-street-view<% if (!streetViewEnabled) { %> hidden<% } %>">Street view</button>
   <button class="btn btn-sm btn-primary js-btn-directions<% if (!directionsEnabled) { %> hidden<% } %>">Directions</button>
 </div>

@@ -14,6 +14,7 @@ define([
             _.bindAll(this);
             this.initializeMap();
             this.initializeDirections();
+            this.initializeStreetView();
         },
 
         'initializeMap': function() {
@@ -45,11 +46,27 @@ define([
             });
         },
 
+        'initializeStreetView': function() {
+            this.streetViewService = new google.maps.StreetViewService();
+        },
+
         'closeStreetView': function() {
             var streetView = this.map.getStreetView();
             if (streetView.getVisible()) {
                 streetView.setVisible(false);
             }
+        },
+
+        'getPanormaForLocation': function(lat, lng, callback) {
+            var latLng = new google.maps.LatLng(lat, lng);
+            var radius = config.constants.streetViewRadius;
+            this.streetViewService.getPanoramaByLocation(latLng, radius, function(data, status) {
+                if (status === 'UNKNOWN_ERROR' || status === 'ZERO_RESULTS') {
+                    callback('No results found for provided location.');
+                } else {
+                    callback(undefined, data);
+                }
+            });
         },
 
         'locateCurrentPosition': (function() {
