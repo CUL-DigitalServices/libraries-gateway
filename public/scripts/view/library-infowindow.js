@@ -18,7 +18,7 @@ define([
             this.infoWindow = new google.maps.InfoWindow({
                 // This is to have the window float above the marker
                 'pixelOffset': new google.maps.Size(0, -38),
-                disableAutoPan: true
+                'disableAutoPan': true
             });
             google.maps.event.addListener(this.infoWindow, 'closeclick', this.onWindowClose);
         },
