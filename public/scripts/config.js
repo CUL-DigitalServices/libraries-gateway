@@ -6,7 +6,6 @@ define([], function() {
         },
         'pages': [
             'find-a-library',
-            'find-a-resource-results',
             'library-profile',
             'resource-detail',
             'using-our-libraries'
