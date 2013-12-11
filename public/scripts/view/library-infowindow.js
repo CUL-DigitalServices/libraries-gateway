@@ -27,18 +27,24 @@ define([
         },
 
         'open': function(libraryModel) {
+            var self = this;
             var coords = libraryModel.get('coords');
             var latLng = new google.maps.LatLng(coords.lat, coords.lng);
             this.model = libraryModel;
-            this.render();
-            this.infoWindow.setPosition(latLng);
-            this.infoWindow.open(map.getGoogleMap());
-            map.panTo(latLng);
+
+            libraryModel.fetchPanoramaLatLng(function(error, panoramaLatLng) {
+                self.render();
+                self.infoWindow.setPosition(latLng);
+                self.infoWindow.open(map.getGoogleMap());
+                map.panTo(latLng);
+            });
         },
 
         'render': function() {
             var templateData = this.model.toJSON();
+            var panoramaLatLng = this.model.get('panoramaLatLng');
             templateData.directionsEnabled = this.directionsEnabled;
+            templateData.streetViewEnabled = (panoramaLatLng !== undefined);
             google.maps.event.addListenerOnce(this.infoWindow, 'domready', this.onDomReady);
             this.infoWindow.setContent(this.template(templateData));
         },
@@ -85,7 +91,8 @@ define([
         },
 
         'onStreetViewClick': function() {
-            map.openStreetViewAt(this.infoWindow.getPosition());
+            var streetViewLatLng = this.model.get('panoramaLatLng');
+            map.openStreetViewAt(streetViewLatLng);
         }
     }, events);
     return new LibraryInfoWindow();
