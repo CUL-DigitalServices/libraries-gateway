@@ -17,7 +17,7 @@ define([
             } else if (panoramaFetchError) {
                 callback(panoramaFetchError);
             } else {
-                map.getPanormaForLocation(coords.lat, coords.lng, function (error, panorama) {
+                map.getPanormaForLocation(coords.lat, coords.lng, function(error, panorama) {
                     if (error) {
                         self.panoramaFetchError = error;
                     } else {
