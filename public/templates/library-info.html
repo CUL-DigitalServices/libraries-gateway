@@ -1,16 +1,21 @@
-<h5><%= name %></h5>
-<dl>
-  <% if (address) { %>
-    <dt>Address</dt>
-    <dd class="lg-wrap"><%= address %></dd>
-  <% } %>
+<div class="lg-library-info">
+  <h5><%= name %></h5>
+  <dl>
+    <% if (address) { %>
+      <dt>Address</dt>
+      <dd class="lg-wrap"><%= address %></dd>
+    <% } %>
 
-  <% if (web) { %>
-    <dt>Website</dt>
-    <dd class="lg-wrap"><a href="<%= web %>" target="_blank"><%= web %></a></dd>
-  <% } %>
-</dl>
-<div class="pull-right lg-map-info-btns">
-  <button class="btn btn-sm btn-primary js-btn-street-view<% if (!streetViewEnabled) { %> hidden<% } %>">Street view</button>
-  <button class="btn btn-sm btn-primary js-btn-directions<% if (!directionsEnabled) { %> hidden<% } %>">Directions</button>
+    <% if (web) { %>
+      <dt>Website</dt>
+      <dd class="lg-wrap"><a href="<%= web %>" target="_blank"><%= web %></a></dd>
+    <% } %>
+  </dl>
+  <div class="lg-library-info-btns">
+    <a href="find-a-library/<%= url %>">More information</a>
+    <div class="pull-right">
+      <button class="btn btn-sm btn-primary js-btn-street-view<% if (!streetViewEnabled) { %> hidden<% } %>">Street view</button>
+      <button class="btn btn-sm btn-primary js-btn-directions<% if (!directionsEnabled) { %> hidden<% } %>">Directions</button>
+    </div>
+  </div>
 </div>

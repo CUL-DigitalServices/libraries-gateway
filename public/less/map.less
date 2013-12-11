@@ -4,7 +4,6 @@
 }
 
 .lg-libraries-panel {
-  overflow: hidden;
   word-wrap: break-word;
 }
 
@@ -43,8 +42,16 @@
   }
 }
 
-.lg-library a:visited {
-  color: #0072CF;
+.lg-library-info {
+  width: 300px;
+  margin: 5px 10px;
+}
+
+.lg-library,
+.lg-library-info {
+  a:visited {
+    color: #0072CF;
+  }
 }
 
 // Overwrite bootstrap active item colour
@@ -133,8 +140,11 @@
   }
 }
 
-.lg-map-info-btns {
-  padding-top: 15px;
+.lg-library-info-btns {
+  margin-top: 15px;
+  padding-top: 7px;
+  border-top: 1px solid #D6D6D6;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
