@@ -12,6 +12,7 @@ define([
     _.extend(LibraryProfilePage.prototype, {
         'initialize': function() {
             _.bindAll(this);
+            var self = this;
             var $mapsContainer = $('.js-maps-container');
             var lat = $mapsContainer.data('lat');
             var lng = $mapsContainer.data('lng');
@@ -25,6 +26,13 @@ define([
                     $('.js-btn-directions').removeClass('hidden');
                 }
             });
+
+            map.getPanormaForLocation(lat, lng, function (error, data) {
+                self.panormaLocation = data.location.latLng;
+                if (!error) {
+                    $('.js-btn-street-view').removeClass('hidden');
+                }
+            });
         },
 
         'bindEvents': function() {
@@ -33,7 +41,7 @@ define([
         },
 
         'onStreetViewClick': function() {
-            map.openStreetViewAt(this.latLng);
+            map.openStreetViewAt(this.panormaLocation);
         },
 
         'onDirectionsClick': function() {
