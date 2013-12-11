@@ -6,7 +6,6 @@ require.config({
         'text': '../components/requirejs-text/text',
         'bootstrap-collapse': '../components/bootstrap/js/collapse',
         'bootstrap-dropdown': '../components/bootstrap/js/dropdown',
-        'bootstrap-tab': '../components/bootstrap/js/tab',
         'bootstrap-transition': '../components/bootstrap/js/transition',
         'projectLight': '../components/project-light/javascripts/custom',
         'modernizr': '../components/modernizr/modernizr'
