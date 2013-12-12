@@ -6,7 +6,7 @@ config.server = {
 
 config.app = {
     'title': 'Cambridge Libraries',
-    'hostname': 'localhost:5000'
+    'hostname': 'libraries-gateway.cam.ac.uk'
 };
 
 // Constants //
