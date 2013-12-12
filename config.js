@@ -53,7 +53,8 @@ config.constants = {
         }
     },
     'search': {
-        'pageLimit': 50
+        'pageLimit': 40,
+        'parameters': ['api', 'author', 'format', 'id', 'page', 'q']
     }
 };
 
