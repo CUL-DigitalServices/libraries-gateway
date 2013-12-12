@@ -44,7 +44,7 @@ config.constants = {
         },
         'paper': {
             'aquabrowser': 'paper',
-            'summon': ''
+            'summon': 'paper'
         }
     },
     'refresh': {
