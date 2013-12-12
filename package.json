@@ -10,7 +10,7 @@
     "node-static": "latest",
     "request": "latest",
     "slug": "latest",
-    "swagger-node-express": "latest",
+    "swagger-jack": "latest",
     "timeago": "latest",
     "twitter-text": "latest",
     "underscore": "latest",
