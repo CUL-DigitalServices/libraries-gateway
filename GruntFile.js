@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     'src': [
                         './**',
                         '!./public/**',
-                        './public/errors/**'
+                        './public/errors/**',
                         './public/swagger/**'
                     ]
                 }]
