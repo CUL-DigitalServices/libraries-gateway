@@ -13,7 +13,8 @@ config.constants = {
     'engines': {
         'aquabrowser': {
             'timeout': 5000,
-            'uri': 'http://search.lib.cam.ac.uk/result.ashx'
+            'uri': 'http://search.lib.cam.ac.uk/result.ashx',
+            'uri_suggestions': 'http://search.lib.cam.ac.uk/AquaServer.ashx'
         },
         'summon': {
             'timeout': 10000,
