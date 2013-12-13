@@ -1,25 +1,29 @@
 require.config({
     'paths': {
-        'jquery': '../components/jquery/jquery',
-        'lodash': '../components/lodash/dist/lodash',
         'async': '../components/requirejs-plugins/src/async',
-        'text': '../components/requirejs-text/text',
         'bootstrap-collapse': '../components/bootstrap/js/collapse',
         'bootstrap-dropdown': '../components/bootstrap/js/dropdown',
         'bootstrap-transition': '../components/bootstrap/js/transition',
+        'history': '../components/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history',
+        'jquery': '../components/jquery/jquery',
+        'lodash': '../components/lodash/dist/lodash',
+        'modernizr': '../components/modernizr/modernizr',
         'projectLight': '../components/project-light/javascripts/custom',
-        'modernizr': '../components/modernizr/modernizr'
+        'text': '../components/requirejs-text/text'
     },
     'shim': {
+        'bootstrap-collapse': {
+            'deps': [
+                'bootstrap-transition'
+            ]
+        },
+        'history': {
+            'exports': 'History'
+        },
         'projectLight': {
             'deps': [
                 'jquery',
                 'modernizr'
-            ]
-        },
-        'bootstrap-collapse': {
-            'deps': [
-                'bootstrap-transition'
             ]
         }
     }

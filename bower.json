@@ -8,7 +8,8 @@
     "requirejs": "~2.1.9",
     "requirejs-plugins": "~1.0.2",
     "modernizr": "~2.6.2",
-    "requirejs-text": "~2.0.10"
+    "requirejs-text": "~2.0.10",
+    "history.js": "~1.8.0"
   },
   "resolutions": {
     "jquery": "~1.7.2"

@@ -36,6 +36,11 @@ define([
             }
         },
 
+        'selectValue': function(value) {
+            var $option = this.$el.find('.js-option[data-value="' + value + '"]');
+            $option.trigger('click');
+        },
+
         'getValue': function() {
             return this.$el.find('.js-value').data('value');
         }

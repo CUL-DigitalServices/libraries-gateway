@@ -28,8 +28,8 @@ define([
             });
 
             map.getPanormaForLocation(lat, lng, function(error, data) {
-                self.panoramaLocation = data.location.latLng;
                 if (!error) {
+                    self.panoramaLocation = data.location.latLng;
                     $('.js-btn-street-view').removeClass('hidden');
                 }
             });

@@ -6,9 +6,7 @@ define([
 ], function($, _, events, map) {
     'use strict';
 
-    var AreaCircle = function() {
-        this.initialize();
-    };
+    var AreaCircle = function() {};
     _.extend(AreaCircle.prototype, {
         'initialize': function() {
             _.bindAll(this);
