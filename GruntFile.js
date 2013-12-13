@@ -86,7 +86,9 @@ module.exports = function (grunt) {
             'build': {
                 'files': {
                     'src': [
-                        '<%= outputDir %>/public/**/*.{js,css,png,jpg}'
+                        '<%= outputDir %>/public/scripts/**/*.js',
+                        '<%= outputDir %>/public/styles/**/*.css',
+                        '<%= outputDir %>/public/images/**/*.{png,jpg}'
                     ]
                 }
             }
