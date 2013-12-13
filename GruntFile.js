@@ -32,6 +32,7 @@ module.exports = function (grunt) {
                         './**',
                         '!./public/**',
                         './public/errors/**'
+                        './public/swagger/**'
                     ]
                 }]
             }
