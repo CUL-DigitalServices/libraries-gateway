@@ -20,8 +20,8 @@ var init = function() {
 
         app.get('/api/libraries', require('./lib/controllers/api/libraries').getLibraries);
         app.get('/api/libraries/:slug', require('./lib/controllers/api/libraries').getLibraryBySlug);
-        app.get('/api/search', require('./lib/controllers/api/search').getResults);
-        app.get('/api/search/:api', require('./lib/controllers/api/search').getResults);
+        app.get('/api/search', require('./lib/controllers/api/search').getCombinedResults);
+        app.get('/api/search/:api', require('./lib/controllers/api/search').getResultsFromIndex);
 
         ///////////////////
         // Client routes //
