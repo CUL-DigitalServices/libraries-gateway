@@ -2,14 +2,14 @@
   "name": "cambridge-library-gateway",
   "version": "0.0.0",
   "dependencies": {
-    "jquery": "~1.7.2",
     "bootstrap": "~3.0.0",
+    "history.js": "~1.8.0",
+    "jquery": "~1.7.2",
     "lodash": "~2.2.1",
+    "modernizr": "~2.6.2",
     "requirejs": "~2.1.9",
     "requirejs-plugins": "~1.0.2",
-    "modernizr": "~2.6.2",
-    "requirejs-text": "~2.0.10",
-    "history.js": "~1.8.0"
+    "requirejs-text": "~2.0.10"
   },
   "resolutions": {
     "jquery": "~1.7.2"
