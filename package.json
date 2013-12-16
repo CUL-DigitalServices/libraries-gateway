@@ -18,6 +18,7 @@
     "xml2js": "latest"
   },
   "devDependencies": {
+    "bunyan": "latest",
     "grunt": "latest",
     "grunt-contrib-clean": "latest",
     "grunt-contrib-copy": "latest",

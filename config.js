@@ -50,6 +50,9 @@ config.constants = {
             'summon': 'paper'
         }
     },
+    'logging': {
+        'name': 'cam-lib'
+    },
     'refresh': {
         'twitter': {
             'tweet_expiration': 900000
