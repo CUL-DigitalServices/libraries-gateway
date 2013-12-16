@@ -15,10 +15,9 @@ define([
     _.extend(LibrariesList.prototype, {
         'initialize': function() {
             _.bindAll(this);
-            this.fetchLibraries();
         },
 
-        'fetchLibraries': function() {
+        'load': function() {
             this.libraries || (this.libraries = []);
             var self = this;
             api.getLibraries().then(function(libData) {
@@ -28,6 +27,7 @@ define([
                     self.addLibraryView(model);
                     model.on('change:active', self.onActiveChange);
                 });
+                self.trigger('load');
             });
         },
 
@@ -67,7 +67,7 @@ define([
             var failed;
             // Apply all filters to the libraries array
             _.forEach(filters, function(filter) {
-                passed = _.filter(passed, filter);
+                passed = _.filter(passed, filter.fn);
             });
             // Also save which libraries were filtered out
             failed = _.difference(this.libraries, passed);

@@ -25,13 +25,15 @@ define([
         },
 
         'bindEvents': function() {
-            this.areaFilter.on('change', this.onAreaFilterChange);
             this.alphabetFilter.on('change', this.onAlphabetFilterChange);
             $('.js-mini-search').on('keyup', this.onSearchKeyUp);
         },
 
         'enableAreaFilter': function() {
+            areaCircle.initialize();
             this.areaFilter.$el.removeClass('hidden');
+            this.areaFilter.on('change', this.onAreaFilterChange);
+            this.onAreaFilterChange();
         },
 
         'onAreaFilterChange': function() {
@@ -50,7 +52,7 @@ define([
                 // The circle isn't visible if there's no area filter active
                 areaCircle.hide();
             }
-            this.setFilter('area', filter);
+            this.setFilter('area', filter, value);
         },
 
         'onAlphabetFilterChange': function() {
@@ -61,7 +63,7 @@ define([
                     return library.get('name')[0].toLowerCase() === value;
                 };
             }
-            this.setFilter('alphabet', filter);
+            this.setFilter('alphabet', filter, value);
         },
 
         'onKeywordChange': function() {
@@ -78,21 +80,46 @@ define([
                     });
                 };
             }
-            this.setFilter('keyword', filter);
+            this.setFilter('keyword', filter, keyword);
         },
 
-        'setFilter': function(filterName, fn) {
+        'setFilter': function(filterName, fn, value) {
             // Initialize the filters object if it doesn't exist yet.
             var filters = this.filters || (this.filters = {});
             // Overwrite the exisiting filter if a function is provided,
             // otherwise delete the filter.
-            fn ? filters[filterName] = fn : delete filters[filterName];
+            if (fn) {
+                filters[filterName] = {
+                    'fn': fn,
+                    'value': value
+                };
+            } else {
+                delete filters[filterName];
+            }
             this.trigger('change', filters);
         },
 
-        'onFilterChange': function() {
-            this.updateFilters();
-            this.trigger('change', this.filters);
+        'setFilterValues': function(filters) {
+            var keyword = filters.keyword;
+            var alphabet = filters.alphabet;
+            var area = filters.area;
+
+            if (keyword) {
+                $('.js-mini-search').val(keyword);
+                this.setKeyword(keyword);
+            }
+
+            if (alphabet) {
+                this.alphabetFilter.selectValue(alphabet);
+            }
+
+            if (area) {
+                this.areaFilter.selectValue(area);
+            }
+        },
+
+        'getFilters': function() {
+            return this.filters;
         },
 
         'onSearchKeyUp': function(event) {

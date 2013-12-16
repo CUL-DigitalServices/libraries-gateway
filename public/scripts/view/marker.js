@@ -31,7 +31,7 @@ define([
 
         'drop': function() {
             var marker = this.marker;
-            setTimeout(function() {
+            this.dropTimeout = setTimeout(function() {
                 marker.setOptions({
                     'visible': true,
                     'animation': google.maps.Animation.DROP
@@ -40,10 +40,12 @@ define([
         },
 
         'hide': function() {
+            clearTimeout(this.dropTimeout);
             this.marker.setVisible(false);
         },
 
         'show': function() {
+            clearTimeout(this.dropTimeout);
             this.marker.setVisible(true);
         },
 
