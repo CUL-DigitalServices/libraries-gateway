@@ -1,14 +1,9 @@
-var logger = require('./lib/util/logger');
-
 /**
  * Function that initializes the server by calling the 'createServer' method in the serverController.
  * After the server has been created and successfully spun up, the routes are registered.
  * @api private
  */
 var init = function() {
-
-    // Initialize the logger
-    logger.initialize();
 
     // Create a new express server
     // @see /lib/controllers/server
