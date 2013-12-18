@@ -71,6 +71,30 @@ config.constants = {
         }
     },
 
+    // Languages
+    'languages': {
+        'english': {
+            'aquabrowser': 'english',
+            'summon': 'en'
+        },
+        'french': {
+            'aquabrowser': 'french',
+            'summon': 'fr'
+        },
+        'german': {
+            'aquabrowser': 'german',
+            'summon': 'de'
+        },
+        'italian': {
+            'aquabrowser': 'italian',
+            'summon': 'it'
+        },
+        'spanish': {
+            'aquabrowser': 'spanish',
+            'summon': 'es'
+        }
+    },
+
     // Twitter cache
     'refresh': {
         'twitter': {
@@ -81,7 +105,7 @@ config.constants = {
     // Search settings
     'search': {
         'pageLimit': 40,
-        'parameters': ['api', 'author', 'format', 'id', 'page', 'q']
+        'parameters': ['api', 'format', 'id', 'page', 'q']
     }
 };
 
@@ -108,3 +132,9 @@ config.nodes = {
         'link': 'my-account'
     }
 };
+
+config.search = {
+    'facets': {
+
+    }
+}
