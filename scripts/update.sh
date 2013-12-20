@@ -4,30 +4,36 @@ echo "#########################################"
 echo "#  Installing Application Dependencies  #"
 echo "#########################################"
 
+# Make sure the script is run by the root user
+if [ "$EUID" -ne "0" ]; then
+  echo "This script must be run as root." >&2
+  exit 1
+fi
+
 # Run some check to see if the prerequisites are installed
-git --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Git not installed"; exit 1; }
-node --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Node not installed"; exit 2; }
-bower --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Bower not installed"; exit 3; }
-grunt --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Grunt not installed"; exit 4; }
+git --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Git not installed"; exit 2; }
+node --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Node not installed"; exit 3; }
+bower --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Bower not installed"; exit 4; }
+grunt --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Grunt not installed"; exit 5; }
 
 # Get latest version from GitHub repository
 echo "Pulling latest version from GitHub..."
-# git fetch origin
-# git pull origin master
+git fetch origin
+git pull origin master
 
-# Install Bower packages
+# Install Bower packages
 echo "Installing Bower packages..."
-# bower install
+bower install
 
 # Install Node packages
 echo "Installing Node packages..."
-# npm install -d
+npm install -d
 
 # Run Grunt tasks
 echo "Compiling the LESS file..."
-# grunt less:dev
+grunt less:dev
 echo "Creating a production build..."
-# grunt build:"../build"
+grunt build:"../build"
 
 # Create Apache log files if not exist
 cd "../"
