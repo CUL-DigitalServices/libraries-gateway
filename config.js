@@ -8,14 +8,14 @@ config.server = {
 
 config.app = {
     'title': 'Cambridge Libraries',
-    'hostname': 'localhost:5000'
+    'hostname': 'libraries-gateway.cam.ac.uk'
 };
 
 config.log = {
     'streams': [
         {
             'level': 'info',
-            'stream': process.stdout
+            'path': 'server.log'
         }
     ],
     'serializers': {
@@ -45,54 +45,43 @@ config.constants = {
 
     // Available formats (search)
     'formats': {
-        'books': {
-            'aquabrowser': 'book',
+
+        // Formats that are displayed in the search dropdown
+        'Book': {
+            'displayInSearch': true,
+            'displayName': 'Books',
+            'aquabrowser': 'Book',
             'summon': 'Book'
         },
-        'ebooks': {
-            'aquabrowser': 'ebook',
+        'EBook': {
+            'displayInSearch': true,
+            'displayName': 'EBooks',
+            'aquabrowser': 'EBook',
             'summon': 'eBook'
         },
-        'ejournals': {
-            'aquabrowser': 'ejournal',
+        'Ejournal': {
+            'displayInSearch': true,
+            'displayName': 'Ejournals',
+            'aquabrowser': 'Ejournal',
             'summon': 'Ejournal'
         },
-        'manuscripts': {
-            'aquabrowser': 'manuscript',
+        'Manuscript': {
+            'displayInSearch': true,
+            'aquabrowser': 'Manuscript',
             'summon': 'Manuscript'
         },
-        'journals': {
-            'aquabrowser': 'journal',
+        'Journal': {
+            'displayInSearch': true,
+            'aquabrowser': 'Journal',
             'summon': 'Journal Article'
         },
-        'paper': {
-            'aquabrowser': 'paper',
-            'summon': 'paper'
+        'Paper': {
+            'displayInSearch': true,
+            'aquabrowser': 'Paper',
+            'summon': 'Paper'
         }
-    },
 
-    // Languages
-    'languages': {
-        'english': {
-            'aquabrowser': 'english',
-            'summon': 'en'
-        },
-        'french': {
-            'aquabrowser': 'french',
-            'summon': 'fr'
-        },
-        'german': {
-            'aquabrowser': 'german',
-            'summon': 'de'
-        },
-        'italian': {
-            'aquabrowser': 'italian',
-            'summon': 'it'
-        },
-        'spanish': {
-            'aquabrowser': 'spanish',
-            'summon': 'es'
-        }
+        // Formats that are not displayed in the search dropdown
     },
 
     // Twitter cache
@@ -105,7 +94,7 @@ config.constants = {
     // Search settings
     'search': {
         'pageLimit': 40,
-        'parameters': ['api', 'format', 'id', 'page', 'q']
+        'parameters': ['api', 'author', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q', 'region', 'series', 'subject', 'timeperiod', 'uniformtitle']
     }
 };
 
@@ -132,9 +121,3 @@ config.nodes = {
         'link': 'my-account'
     }
 };
-
-config.search = {
-    'facets': {
-
-    }
-}
