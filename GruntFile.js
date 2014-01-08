@@ -6,6 +6,10 @@ module.exports = function (grunt) {
         'public/less/libraries-gateway.less'
     ];
 
+    // Timeout to determine when a test failed
+    var MOCHA_TIMEOUT = 40000;
+
+    // Grunt configuration
     grunt.initConfig({
         'watch': {
             'less': {
@@ -115,6 +119,19 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        'mocha-hack': {
+            'all': {
+                'src': ['tests/*.js'],
+                'options': {
+                    'timeout': MOCHA_TIMEOUT,
+                    'ignoreLeaks': false,
+                    'reporter': 'spec',
+                    'bail': false,
+                    'growl': true,
+                    'slow': 500
+                }
+            }
+        },
         'usemin': {
             'stylesheets': {
                 'options': {
@@ -156,9 +173,16 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-mocha-hack');
     grunt.loadNpmTasks('grunt-text-replace');
+    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-recess');
     grunt.loadNpmTasks('grunt-rev');
+
+    // Register Mocha unit-tests as a Grunt task
+    grunt.registerTask('mocha', function() {
+        grunt.task.run('mocha-hack:all');
+    });
 
     grunt.registerTask('build', function(outputDir) {
         grunt.config.set('outputDir', outputDir || './dist');

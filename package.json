@@ -15,6 +15,7 @@
     "ejs": "latest",
     "express": "latest",
     "lodash": "latest",
+    "mocha": "latest",
     "mysql": "latest",
     "node-static": "latest",
     "request": "latest",
