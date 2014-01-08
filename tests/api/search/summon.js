@@ -19,6 +19,11 @@ describe('Summon API', function() {
         summon.getResults(true, params, function(err, results) {
             assert.ok(!err);
             assert.ok(_.isObject(results));
+            assert.ok(_.isNumber(results.rowCount));
+            assert.ok(_.isArray(results.facets));
+            assert.ok(_.isArray(results.facetsOverview));
+            assert.ok(_.isArray(results.items));
+            assert.ok(_.isObject(results.items));
             callback();
         });
     });
@@ -37,6 +42,15 @@ describe('Summon API', function() {
         summon.getResults(true, params, function(err, result) {
             assert.ok(!err);
             assert.ok(_.isObject(result));
+            assert.ok(_.isNumber(result.rowCount));
+            assert.ok(_.isArray(result.facets));
+            assert.ok(_.isArray(result.facetsOverview));
+            assert.ok(_.isArray(result.items));
+            assert.ok(_.isObject(result.items));
+
+            // Check if the specified ID matches the resource's ID
+            assert.equal(result.items[0].id[0], params.id);
+
             callback();
         });
     });

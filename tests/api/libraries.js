@@ -46,7 +46,7 @@ describe('Libraries API', function() {
         // Execute the getLibraryBySlug function in the libraries DAO
         librariesDAO.getLibraryBySlug('sdfasdfsd', function(err, result) {
             assert.ok(!err);
-            assert.equal(null);
+            assert.equal(result, null);
             callback();
         });
     });
