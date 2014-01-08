@@ -1,8 +1,17 @@
 {
   "name": "cambridge-library-gateway",
+  "description": "Cambridge Libraries",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:CUL-DigitalServices/libraries-gateway.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CUL-DigitalServices/libraries-gateway/issues"
+  },
   "dependencies": {
     "assert": "latest",
+    "bunyan": "latest",
     "ejs": "latest",
     "express": "latest",
     "lodash": "latest",
@@ -29,5 +38,8 @@
     "grunt-text-replace": "latest",
     "grunt-usemin": "latest",
     "grunt-rev": "latest"
+  },
+  "optionalDependencies": {
+    "bunyan-syslog": "latest"
   }
 }

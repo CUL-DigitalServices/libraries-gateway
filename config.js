@@ -1,3 +1,5 @@
+var bunyan = require('bunyan');
+
 var config = module.exports = require('./config_private');
 
 config.server = {
@@ -6,15 +8,32 @@ config.server = {
 
 config.app = {
     'title': 'Cambridge Libraries',
-    'hostname': 'localhost:5000'
+    'hostname': 'libraries-gateway.cam.ac.uk'
 };
 
-// Constants //
+config.log = {
+    'streams': [
+        {
+            'level': 'info',
+            'path': 'server.log'
+        }
+    ],
+    'serializers': {
+        'err': bunyan.stdSerializers.err,
+        'req': bunyan.stdSerializers.req,
+        'res': bunyan.stdSerializers.res
+    }
+};
+
+// Constants
 config.constants = {
+
+    // Search API's
     'engines': {
         'aquabrowser': {
             'timeout': 5000,
             'uri': 'http://search.lib.cam.ac.uk/result.ashx',
+            'uri_availability': 'http://search.lib.cam.ac.uk/availability.ashx',
             'uri_suggestions': 'http://search.lib.cam.ac.uk/AquaServer.ashx'
         },
         'summon': {
@@ -23,44 +42,64 @@ config.constants = {
             'version': '/2.0.0/search'
         }
     },
+
+    // Available formats (search)
     'formats': {
-        'books': {
-            'aquabrowser': 'book',
+
+        // Formats that are displayed in the search dropdown
+        'Book': {
+            'displayInSearch': true,
+            'displayName': 'Books',
+            'aquabrowser': 'Book',
             'summon': 'Book'
         },
-        'ebooks': {
-            'aquabrowser': 'ebook',
+        'EBook': {
+            'displayInSearch': true,
+            'displayName': 'EBooks',
+            'aquabrowser': 'EBook',
             'summon': 'eBook'
         },
-        'ejournals': {
-            'aquabrowser': 'ejournal',
+        'Ejournal': {
+            'displayInSearch': true,
+            'displayName': 'Ejournals',
+            'aquabrowser': 'Ejournal',
             'summon': 'Ejournal'
         },
-        'manuscripts': {
-            'aquabrowser': 'manuscript',
+        'Manuscript': {
+            'displayInSearch': true,
+            'aquabrowser': 'Manuscript',
             'summon': 'Manuscript'
         },
-        'journals': {
-            'aquabrowser': 'journal',
+        'Journal': {
+            'displayInSearch': true,
+            'aquabrowser': 'Journal',
             'summon': 'Journal Article'
         },
-        'paper': {
-            'aquabrowser': 'paper',
-            'summon': 'paper'
+        'Paper': {
+            'displayInSearch': true,
+            'aquabrowser': 'Paper',
+            'summon': 'Paper'
         }
+
+        // Formats that are not displayed in the search dropdown
     },
+
+    // Twitter cache
     'refresh': {
         'twitter': {
             'tweet_expiration': 900000
         }
     },
+
+    // Search settings
     'search': {
         'pageLimit': 40,
-        'parameters': ['api', 'author', 'format', 'id', 'page', 'q']
+        'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
+            'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
     }
 };
 
-// Nodes //
+// Nodes
 config.nodes = {
     'home': {
         'title': 'Home',
