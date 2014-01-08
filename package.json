@@ -15,7 +15,6 @@
     "ejs": "latest",
     "express": "latest",
     "lodash": "latest",
-    "mocha": "latest",
     "mysql": "latest",
     "node-static": "latest",
     "request": "latest",
@@ -40,7 +39,8 @@
     "grunt-recess": "latest",
     "grunt-rev": "latest",
     "grunt-text-replace": "latest",
-    "grunt-usemin": "latest"
+    "grunt-usemin": "latest",
+    "terminal-notifier": "latest"
   },
   "optionalDependencies": {
     "bunyan-syslog": "latest"

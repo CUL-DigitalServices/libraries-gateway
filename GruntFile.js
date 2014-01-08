@@ -121,12 +121,12 @@ module.exports = function (grunt) {
         },
         'mocha-hack': {
             'all': {
-                'src': ['tests/*.js'],
+                'src': ['tests/*.js','tests/**/*.js'],
                 'options': {
                     'timeout': MOCHA_TIMEOUT,
-                    'ignoreLeaks': false,
+                    'ignoreLeaks': true,
                     'reporter': 'spec',
-                    'bail': false,
+                    'bail': true,
                     'growl': true,
                     'slow': 500
                 }
