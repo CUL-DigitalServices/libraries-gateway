@@ -94,7 +94,8 @@ config.constants = {
     // Search settings
     'search': {
         'pageLimit': 40,
-        'parameters': ['api', 'author', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q', 'region', 'series', 'subject', 'timeperiod', 'uniformtitle']
+        'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
+            'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
     }
 };
 
