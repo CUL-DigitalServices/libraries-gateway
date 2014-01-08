@@ -87,13 +87,19 @@ dl {
  * styles.
  */
 .lg-search-combo-select-input {
-  select {
+  .lg-dropdown-selector {
     position: relative;
-    width: 130px;
     height: 100%;
-    z-index: 1;
+    z-index: 12;
     margin: 0;
-    text-transform: capitalize;
+
+    button {
+      border: none;
+      width: 130px;
+      height: 100%;
+
+      text-align: left;
+    }
   }
 
   .lg-search-input-wrap {

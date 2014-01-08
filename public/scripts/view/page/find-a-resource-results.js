@@ -1,6 +1,7 @@
 define([
+    'view/search-type-selector',
     'bootstrap-collapse'
-], function() {
+], function(TypeSelector) {
     'use strict';
-    return function() {};
+    return TypeSelector;
 });
