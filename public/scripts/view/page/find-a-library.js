@@ -19,7 +19,7 @@ define([
                 'el': '.js-libraries'
             });
             this.bindEvents();
-            list.load();
+            this.updateFiltersFromUrl();
 
             map.locateCurrentPosition(function(error) {
                 if (!error) {
@@ -31,7 +31,6 @@ define([
 
         'bindEvents': function() {
             this.filters.on('change', this.onFiltersChange);
-            this.list.on('load', this.updateFiltersFromUrl);
             infoWindow.on('close', this.onInfoWindowClose);
             window.onbeforeunload = this.updateUrlWithFilters;
         },

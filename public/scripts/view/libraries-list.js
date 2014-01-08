@@ -15,19 +15,19 @@ define([
     _.extend(LibrariesList.prototype, {
         'initialize': function() {
             _.bindAll(this);
+            this.populate();
         },
 
-        'load': function() {
+        'populate': function() {
             this.libraries || (this.libraries = []);
             var self = this;
-            api.getLibraries().then(function(libData) {
-                _.each(libData, function(library) {
-                    var model = new LibraryModel(library);
-                    self.libraries.push(model);
-                    self.addLibraryView(model);
-                    model.on('change:active', self.onActiveChange);
-                });
-                self.trigger('load');
+            var libData = JSON.parse(this.$el.data('libraries'));
+
+            _.each(libData, function(library) {
+                var model = new LibraryModel(library);
+                self.libraries.push(model);
+                self.addLibraryView(model);
+                model.on('change:active', self.onActiveChange);
             });
         },
 
