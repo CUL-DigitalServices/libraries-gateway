@@ -23,7 +23,8 @@ describe('Summon API', function() {
             assert.ok(_.isArray(results.facets));
             assert.ok(_.isArray(results.facetsOverview));
             assert.ok(_.isArray(results.items));
-            assert.ok(_.isObject(results.items));
+            assert.ok(_.isObject(results.pagination));
+            assert.ok(_.isObject(results.suggestions));
             callback();
         });
     });
@@ -46,7 +47,8 @@ describe('Summon API', function() {
             assert.ok(_.isArray(result.facets));
             assert.ok(_.isArray(result.facetsOverview));
             assert.ok(_.isArray(result.items));
-            assert.ok(_.isObject(result.items));
+            assert.ok(_.isObject(result.pagination));
+            assert.ok(_.isObject(result.suggestions));
 
             // Check if the specified ID matches the resource's ID
             assert.equal(result.items[0].id[0], params.id);
@@ -74,8 +76,8 @@ describe('Summon API', function() {
             assert.ok(_.isArray(result.facets));
             assert.ok(_.isArray(result.facetsOverview));
             assert.ok(_.isArray(result.items));
-            assert.ok(_.isArray(result.pagination));
-            assert.ok(_.isArray(result.suggestions));
+            assert.ok(_.isObject(result.pagination));
+            assert.ok(_.isObject(result.suggestions));
             callback();
         });
     });

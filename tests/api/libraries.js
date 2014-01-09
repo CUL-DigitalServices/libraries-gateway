@@ -1,5 +1,8 @@
 var _ = require('underscore');
 var assert = require('assert');
+var request = require('request');
+
+var config = require('../../config');
 
 var librariesDAO = require('../../lib/dao/libraries');
 
@@ -10,11 +13,18 @@ describe('Libraries API', function() {
      */
     it('verify if fetching all libraries returns a collection of libraries.', function(callback) {
 
-        // Execute the getLibraries function in the libraries DAO
-        librariesDAO.getLibraries(function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isArray(result, "libraries are not returned as an array"));
-            _.each(result, function(library) {
+        // Request options object
+        var options = {
+            'timeout': 5000,
+            'url': 'http://localhost:' + config.server.port + '/api/libraries'
+        };
+
+        // Perform a request to the libraries API
+        request(options, function(error, response, libraries) {
+            assert.ok(!error);
+            libraries = JSON.parse(libraries);
+            assert.ok(_.isArray(libraries));
+            _.each(libraries, function(library) {
                 assert(library.id);
                 assert(library.name);
                 assert(library.url);
@@ -28,12 +38,20 @@ describe('Libraries API', function() {
      */
     it('verify if fetching a specific library returns a library object.', function(callback) {
 
-        // Execute the getLibraryBySlug function in the libraries DAO
-        librariesDAO.getLibraryBySlug('african-studies', function(err, result) {
-            assert.ok(!err);
-            assert(result.id);
-            assert(result.name);
-            assert(result.url);
+        // Request options object
+        var options = {
+            'timeout': 5000,
+            'url': 'http://localhost:' + config.server.port + '/api/libraries/african-studies'
+        };
+
+        // Perform a request to the libraries API
+        request(options, function(error, response, library) {
+            assert.ok(!error);
+            library = JSON.parse(library);
+            assert.ok(_.isObject(library));
+            assert(library.id);
+            assert(library.name);
+            assert(library.url);
             callback();
         });
     });
@@ -43,10 +61,18 @@ describe('Libraries API', function() {
      */
     it('verify that requesting a non-existing library returns a null object.', function(callback) {
 
-        // Execute the getLibraryBySlug function in the libraries DAO
-        librariesDAO.getLibraryBySlug('sdfasdfsd', function(err, result) {
-            assert.ok(!err);
-            assert.equal(result, null);
+        // Request options object
+        var options = {
+            'timeout': 5000,
+            'url': 'http://localhost:' + config.server.port + '/api/libraries/dskjfasl;fjs;lafjsd'
+        };
+
+        // Perform a request to the libraries API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(body.error);
+            assert.equal(body.error, "Could not find library");
             callback();
         });
     });
