@@ -1,77 +1,41 @@
 var _ = require('underscore');
 var assert = require('assert');
+var request = require('request');
+
+var config = require('../../../config');
 
 var aquabrowser = require('../../../lib/controllers/api/search/aquabrowser');
 
 describe('Aquabrowser API', function() {
+
+    var validID = '12098311';
+    var validString = 'Darwin';
+    var invalidString = 'asdfsdfasdfsdfs"£/////"""D@£@£T@£$T@£@£';
 
     /**
      * Test that verifies that resources are returned correctly while doing a global search
      */
     it('verify that fetching resources succeeds while doing a global search.', function(callback) {
 
-        // Create a request parameters object
-        var params = {
-            'q': 'Darwin'
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?q=' + validString
         };
 
-        // Get the Aquabrowser results
-        aquabrowser.getResults(true, params, function(err, results) {
-            assert.ok(!err);
-            assert.ok(_.isObject(results));
-            assert.ok(_.isNumber(results.rowCount));
-            assert.ok(_.isArray(results.facets));
-            assert.ok(_.isArray(results.facetsOverview));
-            assert.ok(_.isArray(results.items));
-            callback();
-        });
-    });
-
-    /**
-     * Test that verifies that a resource is returned correctly when an ID has been specified
-     */
-    it('verify that fetching a resource by its ID is returned correctly.', function(callback) {
-
-        // Create a request parameters object
-        var params = {
-            'id': '12098311'
-        };
-
-        // Get the Aquabrowser results
-        aquabrowser.getResults(true, params, function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isObject(result));
-            assert.ok(_.isNumber(result.rowCount));
-            assert.ok(_.isArray(result.facets));
-            assert.ok(_.isArray(result.facetsOverview));
-            assert.ok(_.isArray(result.items));
-
-            // Check if the specified ID matches the resource's ID
-            assert.equal(result.items[0].id[0], params.id);
-
-            callback();
-        });
-    });
-
-    /**
-     * Test that verifies that empty result model is returned when an invalid ID has been specified
-     */
-    it('verify that fetching a resource by an invalid ID returns an empty result model.', function(callback) {
-
-        // Create a request parameters object
-        var params = {
-            'id': 'asdfsdfasdfsdfs"£/////"""D@£@£T@£$T@£@£afasdfsadfsdfasdfdsfdss'
-        };
-
-        // Get the Aquabrowser results
-        aquabrowser.getResults(true, params, function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isObject(result));
-            assert.ok(_.isNumber(result.rowCount));
-            assert.equal(result.rowCount, 0);
-            assert.ok(_.isArray(result.facets));
-            assert.ok(_.isArray(result.facetsOverview));
-            assert.ok(_.isArray(result.items));
+        // Perform a request to the Aquabrowser API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.aquabrowser));
+            assert.ok(_.isNumber(body.results.aquabrowser.rowCount));
+            assert.ok(_.isArray(body.results.aquabrowser.facets));
+            assert.ok(_.isArray(body.results.aquabrowser.facetsOverview));
+            assert.ok(_.isArray(body.results.aquabrowser.items));
+            assert(body.results.aquabrowser.pagination);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.q, validString);
             callback();
         });
     });
@@ -81,20 +45,86 @@ describe('Aquabrowser API', function() {
      */
     it('verify that suggestions are returned correctly when no results are found.', function(callback) {
 
-        // Create a request parameters object
-        var params = {
-            'q': 'asdfsdfasdfsdfs"£/////"""D@£@£T@£$T@£@£afasdfsadfsdfasdfdsfdss'
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?q=' + invalidString
         };
 
-        // Get the Aquabrowser results
-        aquabrowser.getResults(true, params, function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isObject(result));
-            assert.ok(_.isNumber(result.rowCount));
-            assert.equal(result.rowCount, 0);
-            assert.ok(_.isArray(result.facets));
-            assert.ok(_.isArray(result.facetsOverview));
-            assert.ok(_.isArray(result.items));
+        // Perform a request to the Aquabrowser API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.aquabrowser));
+            assert.ok(_.isNumber(body.results.aquabrowser.rowCount));
+            assert.equal(body.results.aquabrowser.rowCount, 0);
+            assert.ok(_.isArray(body.results.aquabrowser.facets));
+            assert.ok(_.isArray(body.results.aquabrowser.facetsOverview));
+            assert.ok(_.isArray(body.results.aquabrowser.items));
+            assert(body.results.aquabrowser.pagination);
+            assert(body.results.aquabrowser.suggestions);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.q, invalidString);
+            callback();
+        });
+    });
+
+    /**
+     * Test that verifies that a resource is returned correctly when an ID has been specified
+     */
+    it('verify that fetching a resource by its ID is returned correctly.', function(callback) {
+
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?id=' + validID
+        };
+
+        // Perform a request to the Aquabrowser API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.aquabrowser));
+            assert.ok(_.isNumber(body.results.aquabrowser.rowCount));
+            assert.equal(body.results.aquabrowser.rowCount, 1);
+            assert.ok(_.isArray(body.results.aquabrowser.facets));
+            assert.ok(_.isArray(body.results.aquabrowser.facetsOverview));
+            assert.ok(_.isArray(body.results.aquabrowser.items));
+            assert.equal(body.results.aquabrowser.items[0].id[0], validID);
+            assert(body.results.aquabrowser.pagination);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.id, validID);
+            callback();
+        });
+    });
+
+    /**
+     * Test that verifies that empty result model is returned when an invalid ID has been specified
+     */
+    it('verify that fetching a resource by an invalid ID returns an empty result model.', function(callback) {
+
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?id=' + invalidString
+        };
+
+        // Perform a request to the Aquabrowser API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.aquabrowser));
+            assert.ok(_.isNumber(body.results.aquabrowser.rowCount));
+            assert.equal(body.results.aquabrowser.rowCount, 0);
+            assert.ok(_.isArray(body.results.aquabrowser.facets));
+            assert.ok(_.isArray(body.results.aquabrowser.facetsOverview));
+            assert.ok(_.isArray(body.results.aquabrowser.items));
+            assert(body.results.aquabrowser.pagination);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.id, invalidString);
             callback();
         });
     });

@@ -15,7 +15,6 @@ describe('Libraries API', function() {
 
         // Request options object
         var options = {
-            'timeout': 5000,
             'url': 'http://localhost:' + config.server.port + '/api/libraries'
         };
 
@@ -40,7 +39,6 @@ describe('Libraries API', function() {
 
         // Request options object
         var options = {
-            'timeout': 5000,
             'url': 'http://localhost:' + config.server.port + '/api/libraries/african-studies'
         };
 
@@ -63,16 +61,16 @@ describe('Libraries API', function() {
 
         // Request options object
         var options = {
-            'timeout': 5000,
             'url': 'http://localhost:' + config.server.port + '/api/libraries/dskjfasl;fjs;lafjsd'
         };
 
         // Perform a request to the libraries API
         request(options, function(error, response, body) {
             assert.ok(!error);
+            assert.equal(response.statusCode, 404);
             body = JSON.parse(body);
             assert.ok(body.error);
-            assert.equal(body.error, "Could not find library");
+            assert.equal(body.error, 'Could not find library');
             callback();
         });
     });
