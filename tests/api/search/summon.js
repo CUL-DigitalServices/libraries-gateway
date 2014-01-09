@@ -8,26 +8,34 @@ var summon = require('../../../lib/controllers/api/search/summon');
 
 describe('Summon API', function() {
 
+    var validID = 'FETCH-crossref_primary_10_1093_sysbio_syq0930';
+    var validString = 'Darwin';
+    var invalidString = 'asdfsdfasdfsdfs"£/////"""D@£@£T@£$T@£@£';
+
     /**
      * Test that verifies that resources are returned correctly while doing a global search
      */
     it('verify that fetching resources succeeds while doing a global search.', function(callback) {
 
-        // Create a request parameters object
-        var params = {
-            'q': 'Darwin'
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/summon?q=' + validString
         };
 
         // Perform a request to the Summon API
-        summon.getResults(true, params, function(err, results) {
-            assert.ok(!err);
-            assert.ok(_.isObject(results));
-            assert.ok(_.isNumber(results.rowCount));
-            assert.ok(_.isArray(results.facets));
-            assert.ok(_.isArray(results.facetsOverview));
-            assert.ok(_.isArray(results.items));
-            assert.ok(_.isObject(results.pagination));
-            assert.ok(_.isObject(results.suggestions));
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.summon));
+            assert.ok(_.isNumber(body.results.summon.rowCount));
+            assert.ok(_.isArray(body.results.summon.facets));
+            assert.ok(_.isArray(body.results.summon.facetsOverview));
+            assert.ok(_.isArray(body.results.summon.items));
+            assert(body.results.summon.pagination);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.q, validString);
             callback();
         });
     });
@@ -37,22 +45,27 @@ describe('Summon API', function() {
      */
     it('verify that suggestions are returned correctly when no results are found.', function(callback) {
 
-        // Create a request parameters object
-        var params = {
-            'q': 'asdfsdfasdfsdfs"£/////"""D@£@£T@£$T@£@£afasdfsadfsdfasdfdsfdss'
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/summon?q=' + invalidString
         };
 
         // Perform a request to the Summon API
-        summon.getResults(true, params, function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isObject(result));
-            assert.ok(_.isNumber(result.rowCount));
-            assert.equal(result.rowCount, 0);
-            assert.ok(_.isArray(result.facets));
-            assert.ok(_.isArray(result.facetsOverview));
-            assert.ok(_.isArray(result.items));
-            assert.ok(_.isObject(result.pagination));
-            assert.ok(_.isObject(result.suggestions));
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.summon));
+            assert.ok(_.isNumber(body.results.summon.rowCount));
+            assert.equal(body.results.summon.rowCount, 0);
+            assert.ok(_.isArray(body.results.summon.facets));
+            assert.ok(_.isArray(body.results.summon.facetsOverview));
+            assert.ok(_.isArray(body.results.summon.items));
+            assert(body.results.summon.pagination);
+            assert(body.results.summon.suggestions);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.q, invalidString);
             callback();
         });
     });
@@ -62,25 +75,27 @@ describe('Summon API', function() {
      */
     it('verify that fetching a resource by its ID is returned correctly.', function(callback) {
 
-        // Create a request parameters object
-        var params = {
-            'id': 'FETCH-crossref_primary_10_1093_sysbio_syq0930'
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/summon?id=' + validID
         };
 
-        // Perform a request to the Summon API
-        summon.getResults(true, params, function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isObject(result));
-            assert.ok(_.isNumber(result.rowCount));
-            assert.ok(_.isArray(result.facets));
-            assert.ok(_.isArray(result.facetsOverview));
-            assert.ok(_.isArray(result.items));
-            assert.ok(_.isObject(result.pagination));
-            assert.ok(_.isObject(result.suggestions));
-
-            // Check if the specified ID matches the resource's ID
-            assert.equal(result.items[0].id[0], params.id);
-
+        // Perform a request to the Aquabrowser API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.summon));
+            assert.ok(_.isNumber(body.results.summon.rowCount));
+            assert.equal(body.results.summon.rowCount, 1);
+            assert.ok(_.isArray(body.results.summon.facets));
+            assert.ok(_.isArray(body.results.summon.facetsOverview));
+            assert.ok(_.isArray(body.results.summon.items));
+            assert.equal(body.results.summon.items[0].id[0], validID);
+            assert(body.results.summon.pagination);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.id, validID);
             callback();
         });
     });
@@ -90,22 +105,26 @@ describe('Summon API', function() {
      */
     it('verify that fetching a resource by an invalid ID returns an empty result model.', function(callback) {
 
-        // Create a request parameters object
-        var params = {
-            'id': 'asdfsdfasdfsdfs"£/////"""D@£@£T@£$T@£@£afasdfsadfsdfasdfdsfdss'
+        // Request options object
+        var options = {
+            'url': 'http://localhost:' + config.server.port + '/api/search/summon?id=' + invalidString
         };
 
-        // Perform a request to the Summon API
-        summon.getResults(true, params, function(err, result) {
-            assert.ok(!err);
-            assert.ok(_.isObject(result));
-            assert.ok(_.isNumber(result.rowCount));
-            assert.equal(result.rowCount, 0);
-            assert.ok(_.isArray(result.facets));
-            assert.ok(_.isArray(result.facetsOverview));
-            assert.ok(_.isArray(result.items));
-            assert.ok(_.isObject(result.pagination));
-            assert.ok(_.isObject(result.suggestions));
+        // Perform a request to the Aquabrowser API
+        request(options, function(error, response, body) {
+            assert.ok(!error);
+            body = JSON.parse(body);
+            assert.ok(_.isObject(body));
+            assert.ok(_.isObject(body.results));
+            assert.ok(_.isObject(body.results.summon));
+            assert.ok(_.isNumber(body.results.summon.rowCount));
+            assert.equal(body.results.summon.rowCount, 0);
+            assert.ok(_.isArray(body.results.summon.facets));
+            assert.ok(_.isArray(body.results.summon.facetsOverview));
+            assert.ok(_.isArray(body.results.summon.items));
+            assert(body.results.summon.pagination);
+            assert.ok(_.isObject(body.query));
+            assert.equal(body.query.id, invalidString);
             callback();
         });
     });
