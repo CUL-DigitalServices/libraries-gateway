@@ -1,5 +1,5 @@
 /**
- * Function that initializes the server by calling the 'createServer' method in the serverController.
+ * Function that initializes the server by calling the 'createServer' method in the server util.
  * After the server has been created and successfully spun up, the routes are registered.
  * @api private
  */
