@@ -39,7 +39,7 @@ define([
         'onAreaFilterChange': function() {
             var value = this.areaFilter.getValue();
             var filter;
-            if (value !== 'anywhere') {
+            if (value) {
                 // Convert miles to meters
                 areaCircle.setRadius(value * config.constants.milesToMetres);
                 areaCircle.show();
@@ -58,7 +58,7 @@ define([
         'onAlphabetFilterChange': function() {
             var value = this.alphabetFilter.getValue();
             var filter;
-            if (value && value !== 'all') {
+            if (value) {
                 filter = function(library) {
                     return library.get('name')[0].toLowerCase() === value;
                 };
