@@ -71,7 +71,7 @@
 }
 
 .lg-dropdown-selector {
-  button {
+  .lg-dropdown-toggle {
     color: #FFFFFF;
     background: #004e8f url(../images/interface/bg-local-navigation-sub-arrow.png) no-repeat 95% 50%;
     padding:10px 40px 10px 10px;
@@ -82,6 +82,25 @@
       color: #FFFFFF;
       background-color: #002e55;
     }
+  }
+
+  .lg-dropdown-value {
+    padding-right: 10px;
+  }
+
+  .lg-btn-remove {
+    background: none;
+
+    position: absolute;
+    top: 9px;
+    right: 23px;
+
+    margin: 0;
+    padding: 3px;
+
+    width: 16px;
+    height: 16px;
+    border: none;
   }
 
   ul {
@@ -113,7 +132,7 @@
  */
 .lg-dropdown-selector-alphabet {
   ul {
-    min-width: 128px;
+    min-width: 85px;
     padding: 0;
   }
 
@@ -129,7 +148,7 @@
     }
 
     // The last item of each row doesn't need a border-right
-    &:nth-child(3n+3) a {
+    &:nth-child(even) a {
       border-right: none;
     }
 
