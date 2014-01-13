@@ -1,162 +1,13 @@
-.btn,
-.dropdown-menu {
-  border-radius: 0;
-}
-
-.lg-libraries-panel {
-  word-wrap: break-word;
-}
-
-.lg-filters {
-  padding: 10px;
-  background: #F3F3F3;
-  border-bottom: 1px solid #C4CBCC;
-}
-
-.lg-libraries {
-  height: 550px;
-  margin-bottom: 0;
-  overflow-y: auto;
-  border: none;
-  border-radius: 4px;
-  -webkit-overflow-scrolling: touch;
-}
-
-.lg-library {
-  overflow: hidden;
-  font-size: .85em;
-  border-right-style: none;
-  border-left-style: none;
-  cursor: pointer;
-
-  &:hover {
-    background: #F8F8F8;
-  }
-
-  &:first-child {
-    border-top-style: none;
-  }
-
-  &:last-child {
-    border-bottom-style: none;
-  }
-}
-
+/**
+ * Library map info window
+ */
 .lg-library-info {
   width: 300px;
   margin: 5px 10px;
 }
 
-.lg-library,
-.lg-library-info {
-  a:visited {
-    color: #0072CF;
-  }
-}
-
-// Overwrite bootstrap active item colour
-.list-group-item {
-  &.active,
-  &.active:hover,
-  &.active:focus {
-    background-color: #EAF0F6;
-  }
-}
-
-.maps-container {
-  position: absolute;
-  right: 0;
-  width: 75%;
-  height: 100%;
-}
-
-.lg-dropdown-selector {
-  .lg-dropdown-toggle {
-    color: #FFFFFF;
-    background: #004e8f url(../images/interface/bg-local-navigation-sub-arrow.png) no-repeat 95% 50%;
-    padding:10px 40px 10px 10px;
-
-    &:hover,
-    &:active,
-    &:focus {
-      color: #FFFFFF;
-      background-color: #002e55;
-    }
-  }
-
-  .lg-dropdown-value {
-    padding-right: 10px;
-  }
-
-  .lg-btn-remove {
-    background: none;
-
-    position: absolute;
-    top: 9px;
-    right: 23px;
-
-    margin: 0;
-    padding: 3px;
-
-    width: 16px;
-    height: 16px;
-    border: none;
-  }
-
-  ul {
-    background: none;
-    padding: 0;
-
-    a {
-      background: #002e55;
-      border-bottom:1px solid #004e8f;
-      color: #FFFFFF;
-      padding: 10px 40px 10px 10px;
-
-      &:hover,
-      &:active,
-      &:focus {
-        color: #FFFFFF;
-        background-color: #004e8f;
-      }
-    }
-  }
-
-  li:last-child a {
-    border-bottom:0;
-  }
-}
-
-/**
- * Turn the alphabet dropdown selector list into a grid
- */
-.lg-dropdown-selector-alphabet {
-  ul {
-    min-width: 85px;
-    padding: 0;
-  }
-
-  li {
-    float: left;
-
-    a {
-      padding: 7px 4px;
-      width: 34px;
-      border-right: 1px solid #004e8f;
-      border-bottom: 1px solid #004e8f;
-      text-align: center;
-    }
-
-    // The last item of each row doesn't need a border-right
-    &:nth-child(even) a {
-      border-right: none;
-    }
-
-    // The last three items in the list don't need a border-bottom
-    &:nth-child(n+25) a {
-      border-bottom: none;
-    }
-  }
+.lg-library-info a:visited {
+  color: #0072CF;
 }
 
 .lg-library-info-btns {
@@ -166,23 +17,47 @@
   overflow: hidden;
 }
 
+/**
+ * Map controls for library profile
+ */
+.lg-map-control {
+  min-height: 32px;
+  margin-top: 2px;
+  padding-top: 6px;
+  padding-bottom: 8px;
+  overflow: hidden;
+  background: #E4E4E4;
+
+  button {
+    margin-right: 4px;
+
+    &:last-child {
+        margin-right: 0;
+    }
+  }
+}
+
+/**
+ * Google map wrappers
+ */
+.lg-libraries-maps-container {
+  position: absolute;
+  right: 0;
+  width: 75%;
+  height: 100%;
+}
+
+.lg-library-profile-maps-outer {
+  position: relative;
+  overflow: hidden;
+}
+
+.lg-library-profile-maps-container {
+  min-height: 300px;
+}
+
 @media (max-width: 767px) {
-  .maps-container {
+  .lg-libraries-maps-container {
     display: none;
-  }
-
-  // Add more weight to overwrite default style
-  .campl-content .lg-libraries-panel {
-    display: block;
-    margin-top: 0;
-  }
-
-  .lg-filters li {
-    margin: 0;
-  }
-
-  .lg-libraries {
-    height: auto;
-    min-height: 100px;
   }
 }
