@@ -1,8 +1,6 @@
 define([
-    'lodash',
-    'jquery',
     'view/search-type-selector'
-], function(_, $, TypeSelector) {
+], function(TypeSelector) {
     'use strict';
     return TypeSelector;
 });

@@ -16,8 +16,8 @@ define([
             var $mapsContainer = $('.js-maps-container');
             var lat = $mapsContainer.data('lat');
             var lng = $mapsContainer.data('lng');
-            var latLng = this.latLng = new google.maps.LatLng(lat, lng);
             var marker = this.marker = new Marker(lat, lng);
+            this.latLng = new google.maps.LatLng(lat, lng);
             marker.drop();
             this.bindEvents();
 

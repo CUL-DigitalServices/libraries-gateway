@@ -2,10 +2,9 @@ define([
     'jquery',
     'lodash',
     'util/events',
-    'util/api',
     'view/library',
     'model/library-model'
-], function($, _, events, api, Library, LibraryModel) {
+], function($, _, events, Library, LibraryModel) {
     'use strict';
 
     var LibrariesList = function(options) {

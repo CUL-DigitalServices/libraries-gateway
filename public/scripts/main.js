@@ -20,6 +20,9 @@ require.config({
         'history': {
             'exports': 'History'
         },
+        'modernizr': {
+            'exports': 'Modernizr'
+        },
         'projectLight': {
             'deps': [
                 'jquery',
