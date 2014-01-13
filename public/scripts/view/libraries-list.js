@@ -20,7 +20,7 @@ define([
         'populate': function() {
             this.libraries || (this.libraries = []);
             var self = this;
-            var libData = JSON.parse(this.$el.data('libraries'));
+            var libData = this.$el.data('libraries');
 
             _.each(libData, function(library) {
                 var model = new LibraryModel(library);
