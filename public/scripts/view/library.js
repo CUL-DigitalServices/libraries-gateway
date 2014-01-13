@@ -1,12 +1,13 @@
 define([
     'jquery',
     'lodash',
+    'modernizr',
     'util/events',
     'view/map',
     'view/library-infowindow',
     'view/marker',
     'text!../../templates/library.html'
-], function($, _, events, map, infoWindow, Marker, template) {
+], function($, _, Modernizr, events, map, infoWindow, Marker, template) {
     'use strict';
 
     var Library = function(options) {
