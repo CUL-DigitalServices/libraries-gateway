@@ -64,7 +64,9 @@
  */
 .lg-dropdown-selector-alphabet {
   ul {
-    min-width: 85px;
+    border: none;
+    box-shadow: none;
+    min-width: 171px;
     padding: 0;
   }
 
@@ -80,7 +82,7 @@
     }
 
     // The last item of each row doesn't need a border-right
-    &:nth-child(even) a {
+    &:nth-child(4n+4) a {
       border-right: none;
     }
 
