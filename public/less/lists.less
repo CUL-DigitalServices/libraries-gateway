@@ -1,0 +1,50 @@
+dl {
+  margin: 0;
+
+  dt {
+    padding-top: 10px;
+    margin-bottom: 4px;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  dd {
+    margin-left: 0;
+  }
+}
+
+/**
+ * Component for a list with 2 columns
+ */
+.lg-two-column-list {
+  .lg-column {
+    width: 50%;
+    float: left;
+    ul {
+      padding: 0 20px 0 0;
+    }
+
+    &:last-child ul {
+      padding: 0 0 0 20px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .lg-two-column-list {
+    .lg-column {
+      float: none;
+      width: auto;
+
+      ul {
+        padding: 0;
+      }
+
+      &:last-child ul {
+        padding: 0;
+        border: none;
+      }
+    }
+  }
+}

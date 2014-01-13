@@ -1,0 +1,92 @@
+/**
+ * Dropdown selector component
+ */
+.lg-dropdown-selector {
+  .lg-dropdown-toggle {
+    color: #FFFFFF;
+    background: #004e8f url(../images/interface/bg-local-navigation-sub-arrow.png) no-repeat 95% 50%;
+    padding:10px 40px 10px 10px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: #FFFFFF;
+      background-color: #002e55;
+    }
+  }
+
+  .lg-dropdown-value {
+    padding-right: 10px;
+  }
+
+  .lg-btn-remove {
+    background: none;
+
+    position: absolute;
+    top: 9px;
+    right: 23px;
+
+    margin: 0;
+    padding: 3px;
+
+    width: 16px;
+    height: 16px;
+    border: none;
+  }
+
+  ul {
+    background: none;
+    border-radius: 0;
+    padding: 0;
+
+    a {
+      background: #002e55;
+      border-bottom:1px solid #004e8f;
+      color: #FFFFFF;
+      padding: 10px 40px 10px 10px;
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: #FFFFFF;
+        background-color: #004e8f;
+      }
+    }
+  }
+
+  li:last-child a {
+    border-bottom:0;
+  }
+}
+
+/**
+ * Turn the alphabet dropdown selector list into a grid
+ */
+.lg-dropdown-selector-alphabet {
+  ul {
+    min-width: 85px;
+    padding: 0;
+  }
+
+  li {
+    float: left;
+
+    a {
+      padding: 7px 4px;
+      width: 34px;
+      border-right: 1px solid #004e8f;
+      border-bottom: 1px solid #004e8f;
+      text-align: center;
+    }
+
+    // The last item of each row doesn't need a border-right
+    &:nth-child(even) a {
+      border-right: none;
+    }
+
+    // The last three items in the list don't need a border-bottom
+    &:nth-child(n+25) a {
+      border-bottom: none;
+    }
+  }
+}
