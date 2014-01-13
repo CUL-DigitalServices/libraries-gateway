@@ -51,6 +51,8 @@ module.exports = function (grunt) {
                     'include': [
                         'main',
                         'view/page/find-a-library',
+                        'view/page/find-a-resource',
+                        'view/page/find-a-resource-results',
                         'view/page/library-profile',
                         'view/page/resource-detail',
                         'view/page/using-our-libraries'
@@ -133,19 +135,16 @@ module.exports = function (grunt) {
             }
         },
         'usemin': {
-            'stylesheets': {
-                'options': {
-                    'type': 'css',
-                    'dirs': ['<%= outputDir %>/public']
-                },
-                'src': ['<%= outputDir %>/public/styles/**/*.css']
-            },
-            'markup': {
-                'options': {
-                    'type': 'html',
-                    'assetsDirs': ['<%= outputDir %>']
-                },
-                'src': ['<%= outputDir %>/lib/views/**/*.ejs']
+            'html': ['<%= outputDir %>/lib/views/**/*.ejs'],
+            'css': ['<%= outputDir %>/public/styles/**/*.css'],
+            'js': ['<%= outputDir %>/public/scripts/**/*.js'],
+            'options': {
+                'assetsDirs': ['<%= outputDir %>', '<%= outputDir %>/public/images'],
+                'patterns': {
+                    'js': [
+                        [/(directions-icon\.png)/g, 'Replacing reference to directions-icon.png']
+                    ]
+                }
             }
         },
         'replace': {
@@ -201,9 +200,7 @@ module.exports = function (grunt) {
         grunt.task.run('rev:build');
         // Replace the requirejs script tag in 'index.ejs' with a script tag pointing to 'app.min.js'
         grunt.task.run('replace:build');
-        // Update the asset paths in the templates to use the correct hashed filenames
-        grunt.task.run('usemin:markup');
-        // Update the asset paths in the css to use the correct hashed filenames
-        grunt.task.run('usemin:stylesheets');
+        // Update the asset paths in the templates, css and js to use the correct hashed filenames
+        grunt.task.run('usemin');
     });
 };

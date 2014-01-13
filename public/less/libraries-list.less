@@ -1,0 +1,68 @@
+.lg-libraries-panel {
+  word-wrap: break-word;
+
+  // Overwrite bootstrap active item colour
+  .list-group-item {
+    &.active,
+    &.active:hover,
+    &.active:focus {
+      background-color: #EAF0F6;
+    }
+  }
+}
+
+.lg-filters {
+  padding: 10px;
+  background: #F3F3F3;
+  border-bottom: 1px solid #C4CBCC;
+}
+
+.lg-libraries {
+  height: 550px;
+  margin-bottom: 0;
+  overflow-y: auto;
+  border: none;
+  border-radius: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.lg-library {
+  overflow: hidden;
+  font-size: .85em;
+  border-right-style: none;
+  border-left-style: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #F8F8F8;
+  }
+
+  &:first-child {
+    border-top-style: none;
+  }
+
+  &:last-child {
+    border-bottom-style: none;
+  }
+}
+
+.lg-library a:visited {
+  color: #0072CF;
+}
+
+@media (max-width: 767px) {
+  // Add more weight to overwrite default style
+  .campl-content .lg-libraries-panel {
+    display: block;
+    margin-top: 0;
+  }
+
+  .lg-filters li {
+    margin: 0;
+  }
+
+  .lg-libraries {
+    height: auto;
+    min-height: 100px;
+  }
+}

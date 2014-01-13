@@ -33,7 +33,7 @@ define([
             var latLng = new google.maps.LatLng(coords.lat, coords.lng);
             this.model = libraryModel;
 
-            libraryModel.fetchPanoramaLatLng(function(error, panoramaLatLng) {
+            libraryModel.fetchPanoramaLatLng(function() {
                 self.render();
                 self.infoWindow.setPosition(latLng);
                 self.infoWindow.open(map.getGoogleMap());

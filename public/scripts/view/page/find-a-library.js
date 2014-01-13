@@ -15,7 +15,7 @@ define([
             _.bindAll(this);
 
             var filters = this.filters = new Filters();
-            var list = this.list = new LibrariesList({
+            this.list = new LibrariesList({
                 'el': '.js-libraries'
             });
             this.bindEvents();
