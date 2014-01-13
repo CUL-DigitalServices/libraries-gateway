@@ -28,6 +28,9 @@ config.log = {
 // Constants
 config.constants = {
 
+    // The alphabet
+    'alphabet': ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'],
+
     // Search API's
     'engines': {
         'aquabrowser': {
@@ -80,8 +83,15 @@ config.constants = {
             'aquabrowser': 'Paper',
             'summon': 'Paper'
         }
+    },
 
-        // Formats that are not displayed in the search dropdown
+    'libraries': {
+        'ranges': [
+            {'value': 0.25, 'label': 'Within 1/4 mile'},
+            {'value': 0.5, 'label': 'Within 1/2 mile'},
+            {'value': 1, 'label': 'Within 1 mile'},
+            {'value': 2, 'label': 'Within 2 miles'}
+        ]
     },
 
     // Twitter cache
@@ -101,24 +111,38 @@ config.constants = {
 
 // Nodes
 config.nodes = {
+
+    // Navigation items
     'home': {
         'title': 'Home',
-        'link': ''
+        'link': '',
+        'inNavigation': true
     },
     'find-a-resource': {
         'title': 'Find a resource',
-        'link': 'find-a-resource'
+        'link': 'find-a-resource',
+        'inNavigation': true
     },
     'find-a-library': {
         'title': 'Find a library',
-        'link': 'find-a-library'
+        'link': 'find-a-library',
+        'inNavigation': true
     },
     'using-our-libraries': {
         'title': 'Using our libraries',
-        'link': 'using-our-libraries'
+        'link': 'using-our-libraries',
+        'inNavigation': true
     },
     'my-account': {
         'title': 'My account',
-        'link': 'my-account'
+        'link': 'my-account',
+        'inNavigation': true
+    },
+
+    // Additional nodes
+    'blogs': {
+        'title': 'Blogs',
+        'link': 'blogs',
+        'inNavigation': false
     }
 };
