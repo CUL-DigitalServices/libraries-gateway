@@ -101,24 +101,38 @@ config.constants = {
 
 // Nodes
 config.nodes = {
+
+    // Navigation items
     'home': {
         'title': 'Home',
-        'link': ''
+        'link': '',
+        'inNavigation': true
     },
     'find-a-resource': {
         'title': 'Find a resource',
-        'link': 'find-a-resource'
+        'link': 'find-a-resource',
+        'inNavigation': true
     },
     'find-a-library': {
         'title': 'Find a library',
-        'link': 'find-a-library'
+        'link': 'find-a-library',
+        'inNavigation': true
     },
     'using-our-libraries': {
         'title': 'Using our libraries',
-        'link': 'using-our-libraries'
+        'link': 'using-our-libraries',
+        'inNavigation': true
     },
     'my-account': {
         'title': 'My account',
-        'link': 'my-account'
+        'link': 'my-account',
+        'inNavigation': true
+    },
+
+    // Additional nodes
+    'blogs': {
+        'title': 'Blogs',
+        'link': 'blogs',
+        'inNavigation': false
     }
 };
