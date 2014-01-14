@@ -83,66 +83,76 @@ config.constants = {
             'aquabrowser': 'Paper',
             'summon': 'Paper'
         }
-    },
-
-    'libraries': {
-        'ranges': [
-            {'value': 0.25, 'label': 'Within 1/4 mile'},
-            {'value': 0.5, 'label': 'Within 1/2 mile'},
-            {'value': 1, 'label': 'Within 1 mile'},
-            {'value': 2, 'label': 'Within 2 miles'}
-        ]
-    },
-
-    // Twitter cache
-    'refresh': {
-        'twitter': {
-            'tweet_expiration': 900000
-        }
-    },
-
-    // Search settings
-    'search': {
-        'pageLimit': 40,
-        'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
-            'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
     }
 };
 
 // Nodes
 config.nodes = {
 
-    // Navigation items
+    // Home
     'home': {
         'title': 'Home',
         'link': '',
-        'inNavigation': true
+        'inNavigation': true,
+        'settings': {
+            'twitter': {
+                'tweet_expiration': 900000
+            }
+        }
     },
+
+    // Find a resource
     'find-a-resource': {
         'title': 'Find a resource',
         'link': 'find-a-resource',
-        'inNavigation': true
+        'inNavigation': true,
+        'settings': {
+            'pageLimit': 40,
+            'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
+                'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
+        }
     },
+
+    // Find a library
     'find-a-library': {
         'title': 'Find a library',
         'link': 'find-a-library',
-        'inNavigation': true
+        'inNavigation': true,
+        'settings': {
+            'ranges': [
+                {'value': 0.25, 'label': 'Within 1/4 mile'},
+                {'value': 0.5, 'label': 'Within 1/2 mile'},
+                {'value': 1, 'label': 'Within 1 mile'},
+                {'value': 2, 'label': 'Within 2 miles'}
+            ]
+        }
     },
+
+    // Using our libraries
     'using-our-libraries': {
         'title': 'Using our libraries',
         'link': 'using-our-libraries',
-        'inNavigation': true
+        'inNavigation': true,
+        'settings': {}
     },
+
+    // My account
     'my-account': {
         'title': 'My account',
         'link': 'my-account',
-        'inNavigation': true
+        'inNavigation': true,
+        'settings': {}
     },
 
-    // Additional nodes
+    // Library blogs
     'blogs': {
         'title': 'Blogs',
         'link': 'blogs',
-        'inNavigation': false
+        'inNavigation': false,
+        'settings': {
+            'expiration': 900000,
+            'itemsPerPage': 10,
+            'url': 'http://mix.chimpfeedr.com/0c1cc-gateway-blogs'
+        }
     }
 };
