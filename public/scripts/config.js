@@ -8,6 +8,9 @@ define([], function() {
         'imagePaths': {
             'directionsMarker': '/public/images/directions-icon.png'
         },
+        'localStorage': {
+            'facetCollapse': 'cambridge_libraries_hidden_facets'
+        },
         'pages': [
             'find-a-library',
             'find-a-resource',
