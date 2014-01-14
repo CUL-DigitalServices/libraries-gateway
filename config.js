@@ -152,7 +152,7 @@ config.nodes = {
         'settings': {
             'expiration': 900000,
             'itemsPerPage': 10,
-            'url': 'http://mix.chimpfeedr.com/0c1cc-gateway-blogs'
+            'url': 'http://mix.chimpfeedr.com/1dc9c-cam-blogs-01Nov13'
         }
     }
 };
