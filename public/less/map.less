@@ -32,7 +32,7 @@
     margin-right: 4px;
 
     &:last-child {
-        margin-right: 0;
+      margin-right: 0;
     }
   }
 }
@@ -56,8 +56,18 @@
   min-height: 300px;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), print {
   .lg-libraries-maps-container {
     display: none;
+  }
+}
+
+@media print {
+  .lg-map-control {
+    display: none;
+  }
+
+  .lg-library-profile-maps-container a[href]:after {
+    content: normal;
   }
 }

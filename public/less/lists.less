@@ -18,6 +18,8 @@ dl {
  * Component for a list with 2 columns
  */
 .lg-two-column-list {
+  overflow: hidden;
+
   .lg-column {
     width: 50%;
     float: left;
@@ -44,6 +46,19 @@ dl {
       &:last-child ul {
         padding: 0;
         border: none;
+      }
+    }
+  }
+}
+
+@media print {
+  .lg-two-column-list {
+    .lg-column {
+      width: auto;
+      float: none;
+      ul,
+      &:last-child ul {
+        padding: 0;
       }
     }
   }
