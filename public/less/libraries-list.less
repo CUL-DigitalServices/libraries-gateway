@@ -50,10 +50,11 @@
   color: #0072CF;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 767px), print {
   // Add more weight to overwrite default style
   .campl-content .lg-libraries-panel {
-    display: block;
+    // !important necessary to overwrite project light !important
+    display: block!important;
     margin-top: 0;
   }
 
@@ -64,5 +65,19 @@
   .lg-libraries {
     height: auto;
     min-height: 100px;
+  }
+}
+
+@media print {
+  .lg-filters {
+    display: none;
+  }
+
+  .lg-library h5 a {
+    display: inline;
+  }
+
+  .lg-library a {
+    display: none;
   }
 }
