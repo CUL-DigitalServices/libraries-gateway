@@ -17,6 +17,7 @@
     "lodash": "latest",
     "mysql": "latest",
     "node-static": "latest",
+    "pagination": "latest",
     "request": "latest",
     "slug": "latest",
     "swagger-express": "latest",
