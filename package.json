@@ -34,7 +34,7 @@
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-less": "latest",
     "grunt-contrib-requirejs": "latest",
-    "grunt-contrib-imagemin": "latest",
+    "grunt-contrib-imagemin": "0.4.1",
     "grunt-contrib-watch": "latest",
     "grunt-mocha-hack": "latest",
     "grunt-recess": "latest",
