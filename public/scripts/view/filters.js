@@ -69,15 +69,22 @@ define([
         'onKeywordChange': function() {
             var keyword = this.getKeyword();
             var filter;
+            var containsKeyword = function(keyword, toSearch) {
+                if (_.isString(toSearch)) {
+                    return toSearch.toLowerCase().indexOf(keyword.toLowerCase()) >= 0;
+                } else if (_.isArray(toSearch)) {
+                    return _.some(toSearch, _.partial(containsKeyword, keyword));
+                } else if (_.isPlainObject(toSearch)) {
+                    return containsKeyword(keyword, _.values(toSearch));
+                }
+                return false;
+            };
+
             if (keyword && keyword.length) {
                 filter = function(library) {
                     // Go through the library object and check whether any of
                     // its attributes matches with the specified keyword
-                    return _.some(_.values(library.attributes), function(value) {
-                        if (_.isString(value)) {
-                            return value.toLowerCase().indexOf(keyword.toLowerCase()) >= 0;
-                        }
-                    });
+                    return containsKeyword(keyword, library.attributes);
                 };
             }
             this.setFilter('keyword', filter, keyword);
