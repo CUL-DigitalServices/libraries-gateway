@@ -4,7 +4,7 @@ var request = require('request');
 
 var config = require('../../../config');
 
-var aquabrowser = require('../../../lib/controllers/api/search/aquabrowser');
+var aquabrowser = require('../../../lib/controllers/api/search/aquabrowser/api');
 
 describe('Aquabrowser API', function() {
 
