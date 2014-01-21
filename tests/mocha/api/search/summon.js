@@ -2,9 +2,9 @@ var _ = require('underscore');
 var assert = require('assert');
 var request = require('request');
 
-var config = require('../../../config');
+var config = require('../../../../config');
 
-var summon = require('../../../lib/controllers/api/search/summon/api');
+var summon = require('../../../../lib/controllers/api/search/summon/api');
 
 describe('Summon API', function() {
 
