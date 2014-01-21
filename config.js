@@ -109,7 +109,7 @@ config.nodes = {
         'settings': {
             'minTagValue': 10,
             'pageLimit': 40,
-            'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
+            'parameters': ['api', 'author', 'contenttype', 'facet', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
                 'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
         }
     },
