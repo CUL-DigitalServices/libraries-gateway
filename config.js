@@ -108,6 +108,7 @@ config.nodes = {
         'inNavigation': true,
         'settings': {
             'minTagValue': 10,
+            'numberOfHoldingsShown': 3,
             'pageLimit': 40,
             'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
                 'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
