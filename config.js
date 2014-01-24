@@ -96,6 +96,7 @@ config.nodes = {
         'inNavigation': true,
         'settings': {
             'twitter': {
+                'timeout': 4000,
                 'tweet_expiration': 900000
             }
         }
