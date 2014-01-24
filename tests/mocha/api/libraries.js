@@ -2,9 +2,9 @@ var _ = require('underscore');
 var assert = require('assert');
 var request = require('request');
 
-var config = require('../../config');
+var config = require('../../../config');
 
-var librariesDAO = require('../../lib/dao/libraries');
+var librariesDAO = require('../../../lib/dao/libraries');
 
 describe('Libraries API', function() {
 

@@ -1,8 +1,8 @@
 var assert = require('assert');
 
-var config = require('../config');
+var config = require('../../config');
 
-var server = require('../lib/util/server');
+var server = require('../../lib/util/server');
 
 describe('Server', function() {
 
