@@ -1,5 +1,5 @@
 var config = {
-    'url': 'http://lg.cam.ac.uk',
+    'url': '',
     'pages': {
         'home': '/',
         'findAResource': '/find-a-resource',
