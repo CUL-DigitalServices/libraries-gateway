@@ -102,7 +102,7 @@ module.exports = function (grunt) {
                     'src': [
                         '<%= outputDir %>/public/scripts/**/*.js',
                         '<%= outputDir %>/public/styles/**/*.css',
-                        '<%= outputDir %>/public/images/**/*.{png,jpg}'
+                        '<%= outputDir %>/public/images/**/*.{png,jpg,gif}'
                     ]
                 }
             }
@@ -143,9 +143,16 @@ module.exports = function (grunt) {
             }
         },
         'usemin': {
-            'html': ['<%= outputDir %>/lib/views/**/*.ejs'],
-            'css': ['<%= outputDir %>/public/styles/**/*.css'],
-            'js': ['<%= outputDir %>/public/scripts/**/*.js'],
+            'html': [
+                '<%= outputDir %>/lib/views/**/*.ejs',
+                '<%= outputDir %>/public/errors/**/*.html'
+            ],
+            'css': [
+                '<%= outputDir %>/public/styles/**/*.css'
+            ],
+            'js': [
+                '<%= outputDir %>/public/scripts/**/*.js'
+            ],
             'options': {
                 'assetsDirs': ['<%= outputDir %>', '<%= outputDir %>/public/images'],
                 'patterns': {
@@ -157,6 +164,7 @@ module.exports = function (grunt) {
         },
         'replace': {
             'build': {
+                'overwrite': true,
                 'replacements': [
                     {
                         'from': 'components/requirejs/require.js',
@@ -167,8 +175,10 @@ module.exports = function (grunt) {
                         'to': ''
                     }
                 ],
-                'src': ['<%= outputDir %>/lib/views/index.ejs'],
-                'dest': '<%= outputDir %>/lib/views/index.ejs'
+                'src': [
+                    '<%= outputDir %>/lib/views/index.ejs',
+                    '<%= outputDir %>/public/errors/**/*.html'
+                ]
             }
         }
     });
