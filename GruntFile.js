@@ -27,6 +27,14 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        'casperjs': {
+            'options': {
+                'casperjsOptions': [
+                    '--includes=tests/casperjs/include/config.js,tests/casperjs/include/util.js'
+                ]
+            },
+            'files': ['tests/casperjs/test/**/*.js']
+        },
         'copy': {
             'build': {
                 'files': [{
@@ -123,7 +131,7 @@ module.exports = function (grunt) {
         },
         'mocha-hack': {
             'all': {
-                'src': ['tests/beforeTests.js', 'tests/**/*.js', 'tests/**/**/*.js'],
+                'src': ['tests/mocha/beforeTests.js', 'tests/mocha/**/*.js', 'tests/mocha/**/**/*.js'],
                 'options': {
                     'timeout': MOCHA_TIMEOUT,
                     'ignoreLeaks': false,
@@ -165,6 +173,7 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-casperjs');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-less');

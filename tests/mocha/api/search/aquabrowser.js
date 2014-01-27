@@ -2,9 +2,9 @@ var _ = require('underscore');
 var assert = require('assert');
 var request = require('request');
 
-var config = require('../../../config');
+var config = require('../../../../config');
 
-var aquabrowser = require('../../../lib/controllers/api/search/aquabrowser/api');
+var aquabrowser = require('../../../../lib/controllers/api/search/aquabrowser/api');
 
 describe('Aquabrowser API', function() {
 

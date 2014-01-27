@@ -37,6 +37,7 @@ config.constants = {
             'timeout': 5000,
             'uri': 'http://search.lib.cam.ac.uk/result.ashx',
             'uri_availability': 'http://search.lib.cam.ac.uk/availability.ashx',
+            'uri_facets': 'http://search.lib.cam.ac.uk/RefinePanel.ashx',
             'uri_suggestions': 'http://search.lib.cam.ac.uk/AquaServer.ashx'
         },
         'summon': {
@@ -96,6 +97,7 @@ config.nodes = {
         'inNavigation': true,
         'settings': {
             'twitter': {
+                'timeout': 4000,
                 'tweet_expiration': 900000
             }
         }
@@ -108,8 +110,9 @@ config.nodes = {
         'inNavigation': true,
         'settings': {
             'minTagValue': 10,
+            'numberOfHoldingsShown': 3,
             'pageLimit': 40,
-            'parameters': ['api', 'author', 'contenttype', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
+            'parameters': ['api', 'author', 'contenttype', 'facet', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
                 'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
         }
     },
