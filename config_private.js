@@ -19,5 +19,14 @@ config.secret = {
     'twitter': {
         'consumer_key': '',
         'consumer_secret': ''
+    },
+    'analytics': {
+        'google': {
+            'enabled': false,
+            'id': ''
+        },
+        'crazy_egg': {
+            'enabled': false
+        }
     }
 };
