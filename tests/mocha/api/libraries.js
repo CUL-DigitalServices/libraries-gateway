@@ -15,7 +15,7 @@ describe('Libraries API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/libraries'
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/libraries'
         };
 
         // Perform a request to the libraries API
@@ -39,7 +39,7 @@ describe('Libraries API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/libraries/african-studies'
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/libraries/african-studies'
         };
 
         // Perform a request to the libraries API
@@ -61,7 +61,7 @@ describe('Libraries API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/libraries/dskjfasl;fjs;lafjsd'
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/libraries/dskjfasl;fjs;lafjsd'
         };
 
         // Perform a request to the libraries API

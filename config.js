@@ -3,7 +3,9 @@ var bunyan = require('bunyan');
 var config = module.exports = require('./config_private');
 
 config.server = {
-    'port': 5000
+    'host': 'localhost',
+    'port': 5000,
+    'protocol': 'http'
 };
 
 config.app = {
