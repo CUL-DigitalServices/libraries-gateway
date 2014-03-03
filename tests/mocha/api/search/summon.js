@@ -19,7 +19,7 @@ describe('Summon API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/summon?q=' + validString
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/summon?q=' + validString
         };
 
         // Perform a request to the Summon API
@@ -47,7 +47,7 @@ describe('Summon API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/summon?q=' + invalidString
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/summon?q=' + invalidString
         };
 
         // Perform a request to the Summon API
@@ -77,7 +77,7 @@ describe('Summon API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/summon?id=' + validID
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/summon?id=' + validID
         };
 
         // Perform a request to the Aquabrowser API
@@ -107,7 +107,7 @@ describe('Summon API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/summon?id=' + invalidString
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/summon?id=' + invalidString
         };
 
         // Perform a request to the Aquabrowser API

@@ -14,7 +14,6 @@ describe('Server', function() {
         // Create a new Express webserver
         server.createServer(function(err, server) {
             assert.ok(!err);
-            assert.equal(server.address().port, config.server.port);
             callback();
         });
     });

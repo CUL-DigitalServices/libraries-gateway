@@ -19,7 +19,7 @@ describe('Aquabrowser API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?q=' + validString
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/aquabrowser?q=' + validString
         };
 
         // Perform a request to the Aquabrowser API
@@ -47,7 +47,7 @@ describe('Aquabrowser API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?q=' + invalidString
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/aquabrowser?q=' + invalidString
         };
 
         // Perform a request to the Aquabrowser API
@@ -77,7 +77,7 @@ describe('Aquabrowser API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?id=' + validID
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/aquabrowser?id=' + validID
         };
 
         // Perform a request to the Aquabrowser API
@@ -107,7 +107,7 @@ describe('Aquabrowser API', function() {
 
         // Request options object
         var options = {
-            'url': 'http://localhost:' + config.server.port + '/api/search/aquabrowser?id=' + invalidString
+            'url': config.server.protocol + '://' + config.server.host + ':' + config.server.port + '/api/search/aquabrowser?id=' + invalidString
         };
 
         // Perform a request to the Aquabrowser API
