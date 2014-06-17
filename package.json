@@ -12,6 +12,7 @@
   "dependencies": {
     "assert": "latest",
     "bunyan": "latest",
+    "co": "latest",
     "ejs": "latest",
     "express": "latest",
     "lodash": "latest",
