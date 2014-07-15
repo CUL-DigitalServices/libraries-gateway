@@ -1,19 +1,57 @@
+/*!
+ * Copyright 2014 Digital Services, University of Cambridge Licensed
+ * under the Educational Community License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at
+ *
+ *     http://opensource.org/licenses/ECL-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an "AS IS"
+ * BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ */
+
 var bunyan = require('bunyan');
 
 var config = module.exports = require('./config_private');
 
+/**
+ * `config.app`
+ *
+ * @param  {String}     hostname         The application host
+ * @param  {String}     root             The application root
+ * @param  {String}     title            The application title
+ * @param  {String}     ui               The path to the static files
+ */
+config.app = {
+    'hostname': 'libraries-gateway.cam.ac.uk',
+    'root': __dirname,
+    'title': 'Cambridge Libraries',
+    'ui': __dirname + '/public'
+};
+
+/**
+ * `config.server`
+ *
+ * @param  {String}     host
+ * @param  {Number}     port            The network port on which the application can be accessed
+ * @param  {String}     protocol
+ */
 config.server = {
     'host': 'localhost',
     'port': 5000,
     'protocol': 'http'
 };
 
-config.app = {
-    'title': 'Cambridge Libraries',
-    'hostname': 'libraries-gateway.cam.ac.uk'
-};
-
-config.log = {
+/**
+ * `config.log`
+ *
+ * @param  {Stream[]}   streams         The Bunyan streams
+ * @param  {Object}     serializers     The Bunyan serializers
+ */
+config.logger = {
     'streams': [
         {
             'level': 'info',
@@ -27,7 +65,9 @@ config.log = {
     }
 };
 
-// Constants
+/**
+ * `config.nodes`
+ */
 config.constants = {
 
     // The alphabet
@@ -89,7 +129,9 @@ config.constants = {
     }
 };
 
-// Nodes
+/**
+ * `config.nodes`
+ */
 config.nodes = {
 
     // Home
@@ -114,8 +156,7 @@ config.nodes = {
             'minTagValue': 10,
             'numberOfHoldingsShown': 3,
             'pageLimit': 40,
-            'parameters': ['api', 'author', 'contenttype', 'facet', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q',
-                'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
+            'parameters': ['api', 'author', 'contenttype', 'facet', 'format', 'id', 'language', 'page', 'mdtags', 'person', 'q', 'region', 'series', 'subject', 'subjectterms', 'timeperiod', 'uniformtitle']
         }
     },
 
