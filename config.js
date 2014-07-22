@@ -156,7 +156,7 @@ config.nodes = {
             'minTagValue': 10,
             'numberOfHoldingsShown': 3,
             'pageLimit': 40,
-            'parameters': ['api', 'contenttype', 'facet', 'id', 'language', 'page', 'q', 'subjectterms']
+            'parameters': ['api', 'contenttype', 'facet', 'id', 'language', 'page', 'q', 'ref', 'subjectterms']
         }
     },
 
