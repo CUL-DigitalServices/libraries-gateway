@@ -14,16 +14,17 @@
  */
 
 /**
- * Function that initializes the server by calling the 'createServer' method in the server util.
- * After the server has been created and successfully spun up, the routes are registered.
- * @api private
+ * An result model
+ *
+ * @param  {String}     numResults      The number of results
+ * @param  {String}     queryTime       The time needed to execute the query
+ * @param  {Object[]}   items           The returned items
+ * @return {Result}                     Object representing an API result
  */
-var init = function() {
-
-    /**
-     * Create a new Express server
-     */
-    require('./lib/util/server').createServer();
+exports.Result = function(numResults, queryTime, items) {
+    var that = {};
+    that.numResults = parseInt(numResults, 10) || 0;
+    that.queryTime = queryTime || 'n/a';
+    that.items = items || [];
+    return that;
 };
-
-init();
