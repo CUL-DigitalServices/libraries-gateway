@@ -199,31 +199,31 @@ var doAPIRequest = function(test, currentTestNumber, numTests, title) {
 };
 
 /**
- * Function that kills the server after the tests have been completed
+ * Function that exports the results after the tests are completed
  *
  * @api private
  */
-var stopTests = function() {
-    log().info('Finished executing the tests');
-
-    // Output the test results
-    writeTestsFile().catch(errorHandler);
-};
-
-/**
- * Function that writes the results to an external file
- *
- * @param  {Function}   callback    Standard callback function
- * @api private
- */
-var writeTestsFile = function(callback) {
+var exportResults = function() {
     var deferred = q.defer();
 
-    // TODO: write results to a file
-    console.log(JSON.stringify(results, null, 2));
+    // Convert the results to a valid JSON-object
+    results = {
+        'results': results
+    };
 
-    // Resolve the promise
-    deferred.resolve();
+    // Write the results to a file
+    var fileName = 'tests.json';
+    fs.writeFile(config.files.tmpDir + '/' + fileName, JSON.stringify(results, null, 4), function(err) {
+        if (err) {
+            log().error('Error while writing results to file');
+            return deferred.reject({'code': 500, 'msg': err});
+        }
+
+        log().info(util.format('Results exported to %s%s', config.files.tmpDir, fileName));
+
+        // Resolve the promise
+        deferred.resolve();
+    });
 
     // Return a promise
     return deferred.promise;
@@ -306,7 +306,7 @@ var init = function() {
         .then(runTests)
 
         // Stop running the tests
-        .then(stopTests)
+        .then(exportResults)
 
         // Add an error handler
         .catch(errorHandler)
