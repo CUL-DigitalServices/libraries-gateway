@@ -27,7 +27,9 @@ var SummonTestsUtil = require('./tests.summon');
 
 var requestUtils = null;
 var results = [];
-var server = null;
+
+var PORT = 6000;
+var SERVER = 'apitest';
 
 /**
  * Function that executes the tests after the test data has been parsed (e.g. search for 'Darwin', 'Survival of the fittest'... in all the specified API's)
@@ -36,30 +38,46 @@ var server = null;
  * @api private
  */
 var runTests = function(tests) {
+    var deferred = q.defer();
 
-    // Run the tests as long as tests are available
-    if (!tests.length) {
-        return stopTests();
-    }
+    /*!
+     * Function that executes the next test
+     *
+     * @param  {Object[]}   tests       Object containing the test data
+     * @api private
+     */
+    var next = function(tests) {
 
-    // Object that will be populated with the API results for a single query
-    var testResult = {
-        'title': '',
-        'results': {}
-    };
-
-    // Run the first test from the collection
-    runTest(tests.shift(), testResult, function(err, testResult) {
-        if (err) {
-            log().err({'code': err.code, 'msg': err.msg}, 'Error while executing test');
+        // Run the tests as long as tests are available
+        if (!tests.length) {
+            return deferred.resolve();
         }
 
-        // Save the testresults
-        results.push(testResult);
+        // Object that will be populated with the API results for a single query
+        var testResult = {
+            'title': '',
+            'results': {}
+        };
 
-        // Execute the next test
-        return runTests(tests);
-    });
+        // Run the first test from the collection
+        runTest(tests.shift(), testResult, function(err, testResult) {
+            if (err) {
+                return defer.reject({'code': err.code, 'msg': err.msg});
+            }
+
+            // Save the testresults
+            results.push(testResult);
+
+            // Execute the next test
+            next(tests);
+        });
+    };
+
+    // Execute the first test
+    next(tests);
+
+    // Return a promise
+    return deferred.promise;
 };
 
 /**
@@ -91,12 +109,12 @@ var runTest = function(test, testResult, callback) {
     }
 
     /*!
-     * Loop through the request for the API's
+     * Function that executes the next test
      *
      * @param  {Object[]}   test    Collection of tests for specific API's
      * @api private
      */
-    var _doAPIRequests = function(test) {
+    var next = function(test) {
 
         // Cache the results and invoke the callback function if all the request have been sent
         if (!test.length) {
@@ -107,25 +125,27 @@ var runTest = function(test, testResult, callback) {
         var currentTestNumber = numTests - test.length + 1;
 
         // Send a request to the first API of the list
-        doAPIRequest(test.shift(), currentTestNumber, numTests, testResult.title, function(api, err, result) {
+        doAPIRequest(test.shift(), currentTestNumber, numTests, testResult.title)
 
-            // Add the error to the API specific result
-            if (err) {
-                log().error({'err': err}, 'Error while doing API request');
-                testResult.results[api] = {'err': err};
+            // Add the API result to the global results
+            .then(function(response) {
+                testResult.results[response.api] = response.result;
+            })
 
-            // Add the results to the results object
-            } else {
-                testResult.results[api] = result;
-            }
+            // Catch the thrown error, if any
+            .catch(function(response) {
+                log().error({'err': response.err}, 'Error while doing API request');
+                testResult.results[response.api] = {'err': response.err};
+            })
 
-            // Continue
-            return _doAPIRequests(test);
-        });
+            // Run the next test
+            .done(function() {
+                next(test);
+            });
     };
 
-    // Execute the request for every specified API
-    _doAPIRequests(test);
+    // Execute the first test
+    next(test);
 };
 
 /**
@@ -133,16 +153,16 @@ var runTest = function(test, testResult, callback) {
  *
  * @param  {Object}     test                Object containing test data
  * @param  {String}     test.api            The API that needs to be used to perform the request
- * @param  {String}     test.query          The query that needs to be send to perform the request
+ * @param  {String}     test.query          The query string containing all the parameters to perform the request
  * @param  {Number}     currentTestNumber   The number of the current test executed
  * @param  {Number}     numTests            The number of total API's used for this query
  * @param  {String}     title               The title of the current test
- * @param  {Function}   callback            Standard callback function
- * @param  {Error}      callback.err        Object containing the error code and the error message
- * @param  {Object}     callback.result     Object containing the results from the API
  * @api private
  */
-var doAPIRequest = function(test, currentTestNumber, numTests, title, callback) {
+var doAPIRequest = function(test, currentTestNumber, numTests, title) {
+    var deferred = q.defer();
+
+    // Log the current test
     log().info(util.format('Running test (%s/%s) of \'%s\' for %s', currentTestNumber, numTests, title, test.api));
 
     // Determine which API should be used
@@ -150,7 +170,7 @@ var doAPIRequest = function(test, currentTestNumber, numTests, title, callback) 
 
     // Return an error if an invalid API was specified
     if (!apiUtil) {
-        return callback(test.api, {'code': 400, 'msg': 'Invalid API'});
+        return deferred.reject({'api': test.api, 'err': {'code': 400, 'msg': 'Invalid API'}});
     }
 
     // Get the util method
@@ -158,18 +178,24 @@ var doAPIRequest = function(test, currentTestNumber, numTests, title, callback) 
 
     // Return an error if the API util doesn't have the needed method
     if (!requestFunc) {
-        return callback(test.api, {'code': 400, 'msg': 'Invalid API method'});
+        return deferred.reject({'api': test.api, 'err': {'code': 400, 'msg': 'Invalid API method'}});
     }
 
     // Invoke the API specific method
-    requestFunc(test.query, function(err, result) {
-        if (err) {
-            return callback(test.api, err);
-        }
+    requestFunc(test.query)
 
         // Return the result from the API
-        return callback(test.api, null, result);
-    });
+        .then(function(result) {
+            deferred.resolve({'api': test.api, 'result': result});
+        })
+
+        // Catch the thrown error, if any
+        .catch(function(err) {
+            deferred.reject({'api': test.api, 'err': err});
+        });
+
+    // Return a promise
+    return deferred.promise;
 };
 
 /**
@@ -181,11 +207,7 @@ var stopTests = function() {
     log().info('Finished executing the tests');
 
     // Output the test results
-    writeTestsFile(function() {
-
-        // Close the server
-        return server.close();
-    });
+    writeTestsFile().catch(errorHandler);
 };
 
 /**
@@ -195,11 +217,16 @@ var stopTests = function() {
  * @api private
  */
 var writeTestsFile = function(callback) {
+    var deferred = q.defer();
 
-    console.log(JSON.stringify(results, null, 4));
+    // TODO: write results to a file
+    console.log(JSON.stringify(results, null, 2));
 
-    // Invoke the callback function
-    return callback();
+    // Resolve the promise
+    deferred.resolve();
+
+    // Return a promise
+    return deferred.promise;
 };
 
 /**
@@ -208,12 +235,12 @@ var writeTestsFile = function(callback) {
  * @api private
  */
 var readTestsFile = function() {
-    log().info('Reading the tests file...');
+    var deferred = q.defer();
 
     // Read the tests file
     fs.readFile('./data/tests.json', 'utf8', function(err, data) {
         if (err) {
-            return log().error({'err': err}, 'Error while reading tests file');
+            deferred.reject({'err': err});
         }
 
         try {
@@ -221,14 +248,16 @@ var readTestsFile = function() {
             // Parse the JSON data
             data = JSON.parse(data);
 
-        } catch(err) {
-            log().error({'err': err}, 'Error while parsing test data');
-            return stopTests({'code': 500, 'msg': err});
-        }
+            // Return the parsed data
+            deferred.resolve(data.tests);
 
-        // Run the tests
-        return runTests(data.tests);
+        } catch(err) {
+            deferred.reject({'code': 500, 'msg': err});
+        }
     });
+
+    // Return a promise
+    return deferred.promise;
 };
 
 /**
@@ -246,29 +275,47 @@ var registerRequestUtils = function() {
 };
 
 /**
- * Function that initializes the server by calling the 'createServer' method in the server util
+ * Output the errors
+ *
+ * @param  {Error}      err         Object containing the error code and error message
+ * @api private
+ */
+var errorHandler = function(err) {
+
+    // Output the error
+    log().error(err, err.msg);
+};
+
+/**
+ * Initialize the tests
  *
  * @api private
  */
 var init = function() {
 
-    /**
-     * Create a new Express server
-     */
-    ServerUtil.createServer(6000, function(err, _server) {
-        if (err) {
-            return log().error({'code': err.code, 'msg': err.msg}, 'Error while spinning up Express server');
-        }
+    // Create a new Express server
+    ServerUtil.createServer(SERVER, PORT)
 
-        // Cache the created server
-        server = _server;
+        // Register the API utils
+        .then(registerRequestUtils)
 
-        // Register the request functions
-        registerRequestUtils();
+        // Read the test file (promise)
+        .then(readTestsFile)
 
-        // Read the file that contains the test data
-        return readTestsFile();
-    });
+        // Run the tests (promise)
+        .then(runTests)
+
+        // Stop running the tests
+        .then(stopTests)
+
+        // Add an error handler
+        .catch(errorHandler)
+
+        // Close the server
+        .done(function() {
+            ServerUtil.closeServer(SERVER);
+            log().info('Server closed');
+        });
 };
 
 init();

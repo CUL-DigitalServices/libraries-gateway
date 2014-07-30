@@ -14,17 +14,19 @@
  */
 
 /**
- * An result model
+ * A result model
  *
- * @param  {String}     numResults      The number of results
+ * @param  {String}     queryString     The query string containing all the parameters to perform the request
  * @param  {String}     queryTime       The time needed to execute the query
+ * @param  {Number}     numResults      The number of results
  * @param  {Object[]}   items           The returned items
  * @return {Result}                     Object representing an API result
  */
-exports.Result = function(numResults, queryTime, items) {
+exports.Result = function(queryString, queryTime, numResults, items) {
     var that = {};
-    that.numResults = parseInt(numResults, 10) || 0;
+    that.queryString = queryString || null;
     that.queryTime = queryTime || 'n/a';
+    that.numResults = parseInt(numResults, 10) || 0;
     that.items = items || [];
     return that;
 };

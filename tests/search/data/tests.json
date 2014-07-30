@@ -4,14 +4,28 @@
             "title": "search for a malformed query",
             "api": {
                 "aquabrowser": "output=xml&q=asdfasfasdfasdfasdfasdfasfasfasdfas",
-                "summon": "s.q=asdfasfasdfasdfasdfasdfasfasfasdfas"
+                "summon": "s.ps=25&s.q=asdfasfasdfasdfasdfasdfasfasfasdfas"
             }
         },
         {
             "title": "search for Darwin without facets",
             "api": {
                 "aquabrowser": "output=xml&q=Darwin",
-                "summon": "s.q=Darwin"
+                "summon": "s.ps=25&s.q=Darwin"
+            }
+        },
+        {
+            "title": "search for Darwin with book set as the format",
+            "api": {
+                "aquabrowser": "output=xml&q=Darwin&ref=20",
+                "summon": "s.ff=ContentType,and,1,100&s.fvf=ContentType,Book,false&s.ps=25&s.q=Darwin"
+            }
+        },
+        {
+            "title": "search for Darwin with English set as the language",
+            "api": {
+                "aquabrowser": "output=xml&q=Darwin&ref=204",
+                "summon": "s.ff=Language,and,1,100&s.fvf=Language,English,false&s.ps=25&s.q=Darwin"
             }
         }
     ]
