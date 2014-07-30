@@ -79,7 +79,9 @@ var getItemsFromResults = function(records) {
 
             // Create a new item object
             var item = {
-                'title': stripValue(_record.Title)
+                'title': stripValue(_record.Title),
+                'authors': stripValue(_record.Author),
+                'contenttype': stripValue(_record.ContentType)
             };
 
             // Add the item to the items collection
@@ -92,21 +94,24 @@ var getItemsFromResults = function(records) {
 };
 
 /**
- * Removes the tags from a value and takes it out of an array
+ * Removes the tags from a value
  *
- * @param  {Object}     value       The record property
- * @return {String}                 The record property as a string without tags
+ * @param  {Object}             values      The record property
+ * @return {Object|String}                  The record property where the tags have been removed from its values
  */
-var stripValue = function(value) {
-
-    // Take the value out of the array
-    if (_.isArray(value)) {
-        value = value[0];
+var stripValue = function(values) {
+    if (!values) {
+        return null;
     }
 
     // Remove the tags from the value
-    value = value.replace(/<\/?h>/g,'');
+    values = _.map(values, function(value) { return value.replace(/<\/?h>/g,''); });
+
+    // Return a string if the key has only one value
+    if (values.length === 1) {
+        values = values[0];
+    }
 
     // Return the stripped value
-    return value;
+    return values;
 };

@@ -72,11 +72,15 @@ var getItemsFromResults = function(results) {
         _.each(results.record, function(_record) {
 
             // Create a new record object
-            var item = {};
+            var item = {
+                'title': null,
+                'authors': null,
+                'contenttype': null
+            };
 
-            // Get the title
-            item.title = null;
             if (_record.d && _record.d[0]) {
+
+                // Get the title
                 if (_record.d[0]['df245'] && _record.d[0]['df245']['df245']) {
                     var title = [];
                     _.each(_record.d[0]['df245']['df245'], function(key) {
@@ -97,6 +101,35 @@ var getItemsFromResults = function(results) {
                         title = title.join(' ');
                     }
                     item.title = title;
+                }
+
+                // Get the authors
+                if (_record.d[0]['df100'] && _record.d[0]['df100']['df100']) {
+                    var authors = [];
+                    _.each(_record.d[0]['df100']['df100'], function(key) {
+                        if (key.key === 'a') {
+                            if (key['exact']) {
+                                authors.push(key['exact']);
+                            }
+                            if (key['_']) {
+                                authors.push(key['_']);
+                            }
+                        } else if (key.key === 'd') {
+                            authors.push(key['_']);
+                        }
+                    });
+                    if (authors.length) {
+                        authors = authors.join(' ');
+                    }
+                    item.authors = authors;
+                }
+            }
+
+            if (_record.fields && _record.fields[0]) {
+
+                // Get the content type
+                if (_record.fields[0]['material_t']) {
+                    item.contenttype = _record.fields[0]['material_t'];
                 }
             }
 
