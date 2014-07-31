@@ -21,7 +21,7 @@
 var init = function() {
 
     /**
-     * Create a new express server
+     * Create a new Express server
      */
     require('./lib/util/server').createServer();
 };

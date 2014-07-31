@@ -17,19 +17,31 @@ var bunyan = require('bunyan');
 
 var config = module.exports = require('./config_private');
 
+// Set the temporary files directory
+var tmpDir = process.env.TMP || process.env.TMPDIR || process.env.TEMP || '/tmp' || process.cwd();
+
 /**
  * `config.app`
  *
- * @param  {String}     hostname         The application host
- * @param  {String}     root             The application root
- * @param  {String}     title            The application title
- * @param  {String}     ui               The path to the static files
+ * @param  {String}     hostname        The application host
+ * @param  {String}     root            The application root
+ * @param  {String}     title           The application title
+ * @param  {String}     ui              The path to the static files
  */
 config.app = {
     'hostname': 'libraries-gateway.cam.ac.uk',
     'root': __dirname,
     'title': 'Cambridge Libraries',
     'ui': __dirname + '/public'
+};
+
+/**
+ * `config.files`
+ *
+ * @param  {String}    tmpDir           The directory where temporary files can be created
+ */
+config.files = {
+    'tmpDir': tmpDir
 };
 
 /**
