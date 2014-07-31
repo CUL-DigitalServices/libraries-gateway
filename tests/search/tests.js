@@ -261,6 +261,17 @@ var readTestsFile = function() {
 };
 
 /**
+ * Register the routes for the created server
+ *
+ * @param  {Express}    app     The Express server the routes should be registered for
+ * @api private
+ */
+var registerRoutes = function(app) {
+
+    // TODO: register routes for the test UI
+};
+
+/**
  * Function that registers a function for every API
  *
  * @api private
@@ -295,6 +306,9 @@ var init = function() {
 
     // Create a new Express server
     ServerUtil.createServer(SERVER, PORT)
+
+        // Register the routes for the server
+        .then(registerRoutes)
 
         // Register the API utils
         .then(registerRequestUtils)
