@@ -1,0 +1,37 @@
+#lg-score {
+    display: none;
+    position: fixed;
+    right: 50px;
+    background-color: #FAFAFA;
+    border: 1px solid #EEEEEE;
+    z-index: 1000;
+    min-width: 198px;
+}
+
+#lg-score .row {
+    padding: 0;
+    margin: 0;
+}
+
+#lg-score .row .col {
+    padding: 3px 0;
+    margin: 0;
+}
+
+#lg-score .row .col:nth-child(even) {
+    background-color: #FDFDFD;
+}
+
+#lg-score .row .col p {
+    padding: 3px 5px;
+    margin: 0;
+    text-align: center;
+}
+
+#lg-score .lg-col-apis {
+    font-weight: bold;
+}
+
+.lg-col-increase {
+    text-align: right;
+}

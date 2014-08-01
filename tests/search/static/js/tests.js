@@ -13,52 +13,147 @@
  * permissions and limitations under the License.
  */
 
-/**
- * Fetch the results
- */
-var getResults = function() {
+$(function() {
 
-    // Request the results
-    $.ajax({
-        'url': '/getResults',
-        'method': 'post'
-    })
+    /**
+     * Fetch the results
+     *
+     * @api private
+     */
+    var getResults = function() {
 
-    // Display the results
-    .done(function(results) {
+        // Request the results
+        $.ajax({
+            'url': '/getResults',
+            'method': 'post'
+        })
 
-        // Set some top-level variables for the template
-        _.templateSettings.variable = "lg";
+            // Display the results
+            .done(function(results) {
 
-        // Pre-compile the template
-        var template = _.template($(document).find('.tplResults').html());
+                // Calculate which API has the lowest elapsed time
+                calculateAPIScores(results);
 
-        // The template data
+                // Render the results template
+                renderTemplate('.tplResults', '#lg-results', {'results': results});
+
+                // Increase the relativity score of an API
+                $('.btnIncreaseRelativityScore').on('click', increaseAPIScore);
+            })
+
+            // Catch the thrown error, if any
+            .fail(function(err) {
+                console.log(err);
+            });
+    };
+
+    /**
+     * Function that calculates the scores for the API's
+     */
+    var calculateAPIScores = function(results) {
+
+        // Collect all the used APIs
+        var apis = {};
+        _.each(results, function(test) {
+
+            // Object that stores the scores for each API
+            var scores = {};
+
+            // Loop all the API-combined tests
+            _.each(test.results, function(result, api) {
+
+                // Check whether the API has already been added or not
+                if (!apis[api]) {
+                    apis[api] = {
+                        'time': 0
+                    }
+                }
+
+                // Pluck the query time from all the API results
+                scores[api] = result.queryTime;
+            });
+
+            // Increase the score of the API with the lowest query time
+            var apiToIncrease = _.min(_.keys(scores), function(key) { return scores[key]; });
+            apis[apiToIncrease]['time']++;
+        });
+
+        // Create an template data object
         var templateData = {
+            'apis': apis,
             'results': results
         };
 
+        // Render the score template
+        renderTemplate('.tplScore', '#lg-score', templateData);
+
+        // Show the container
+        $('#lg-score').show();
+    };
+
+    /**
+     * Function that increases the relativity score of an API
+     *
+     * @param  {Event}      event       The click event
+     * @api private
+     */
+    var increaseAPIScore = function(event) {
+
+        // Determine which API should be increased
+        var api = $(event.currentTarget).attr('data-api');
+
+        // Remove the button
+        $(event.currentTarget).css('visibility', 'hidden');
+
+        // Find the element to update
+        var apiEl = $('#lg-col-score-' + api).find('.score-rel').find('.val');
+
+        // Calculate the new score
+        var newScore = Number($(apiEl).html()) +1;
+
+        // Set the new score in the element
+        $(apiEl).html(newScore);
+    };
+
+    /**
+     * Function that renders the a specified template
+     *
+     * @param  {String}     target      The element where the target needs to be rendered in
+     * @param  {String}     template    The template that needs to be rendered
+     * @param  {Object}     data        Object containing the data that needs to be displayed in the template
+     * @api private
+     */
+    var renderTemplate = function(template, target, data) {
+
+        // Pre-compile the template
+        var template = _.template($(template).html());
+
         // Inject the compiled template into our HTML
-        $(document).find('#lg-results').html(template(templateData));
-    })
+        $(target).html(template(data));
+    };
 
-    // Catch the thrown error, if any
-    .fail(function(err) {
-        console.log(err);
-    });
-};
+    /**
+     * Initialize the event listeners
+     *
+     * @api private
+     */
+    var addBinding = function() {
 
-/**
- * Add event listeners to components
- *
- * @api private
- */
-var addBinding = function() {
+        // Get the API results when the button is clicked
+        $('#btnGetResults').on('click', getResults);
+    };
 
-    // Get the API results when the button is clicked
-    $(document).find('#btnGetResults').on('click', getResults);
-};
+    /**
+     * Initialize the application
+     */
+    var init = function() {
 
-$(function () {
-    addBinding();
+        // Set some top-level variables for the templates
+        _.templateSettings.variable = "lg";
+
+        // Initialize event listeners
+        addBinding();
+    };
+
+    init();
 });
