@@ -18,18 +18,62 @@ var fs = require('fs');
 var q = require('q');
 var util = require('util');
 
+var config = require('../../../config');
+var log = require('../../../lib/util/logger').logger();
+var SearchAPI = require('../../../lib/controllers/api/search/index');
+
 var AquabrowserTestsUtil = require('./tests.aquabrowser');
-var config = require('../../config');
-var log = require('../../lib/util/logger').logger();
-var SearchAPI = require('../../lib/controllers/api/search/index');
-var ServerUtil = require('../../lib/util/server');
 var SummonTestsUtil = require('./tests.summon');
 
 var requestUtils = null;
 var results = [];
+var tests = null;
 
-var PORT = 6000;
-var SERVER = 'apitest';
+/**
+ * Initialize the tests and read the test data
+ */
+var init = module.exports.init = function() {
+    var deferred = q.defer();
+
+    // Register the API utils
+    registerRequestUtils();
+
+    // Read the test file (promise)
+    readTestsFile()
+
+        // Catch the thrown error, if any
+        .catch(errorHandler);
+
+    // Return a promise
+    return deferred.promise;
+};
+
+/**
+ * Start running the tests to get the API results
+ */
+var getResults = module.exports.getResults = function(req, res) {
+
+    // Run the tests (promise)
+    runTests(tests)
+
+        // Return the results
+        .then(function() {
+            return res.status(200).send(results);
+        })
+
+        // Catch the thrown error, if any
+        .catch(function(err) {
+            return res.status(err.code).send(err.msg);
+        })
+
+        .done(function() {
+            log().info('Finished running tests');
+        });
+};
+
+//////////////////////////
+//  INTERNAL FUNCTIONS  //
+//////////////////////////
 
 /**
  * Function that executes the tests after the test data has been parsed (e.g. search for 'Darwin', 'Survival of the fittest'... in all the specified API's)
@@ -181,11 +225,19 @@ var doAPIRequest = function(test, currentTestNumber, numTests, title) {
         return deferred.reject({'api': test.api, 'err': {'code': 400, 'msg': 'Invalid API method'}});
     }
 
+    // Store when the request was started
+    var startDate = Date.now();
+
     // Invoke the API specific method
     requestFunc(test.query)
 
         // Return the result from the API
         .then(function(result) {
+
+            // Calculate the elapsed time
+            result.queryTime = Date.now() - startDate;
+
+            // Resolve the promise
             deferred.resolve({'api': test.api, 'result': result});
         })
 
@@ -238,7 +290,7 @@ var readTestsFile = function() {
     var deferred = q.defer();
 
     // Read the tests file
-    fs.readFile('./data/tests.json', 'utf8', function(err, data) {
+    fs.readFile(__dirname + '/data/tests.json', 'utf8', function(err, data) {
         if (err) {
             deferred.reject({'err': err});
         }
@@ -248,8 +300,11 @@ var readTestsFile = function() {
             // Parse the JSON data
             data = JSON.parse(data);
 
+            // Cache the test data
+            tests = data.tests;
+
             // Return the parsed data
-            deferred.resolve(data.tests);
+            deferred.resolve();
 
         } catch(err) {
             deferred.reject({'code': 500, 'msg': err});
@@ -258,17 +313,6 @@ var readTestsFile = function() {
 
     // Return a promise
     return deferred.promise;
-};
-
-/**
- * Register the routes for the created server
- *
- * @param  {Express}    app     The Express server the routes should be registered for
- * @api private
- */
-var registerRoutes = function(app) {
-
-    // TODO: register routes for the test UI
 };
 
 /**
@@ -296,40 +340,3 @@ var errorHandler = function(err) {
     // Output the error
     log().error(err, err.msg);
 };
-
-/**
- * Initialize the tests
- *
- * @api private
- */
-var init = function() {
-
-    // Create a new Express server
-    ServerUtil.createServer(SERVER, PORT)
-
-        // Register the routes for the server
-        .then(registerRoutes)
-
-        // Register the API utils
-        .then(registerRequestUtils)
-
-        // Read the test file (promise)
-        .then(readTestsFile)
-
-        // Run the tests (promise)
-        .then(runTests)
-
-        // Stop running the tests
-        .then(exportResults)
-
-        // Add an error handler
-        .catch(errorHandler)
-
-        // Close the server
-        .done(function() {
-            ServerUtil.closeServer(SERVER);
-            log().info('Server closed');
-        });
-};
-
-init();

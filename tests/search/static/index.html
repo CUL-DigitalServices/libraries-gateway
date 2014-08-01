@@ -1,0 +1,59 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>API comparison</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- Header -->
+        <div id="lg-header" class="jumbotron">
+          <div class="container">
+            <h3>Compare API results</h3>
+            <p><a id="btnGetResults" class="btn btn-primary btn-lg" role="button">Run the queries »</a></p>
+          </div>
+        </div>
+
+        <!-- Container that holds the results -->
+        <div id="lg-results" class="container"><!-- --></div>
+
+        <!-- Results template -->
+        <script type="text/template" class="tplResults">
+            <% _.each(lg.results, function(test, testIndex) { %>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><%- test.title %></h3>
+                </div>
+                <% _.each(test.results, function(api, key) { %>
+                <div class="col-md-<%= (12 / _.keys(test.results).length) %>">
+                    <h4><%- key %></h4>
+                    <pre><%- api.queryString %></pre>
+                    <p>results: <strong><%- api.numResults %></strong></p>
+                    <p>time: <% if (api.queryTime) { %><strong><%- api.queryTime %>ms</strong><% } %></p>
+                    <% if (api.items.length) { %>
+                    <ol>
+                        <% _.each(api.items, function(item, resultIndex) { %>
+                        <li class="query-<%- testIndex %>-<%- resultIndex %>">
+                            <strong><%- item.title %></strong><br>
+                            <%- item.authors %><br>
+                            <%- item.contenttype %><br><br>
+                        </li>
+                        <% });%>
+                    </ol>
+                    <% } %>
+                </div>
+                <% }); %>
+            </div>
+            <hr>
+            <% }); %>
+        </script>
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/underscore.min.js"></script>
+        <script src="js/tests.js"></script>
+    </body>
+</html>
