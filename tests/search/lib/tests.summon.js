@@ -16,7 +16,7 @@
 var _ = require('underscore');
 var q = require('q');
 
-var SummonAPI = require('../../lib/controllers/api/search/summon/api');
+var SummonAPI = require('../../../lib/controllers/api/search/summon/api');
 
 var Result = require('./model').Result;
 

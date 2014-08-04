@@ -1,13 +1,6 @@
 {
     "tests": [
         {
-            "title": "search for a malformed query",
-            "api": {
-                "aquabrowser": "output=xml&q=asdfasfasdfasdfasdfasdfasfasfasdfas",
-                "summon": "s.ps=25&s.q=asdfasfasdfasdfasdfasdfasfasfasdfas"
-            }
-        },
-        {
             "title": "search for Darwin without facets",
             "api": {
                 "aquabrowser": "output=xml&q=Darwin",

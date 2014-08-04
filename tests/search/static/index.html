@@ -1,0 +1,85 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>API comparison</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/tests.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- Score -->
+        <div id="lg-score"><!-- --></div>
+
+        <!-- Header -->
+        <div id="lg-header" class="jumbotron">
+          <div class="container">
+            <h3>Compare API results</h3>
+            <p><a id="btnGetResults" class="btn btn-primary btn-lg" role="button">Run the queries »</a></p>
+          </div>
+        </div>
+
+        <!-- Container that holds the results -->
+        <div id="lg-results" class="container"><!-- --></div>
+
+        <!-- Score template -->
+        <script type="text/template" class="tplScore">
+            <div class="row">
+                <% _.each(lg.apis, function(scores, api) { %>
+                <div id="lg-col-score-<%= api %>" class="col col-md-<%= (12 / _.keys(lg.apis).length) %> lg-col-apis">
+                    <p class="lg-col-apis-api"><%= api %></p>
+                    <% _.each(scores, function(score, key) { %>
+                    <p class="score score-<%= key %>"><span class="lbl"><%= key %>: </span><span class="val"><%= score %></span></p>
+                    <% }); %>
+                    <p class="score score-rel"><span class="lbl">rel: </span><span class="val">0</span></p>
+                </div>
+                <% }); %>
+            </div>
+        </script>
+
+        <!-- Results template -->
+        <script type="text/template" class="tplResults">
+            <% _.each(lg.results, function(test, testIndex) { %>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><%- test.title %></h3>
+                </div>
+                <% _.each(test.results, function(api, key) { %>
+                <div class="col-md-<%= (12 / _.keys(test.results).length) %>">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h4><%- key %></h4>
+                        </div>
+                        <div class="col-md-2 lg-col-increase">
+                            <p><a class="btn btn-primary btnIncreaseRelativityScore" role="button" data-api="<%- key %>">+</a></p>
+                        </div>
+                    </div>
+                    <pre><%- api.queryString %></pre>
+                    <p>results: <strong><%- api.numResults %></strong></p>
+                    <p>time: <% if (api.queryTime) { %><strong><%- api.queryTime %>ms</strong><% } %></p>
+                    <% if (api.items.length) { %>
+                    <ol>
+                        <% _.each(api.items, function(item, resultIndex) { %>
+                        <li class="query-<%- testIndex %>-<%- resultIndex %>">
+                            <strong><%- item.title %></strong><br>
+                            <%- item.authors %><br>
+                            <%- item.contenttype %><br><br>
+                        </li>
+                        <% });%>
+                    </ol>
+                    <% } %>
+                </div>
+                <% }); %>
+            </div>
+            <hr>
+            <% }); %>
+        </script>
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/underscore.min.js"></script>
+        <script src="js/tests.js"></script>
+    </body>
+</html>

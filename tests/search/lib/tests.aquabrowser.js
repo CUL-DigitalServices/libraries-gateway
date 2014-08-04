@@ -16,7 +16,7 @@
 var _ = require('underscore');
 var q = require('q');
 
-var AquabrowserAPI = require('../../lib/controllers/api/search/aquabrowser/api');
+var AquabrowserAPI = require('../../../lib/controllers/api/search/aquabrowser/api');
 
 var Result = require('./model').Result;
 
