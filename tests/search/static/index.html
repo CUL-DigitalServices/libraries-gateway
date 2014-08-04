@@ -4,8 +4,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>API comparison</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/tests.css" rel="stylesheet">
+        <link href="/tests/static/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/tests/static/css/tests.css" rel="stylesheet">
     </head>
     <body>
 
@@ -15,8 +15,14 @@
         <!-- Header -->
         <div id="lg-header" class="jumbotron">
           <div class="container">
-            <h3>Compare API results</h3>
-            <p><a id="btnGetResults" class="btn btn-primary btn-lg" role="button">Run the queries »</a></p>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Compare API results</h3>
+                </div>
+                <div class="col-md-6">
+                    <a id="btnGetResults" class="btn btn-primary btn-lg" role="button">Run the queries »</a>
+                </div>
+            </div>
           </div>
         </div>
 
@@ -78,8 +84,8 @@
 
         <!-- Scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/underscore.min.js"></script>
-        <script src="js/tests.js"></script>
+        <script src="/tests/static/js/bootstrap.min.js"></script>
+        <script src="/tests/static/js/underscore.min.js"></script>
+        <script src="/tests/static/js/tests.js"></script>
     </body>
 </html>

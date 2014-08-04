@@ -42,14 +42,6 @@ cd "../build"
 echo "Copying the configurations file"
 cp "../config_private.js" "config_private.js"
 
-# Create Apache log files if not exist
-if [ ! -d "logs" ]; then
-    echo "Creating Apache log files..."
-    mkdir "logs"
-    touch "logs/error_log"
-    touch "logs/access_log"
-fi
-
 # Keep track of the running Node processes
 if [ -f librariesgateway.pid ]; then
     # Get the running node process from the PID-file
