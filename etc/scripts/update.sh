@@ -35,8 +35,14 @@ grunt less:dev
 echo "Creating a production build..."
 grunt build:"../build"
 
+# Change current directory to the build directory
+cd "../build"
+
+# Copy the configurations file
+echo "Copying the configurations file"
+cp "../config_private.js" "config_private.js"
+
 # Create Apache log files if not exist
-cd "../"
 if [ ! -d "logs" ]; then
     echo "Creating Apache log files..."
     mkdir "logs"
