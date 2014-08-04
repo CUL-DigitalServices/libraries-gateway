@@ -50,8 +50,7 @@ var init = function() {
 var registerRoutes = function(app) {
 
     // Register the static folders
-    app.use('/css', express.static(__dirname + '/static/css'));
-    app.use('/js', express.static(__dirname + '/static/js'));
+    app.use('/static', express.static(__dirname + '/static'));
 
     // Return the tests html file
     app.get('/', function(req, res) {

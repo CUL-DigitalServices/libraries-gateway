@@ -7,8 +7,6 @@
   ServerAdmin admin@mail.com
   ServerName libraries-gateway
   DocumentRoot "/home/ubuntu/libraries-gateway"
-  ErrorLog "/home/ubuntu/libraries-gateway/logs/error_log"
-  CustomLog "/home/ubuntu/libraries-gateway/logs/access_log" common
 
   <Directory "/home/ubuntu/libraries-gateway/public">
     AllowOverride All
@@ -21,8 +19,11 @@
   # ----------------------------------------------------------------------
 
   ProxyPass /public !
-  ProxyPass /tests !
-  ProxyPass / http://localhost:5000/ retry=300
+
+  # The tests run on a separate app node
+  ProxyPass /tests http://localhost:5001 retry=5
+
+  ProxyPass / http://localhost:5000/ retry=5
 
   # ----------------------------------------------------------------------
   # Expires Module
