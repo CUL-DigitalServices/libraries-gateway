@@ -24,7 +24,7 @@ $(function() {
 
         // Request the results
         $.ajax({
-            'url': 'tests/getResults',
+            'url': 'comparison/getResults',
             'method': 'post'
         })
 
