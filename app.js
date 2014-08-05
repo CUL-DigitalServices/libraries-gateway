@@ -13,20 +13,7 @@
  * permissions and limitations under the License.
  */
 
-var util = require('util');
-
-var config = require('./config');
 var LG = require('lg-util');
-var log = require('lg-util/lib/logger').logger();
 
 // Initialize the application
-LG.init()
-
-    .then(function() {
-        log().info(util.format('%s started at %s://%s:%s', config.app.title, config.server.protocol, config.server.host, config.server.port));
-    })
-
-    // Log the thrown error, if any
-    .catch(function(err) {
-        log().error(err);
-    });
+LG.init();
