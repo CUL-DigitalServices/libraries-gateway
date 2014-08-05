@@ -41,8 +41,15 @@ var init = module.exports.init = function() {
     // Read the test file (promise)
     readTestsFile()
 
+        // Resolve the promise
+        .then(function() {
+            return deferred.resolve();
+        })
+
         // Catch the thrown error, if any
-        .catch(errorHandler);
+        .catch(function(err) {
+            return deferred.reject(err);
+        });
 
     // Return a promise
     return deferred.promise;
