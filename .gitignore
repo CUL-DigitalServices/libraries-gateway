@@ -7,9 +7,8 @@
 *.pid
 *.seed
 
-log
-logs
-node_modules
+node_modules/*
+!node_modules/lg-util
 
 public/components/*
 !public/components/project-light

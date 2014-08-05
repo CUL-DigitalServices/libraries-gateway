@@ -14,8 +14,12 @@
  */
 
 var express = require('express');
+var util = require('util');
 
-var ServerUtil = require('../../lib/util/server');
+var config = require('../../config');
+var log = require('lg-util/lib/logger').logger();
+var Server = require('lg-util/lib/server');
+
 var Tests = require('./lib/tests');
 
 var PORT = 5001;
@@ -29,7 +33,7 @@ var SERVER = 'apitest';
 var init = function() {
 
     // Create a new Express server
-    ServerUtil.createServer(SERVER, PORT)
+    Server.createServer(SERVER, PORT)
 
         // Register the routes for the server
         .then(registerRoutes)
@@ -59,6 +63,8 @@ var registerRoutes = function(app) {
 
     // Register the tests endpoint
     app.post('/getResults', Tests.getResults);
+
+    log().info(util.format('Test server for %s started at %s://%s:%s', config.app.title, config.server.protocol, config.server.host, PORT));
 };
 
 /**
