@@ -38,11 +38,3 @@ The following command will copy all project files to a directory (defaults to ``
 ```
 grunt build:'path/to/dir'
 ```
-
-To make sure Apache will start up correctly, a folder should be created with some log files. Before starting the node application, following commands should be run in the production build folder:
-
-```
-mkdir logs
-touch logs/error_log
-touch logs/access_log
-```
