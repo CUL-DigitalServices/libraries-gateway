@@ -8,6 +8,7 @@
 *.seed
 
 node_modules/*
+!node_modules/lg-twitter
 !node_modules/lg-util
 
 public/components/*
