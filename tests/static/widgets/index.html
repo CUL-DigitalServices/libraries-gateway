@@ -1,0 +1,427 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Summon widgets</title>
+        <link href="/tests/static/shared/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/tests/static/shared/css/lg.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/tests">Cambridge Libraries</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="container">
+
+            <!-- Row -->
+            <div class="row">
+
+                <!-- Tabs -->
+                <ul id="lg-interfaces-tabs" class="nav nav-tabs" role="tablist">
+                    <li class="active"><a href="#basic" role="tab" data-toggle="tab">Basic</a></li>
+                    <li class=""><a href="#advanced" role="tab" data-toggle="tab">Advanced</a></li>
+                </ul>
+
+                <!-- Tab content -->
+                <div id="lg-interfaces" class="tab-content">
+
+                    <!-- Basic -->
+                    <div class="tab-pane active" id="basic">
+                        <div id="lg-search-basic" data-autocomplete="true" data-vtsite="false">
+                            <form name="js-basic-form" method="GET" accept-charset="utf-8">
+                                <div>
+
+                                    <!-- Discipline -->
+                                    <select id="disclipline-select" title="Discipline" name="s.fvf">
+                                        <option value="" selected="selected">Any Discipline</option>
+                                        <option value="Discipline,agriculture,false">Agriculture</option>
+                                        <option value="Discipline,anatomy_&amp;_physiology,false">Anatomy &amp; Physiology</option>
+                                        <option value="Discipline,anthropology,false">Anthropology</option>
+                                        <option value="Discipline,applied_sciences,false">Applied Sciences</option>
+                                        <option value="Discipline,architecture,false">Architecture</option>
+                                        <option value="Discipline,astronomy_&amp;_astrophysics,false">Astronomy &amp; astrophysics</option>
+                                        <option value="Discipline,biology,false">Biology</option>
+                                        <option value="Discipline,botany,false">Botany</option>
+                                        <option value="Discipline,business,false">Business</option>
+                                        <option value="Discipline,chemistry,false">Chemistry</option>
+                                        <option value="Discipline,computer_science,false">Computer Science</option>
+                                        <option value="Discipline,dance,false">Dance</option>
+                                        <option value="Discipline,dentistry,false">Dentistry</option>
+                                        <option value="Discipline,diet_&amp;_clinical_nutrition,false">Diet &amp; Clinical Nutrition</option>
+                                        <option value="Discipline,drama,false">Drama</option>
+                                        <option value="Discipline,ecology,false">Ecology</option>
+                                        <option value="Discipline,economics,false">Economics</option>
+                                        <option value="Discipline,education,false">Education</option>
+                                        <option value="Discipline,engineering,false">Engineering</option>
+                                        <option value="Discipline,environmental_sciences,false">Environmental Sciences</option>
+                                        <option value="Discipline,falseilm,false">Film</option>
+                                        <option value="Discipline,falseorestry,false">Forestry</option>
+                                        <option value="Discipline,geography,false">Geography</option>
+                                        <option value="Discipline,geology,false">Geology</option>
+                                        <option value="Discipline,government,false">Government</option>
+                                        <option value="Discipline,history,false">History</option>
+                                    </select>
+
+                                    <!-- Query field -->
+                                    <input id="query" title="Query" class="query" name="s.q" type="text" size="25" autocomplete="on">
+
+                                    <!-- Content type -->
+                                    <select id="content-type-select" title="Content Type" name="s.fvf">
+                                        <option value="" selected="selected">Any Type</option>
+                                        <option value="ContentType,Archival Material,false">Archival Material</option>
+                                        <option value="ContentType,Audio Recording,false">Audio Recording</option>
+                                        <option value="ContentType,Book / eBook,false">Book / eBook</option>
+                                        <option value="ContentType,Book Chapter,false">Book Chapter</option>
+                                        <option value="ContentType,Book Review,false">Book Review</option>
+                                        <option value="ContentType,Computer File,false">Computer File</option>
+                                        <option value="ContentType,Conference Proceeding,false">Conference Proceeding</option>
+                                        <option value="ContentType,Dissertation,false">Dissertation/Thesis</option>
+                                        <option value="ContentType,Government Document,false">Government Document</option>
+                                        <option value="ContentType,Image,false">Image</option>
+                                        <option value="ContentType,Journal / eJournal,false">Journal / eJournal</option>
+                                        <option value="ContentType,Journal Article,false">Journal Article</option>
+                                        <option value="ContentType,Manuscript,false">Manuscript</option>
+                                        <option value="ContentType,Map,false">Map</option>
+                                        <option value="ContentType,Microfilm,false">Microfilm</option>
+                                        <option value="ContentType,Music Recording,false">Music Recording</option>
+                                        <option value="ContentType,Music Score,false">Music Score</option>
+                                        <option value="ContentType,Newspaper,false">Newspaper</option>
+                                        <option value="ContentType,Newspaper Article,false">Newspaper Article</option>
+                                        <option value="ContentType,Patent,false">Patent</option>
+                                        <option value="ContentType,Photograph,false">Photograph</option>
+                                        <option value="ContentType,Reference,false">Reference</option>
+                                        <option value="ContentType,Report,false">Report</option>
+                                        <option value="ContentType,Special Collection,false">Special Collection</option>
+                                        <option value="ContentType,Standard,false">Standard</option>
+                                        <option value="ContentType,Video Recording,false">Video Recording</option>
+                                        <option value="ContentType,Web Resource,false">Web Resource</option>
+                                    </select>
+
+                                    <input type="submit" title="Submit Search" class="buttons-primary-button-style" value="Search">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Advanced -->
+                    <div class="tab-pane" id="advanced">
+                        <div id="lg-search-advanced" data-autocomplete="true" data-vtsite="false">
+                            <form name="js-advanced-form" method="GET" accept-charset="utf-8">
+                                <table class="fields">
+                                    <tbody>
+                                        <tr>
+                                            <td class="label">
+                                                <label for="query">With these <strong>terms</strong>:</label>
+                                            </td>
+                                            <td>
+                                                <input id="query" title="Query" class="query" name="s.q" type="text" size="25" autocomplete="off">
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">
+                                                <label for="author">Written/created by:</label>
+                                            </td>
+                                            <td>
+                                                <input id="author" title="Author" name="t.AuthorCombined" type="text" size="35" autocomplete="off" value="">
+                                                <br>
+                                                <div class="eg">e.g. Fitzgerald</div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">
+                                                <label for="title">With these words in the <strong>title</strong>:</label>
+                                            </td>
+                                            <td>
+                                                <input id="title" title="Title" name="t.TitleCombined" type="text" size="35" autocomplete="off" value=""><br>
+                                                <div class="eg">e.g. The Great Gatsby</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label">
+                                                <label for="isbn"><strong>ISBN</strong>:</label>
+                                            </td>
+                                            <td>
+                                                <div class="col">
+                                                    <div class="field">
+                                                        <input id="isbn" title="ISBN" name="t.isbn" type="text" size="10" autocomplete="off" value="">
+                                                        <div class="isbn_error"></div>
+                                                        <div class="eg">e.g. 9780684830421</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col middle-col">
+                                                    <label for="issn"><strong>ISSN:</strong></label>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="field">
+                                                        <input id="issn" title="ISSN" name="t.issn" type="text" size="10" maxlength="15" autocomplete="off" value="">
+                                                        <br>
+                                                        <div class="issn_error"></div>
+                                                        <div class="eg">e.g. 0022-0795</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label">
+                                                <label for="publication">From this <strong>publication</strong>:</label>
+                                            </td>
+                                            <td>
+                                                <input id="publication" title="Publication Title" name="t.publicationtitle" type="text" size="35" autocomplete="off" value="">
+                                                <br>
+                                                <div class="eg">e.g. Journal Of Endocrinology</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label">
+                                                <label for="volume"><strong>Volume</strong>:</label>
+                                            </td>
+                                            <td>
+                                                <input id="volume" title="Volume" name="t.volume" type="text" size="10" maxlength="15" autocomplete="off" value="">
+                                                <label for="issue" class="secondary_label">and <strong>Issue</strong></label>
+                                                <input id="issue" title="Issue" name="t.issue" type="text" size="10" maxlength="15" autocomplete="off" value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label">
+                                                <label><strong>Dates</strong> published from:</label>
+                                            </td>
+                                            <td>
+                                                <div class="date-entry">
+                                                    <div class="min">
+                                                        <label class="accessible" for="date-day-min">min date day</label>
+                                                        <select id="date-day-min" title="Select Day" class="day" autocomplete="off">
+                                                            <option></option>
+                                                            <option value="01">1</option>
+                                                            <option value="02">2</option>
+                                                            <option value="03">3</option>
+                                                            <option value="04">4</option>
+                                                            <option value="05">5</option>
+                                                            <option value="06">6</option>
+                                                            <option value="07">7</option>
+                                                            <option value="08">8</option>
+                                                            <option value="09">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                            <option value="13">13</option>
+                                                            <option value="14">14</option>
+                                                            <option value="15">15</option>
+                                                            <option value="16">16</option>
+                                                            <option value="17">17</option>
+                                                            <option value="18">18</option>
+                                                            <option value="19">19</option>
+                                                            <option value="20">20</option>
+                                                            <option value="21">21</option>
+                                                            <option value="22">22</option>
+                                                            <option value="23">23</option>
+                                                            <option value="24">24</option>
+                                                            <option value="25">25</option>
+                                                            <option value="26">26</option>
+                                                            <option value="27">27</option>
+                                                            <option value="28">28</option>
+                                                            <option value="29">29</option>
+                                                            <option value="30">30</option>
+                                                            <option value="31">31</option>
+                                                        </select>
+                                                        <label class="accessible" for="date-month-min">min date month</label>
+                                                        <select id="date-month-min" title="Select Month" class="month" autocomplete="off">
+                                                            <option value=""></option>
+                                                            <option value="01">Jan</option>
+                                                            <option value="02">Feb</option>
+                                                            <option value="03">Mar</option>
+                                                            <option value="04">Apr</option>
+                                                            <option value="05">May</option>
+                                                            <option value="06">Jun</option>
+                                                            <option value="07">Jul</option>
+                                                            <option value="08">Aug</option>
+                                                            <option value="09">Sep</option>
+                                                            <option value="10">Oct</option>
+                                                            <option value="11">Nov</option>
+                                                            <option value="12">Dec</option>
+                                                        </select>
+                                                        <label class="accessible" for="date-year-min">min date year</label>
+                                                        <input id="date-year-min" title="Year" type="text" class="year" value="" maxlength="4" autocomplete="off" style="width: 3em;"><span> to</span></div><div class="max">
+                                                        <label class="accessible" for="date-day-max">max date day</label>
+                                                        <select id="date-day-max" title="Select Day" class="day" autocomplete="off">
+                                                            <option></option>
+                                                            <option value="01">1</option>
+                                                            <option value="02">2</option>
+                                                            <option value="03">3</option>
+                                                            <option value="04">4</option>
+                                                            <option value="05">5</option>
+                                                            <option value="06">6</option>
+                                                            <option value="07">7</option>
+                                                            <option value="08">8</option>
+                                                            <option value="09">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                            <option value="13">13</option>
+                                                            <option value="14">14</option>
+                                                            <option value="15">15</option>
+                                                            <option value="16">16</option>
+                                                            <option value="17">17</option>
+                                                            <option value="18">18</option>
+                                                            <option value="19">19</option>
+                                                            <option value="20">20</option>
+                                                            <option value="21">21</option>
+                                                            <option value="22">22</option>
+                                                            <option value="23">23</option>
+                                                            <option value="24">24</option>
+                                                            <option value="25">25</option>
+                                                            <option value="26">26</option>
+                                                            <option value="27">27</option>
+                                                            <option value="28">28</option>
+                                                            <option value="29">29</option>
+                                                            <option value="30">30</option>
+                                                            <option value="31">31</option>
+                                                        </select>
+                                                        <label class="accessible" for="date-month-max">max date month</label>
+                                                        <select id="date-month-max" title="Select Month" class="month" autocomplete="off">
+                                                            <option value=""></option>
+                                                            <option value="01">Jan</option>
+                                                            <option value="02">Feb</option>
+                                                            <option value="03">Mar</option>
+                                                            <option value="04">Apr</option>
+                                                            <option value="05">May</option>
+                                                            <option value="06">Jun</option>
+                                                            <option value="07">Jul</option>
+                                                            <option value="08">Aug</option>
+                                                            <option value="09">Sep</option>
+                                                            <option value="10">Oct</option>
+                                                            <option value="11">Nov</option>
+                                                            <option value="12">Dec</option>
+                                                        </select>
+                                                        <label class="accessible" for="date-year-max">max date year</label>
+                                                        <input id="date-year-max" title="Year" type="text" class="year" value="" maxlength="4" autocomplete="off" style="width: 3em;">
+                                                    </div>
+                                                    <div class="error"></div>
+                                                    <input type="hidden" style="font-size: 0.7em" name="s.rf" class="range">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label top">
+                                                <label>Show <strong>content type</strong>:</label>
+                                            </td>
+                                            <td>
+                                                <label class="accessible" for="content-type-select">content type</label>
+                                                <select id="content-type-select" title="Content Type" name="s.fvf">
+                                                    <option value="" selected="selected">Any Type</option>
+                                                    <option value="ContentType,Archival Material,false">Archival Material</option>
+                                                    <option value="ContentType,Audio Recording,false">Audio Recording</option>
+                                                    <option value="ContentType,Book / eBook,false">Book / eBook</option>
+                                                    <option value="ContentType,Book Chapter,false">Book Chapter</option>
+                                                    <option value="ContentType,Book Review,false">Book Review</option>
+                                                    <option value="ContentType,Computer File,false">Computer File</option>
+                                                    <option value="ContentType,Conference Proceeding,false">Conference Proceeding</option>
+                                                    <option value="ContentType,Dissertation,false">Dissertation/Thesis</option>
+                                                    <option value="ContentType,Government Document,false">Government Document</option>
+                                                    <option value="ContentType,Image,false">Image</option>
+                                                    <option value="ContentType,Journal / eJournal,false">Journal / eJournal</option>
+                                                    <option value="ContentType,Journal Article,false">Journal Article</option>
+                                                    <option value="ContentType,Manuscript,false">Manuscript</option>
+                                                    <option value="ContentType,Map,false">Map</option>
+                                                    <option value="ContentType,Microfilm,false">Microfilm</option>
+                                                    <option value="ContentType,Music Recording,false">Music Recording</option>
+                                                    <option value="ContentType,Music Score,false">Music Score</option>
+                                                    <option value="ContentType,Newspaper,false">Newspaper</option>
+                                                    <option value="ContentType,Newspaper Article,false">Newspaper Article</option>
+                                                    <option value="ContentType,Patent,false">Patent</option>
+                                                    <option value="ContentType,Photograph,false">Photograph</option>
+                                                    <option value="ContentType,Reference,false">Reference</option>
+                                                    <option value="ContentType,Report,false">Report</option>
+                                                    <option value="ContentType,Special Collection,false">Special Collection</option>
+                                                    <option value="ContentType,Standard,false">Standard</option>
+                                                    <option value="ContentType,Video Recording,false">Video Recording</option>
+                                                    <option value="ContentType,Web Resource,false">Web Resource</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label top">
+                                                <label>Show Only:</label>
+                                            </td>
+                                            <td>
+                                                <input id="full_text_hidden" name="s.cmd" type="hidden" value="">
+                                                <input title="Items with full text online" id="full_text_checkbox" type="checkbox" onchange="$('#full_text_hidden').val(this.checked ? 'addFacetValueFilters(IsFullText,true)' : '')">
+                                                <label for="full_text_checkbox">Items with full text online</label>
+                                                <br>
+
+                                                <input id="is_scholarly_hidden" name="s.cmd" type="hidden" value="">
+                                                <input title="Scholarly materials, including peer-reviewed" id="is_scholarly_checkbox" type="checkbox" onchange="$('#is_scholarly_hidden').val(this.checked ? 'addFacetValueFilters(IsScholarly,true)' : '')">
+                                                <label for="is_scholarly_checkbox">Scholarly materials, including peer-reviewed</label>
+                                                <br>
+
+                                                <input id="is_peer_reviewed_hidden" name="s.cmd" type="hidden" value="">
+                                                <input title="Peer reviewed publications" id="is_peer_reviewed_checkbox" type="checkbox" onchange="$('#is_peer_reviewed_hidden').val(this.checked ? 'addFacetValueFilters(IsPeerReviewed,true)' : '')">
+                                                <label for="is_peer_reviewed_checkbox">Peer reviewed publications</label>
+                                                <br>
+
+                                                <input title="Items in the library catalogue (mostly print and physical material)" id="fq_library_catalog" name="s.fq" type="checkbox" value="SourceType:(&quot;Library Catalog&quot;)">
+                                                <label for="fq_library_catalog">Items in the library catalogue (mostly print and physical material)</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label top">
+                                                <label>Exclude from results:</label>
+                                            </td>
+                                            <td>
+                                                <input title="Newspaper articles" id="fvf_contenttype,newspaper_article,t" name="s.fvf" type="checkbox" value="ContentType,Newspaper Article,t">
+                                                <label for="fvf_contenttype,newspaper_article,t">Newspaper articles</label>
+                                                <br>
+                                                <input title="Book reviews" id="fvf_contenttype,book_review,t" name="s.fvf" type="checkbox" value="ContentType,Book Review,t">
+                                                <label for="fvf_contenttype,book_review,t">Book reviews</label>
+                                                <br>
+                                                <input title="Dissertations/Theses" id="fvf_contenttype,dissertation,t" name="s.fvf" type="checkbox" value="ContentType,Dissertation,t">
+                                                <label for="fvf_contenttype,dissertation,t">Dissertations/Theses</label>
+                                                <br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label top">
+                                                <label>Expand your results:</label>
+                                            </td>
+                                            <td>
+                                                <input id="holdings_only_hidden" name="s.cmd" type="hidden" value="">
+                                                <input title="Include results from outside your library's collection" id="holdings_only_checkbox" type="checkbox" onchange="$('#holdings_only_hidden').val(this.checked ? 'setHoldingsOnly(false)' : '')">
+                                                <label for="holdings_only_checkbox">Include results from outside your library's collection</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="buttons">
+                                    <input type="submit" title="Submit Search" class="buttons-primary-button-style" value="Search">
+                                    <a href="#" class="reset" title="Reset all search parameters to their original values" onclick="document.forms.advanced.reset(); return false;">Reset Form</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- End advanced -->
+
+                </div>
+                <!-- End Tab content -->
+
+            </div>
+            <!-- End row -->
+
+        </div>
+        <!-- End content -->
+
+        <!-- Scripts -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="/tests/static/shared/js/bootstrap.min.js"></script>
+        <script src="/tests/static/shared/js/underscore.min.js"></script>
+        <script src="/tests/static/widgets/js/widgets.js"></script>
+    </body>
+</html>

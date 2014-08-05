@@ -56,6 +56,16 @@ var init = module.exports.init = function() {
 };
 
 /**
+ * Function that returns the content for the test
+ *
+ * @param  {Request}    req     The Express request object
+ * @param  {Response}   res     The EXpress response object
+ */
+var getContent = module.exports.getContent = function(req, res) {
+    return res.status(200).sendfile(config.app.root + '/tests/static/search/index.html');
+};
+
+/**
  * Start running the tests to get the API results
  */
 var getResults = module.exports.getResults = function(req, res) {

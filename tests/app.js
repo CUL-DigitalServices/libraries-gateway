@@ -16,11 +16,12 @@
 var express = require('express');
 var util = require('util');
 
-var config = require('../../config');
+var config = require('../config');
 var log = require('lg-util/lib/logger').logger();
 var Server = require('lg-util/lib/server');
 
-var Tests = require('./lib/tests');
+var SearchTest = require('./lib/search/tests');
+var WidgetTest = require('./lib/widgets/app');
 
 var PORT = 5001;
 var SERVER = 'apitest';
@@ -39,7 +40,7 @@ var init = function() {
         .then(registerRoutes)
 
         // Initialize the tests
-        .then(Tests.init)
+        .then(SearchTest.init)
 
         // Add an error handler
         .catch(errorHandler);
@@ -53,6 +54,14 @@ var init = function() {
  */
 var registerRoutes = function(app) {
 
+    // Comparison
+    app.get('/comparison', SearchTest.getContent);
+    app.post('/comparison/getResults', SearchTest.getResults);
+
+    // Widgets
+    app.get('/widgets', WidgetTest.getContent);
+    app.get('/widgets/getResults', WidgetTest.getResults);
+
     // Register the static folders
     app.use('/static', express.static(__dirname + '/static'));
 
@@ -60,9 +69,6 @@ var registerRoutes = function(app) {
     app.get('/', function(req, res) {
         return res.status(200).sendfile(__dirname + '/static/index.html');
     });
-
-    // Register the tests endpoint
-    app.post('/getResults', Tests.getResults);
 
     log().info(util.format('Test server for %s started at %s://%s:%s', config.app.title, config.server.protocol, config.server.host, PORT));
 };
