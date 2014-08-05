@@ -15,7 +15,8 @@
 
 var express = require('express');
 
-var ServerUtil = require('../../lib/util/server');
+var Server = require('lg-util/lib/server');
+
 var Tests = require('./lib/tests');
 
 var PORT = 5001;
@@ -29,7 +30,7 @@ var SERVER = 'apitest';
 var init = function() {
 
     // Create a new Express server
-    ServerUtil.createServer(SERVER, PORT)
+    Server.createServer(SERVER, PORT)
 
         // Register the routes for the server
         .then(registerRoutes)

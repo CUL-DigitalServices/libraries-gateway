@@ -19,7 +19,7 @@ var q = require('q');
 var util = require('util');
 
 var config = require('../../../config');
-var log = require('../../../lib/util/logger').logger();
+var log = require('lg-util/lib/logger').logger();
 var SearchAPI = require('../../../lib/controllers/api/search/index');
 
 var AquabrowserTestsUtil = require('./tests.aquabrowser');

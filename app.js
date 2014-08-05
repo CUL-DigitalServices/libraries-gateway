@@ -21,8 +21,9 @@ var LibrariesAPI = require('./lib/controllers/api/libraries');
 var LibrariesController = require('./lib/controllers/client/nodes/LibrariesController').LibrariesController;
 var ResourcesController = require('./lib/controllers/client/nodes/ResourcesController').ResourcesController;
 var SearchRESTAPI = require('./lib/controllers/api/search/rest');
-var serverUtil = require('./lib/util/server');
 var UsingLibrariesController = require('./lib/controllers/client/nodes/UsingLibrariesController').UsingLibrariesController;
+
+var Server = require('lg-util/lib/server');
 
 /**
  * Function that initializes the server by calling the 'createServer' method in the server util.
@@ -32,7 +33,7 @@ var UsingLibrariesController = require('./lib/controllers/client/nodes/UsingLibr
 var init = function() {
 
     // Create a new Express server
-    serverUtil.createServer()
+    Server.createServer()
 
     // Register the application routes
     .then(registerRoutes);
