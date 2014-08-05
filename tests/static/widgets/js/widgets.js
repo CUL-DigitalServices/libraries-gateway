@@ -16,9 +16,29 @@
 $(function() {
 
     /**
-     * Make a request to the API endpoint when the form is submitted
+     * Function that submits the form data to the REST API endpoint
      */
-    var onFormSubmit = function(e) {
+    var onFormSubmit = function(event) {
+
+        // Construct the querystring that will be used to request Summon data
+        var queryString = $(event.currentTarget).serialize();
+
+        // Perform an AJAX call
+        $.ajax({
+            'url': 'widgets/getResults?' + queryString,
+            'method': 'GET'
+        })
+
+            // AJAX success handler
+            .done(function(results) {
+                console.log(results);
+            })
+
+            // AJAX error handler
+            .fail(function(err) {
+                console.log(err);
+            });
+
         return false;
     };
 

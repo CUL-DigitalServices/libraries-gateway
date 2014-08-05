@@ -60,6 +60,7 @@ var registerRoutes = function(app) {
 
     // Widgets
     app.get('/widgets', WidgetTest.getContent);
+    app.get('/widgets/getResults', WidgetTest.getResults);
 
     // Register the static folders
     app.use('/static', express.static(__dirname + '/static'));
