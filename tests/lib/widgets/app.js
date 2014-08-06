@@ -27,7 +27,7 @@ var SummonTest = require('../search/tests.summon.js');
  * @param  {Response}   res     The EXpress response object
  */
 var getContent = module.exports.getContent = function(req, res) {
-    return res.status(200).sendfile(config.app.root + '/tests/static/widgets/index.html');
+    return res.status(200).sendFile(config.app.root + '/tests/static/widgets/index.html');
 };
 
 /**

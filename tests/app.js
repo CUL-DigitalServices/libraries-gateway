@@ -67,7 +67,7 @@ var registerRoutes = function(app) {
 
     // Return the tests html file
     app.get('/', function(req, res) {
-        return res.status(200).sendfile(__dirname + '/static/index.html');
+        return res.status(200).sendFile(__dirname + '/static/index.html');
     });
 
     log().info(util.format('Test server for %s started at %s://%s:%s', config.app.title, config.server.protocol, config.server.host, PORT));
