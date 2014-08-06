@@ -22,6 +22,9 @@ $(function() {
      */
     var getResults = function() {
 
+        // Show the loading modal
+        $('#lg-loading-modal').modal('show');
+
         // Request the results
         $.ajax({
             'url': 'comparison/getResults',
@@ -44,6 +47,11 @@ $(function() {
             // Catch the thrown error, if any
             .fail(function(err) {
                 console.log(err);
+            })
+
+            // Hide the loading modal
+            .always(function() {
+                $('#lg-loading-modal').modal('hide');
             });
     };
 
