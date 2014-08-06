@@ -16,6 +16,7 @@
 var _ = require('underscore');
 var q = require('q');
 
+var log = require('lg-util/lib/logger').logger();
 var SummonAPI = require('../../../lib/controllers/api/search/summon/api');
 
 var Result = require('./model').Result;
@@ -48,16 +49,19 @@ var getTestResultData = module.exports.getTestResultData = function(queryString)
             // Resolve the promise by returning the Summon results
             deferred.resolve(new Result(queryString, null, numResults, items));
 
+        // Reject the promise if an error occurred
         } catch(err) {
-
-            // Reject the promise if an error occurred
-            deferred.reject({'code': 500, 'msg': err});
+            deferred.reject({'queryString': queryString, 'err': {'code': 500, 'msg': 'Error while executing Summon query'}});
         }
     });
 
     // Return a promise
     return deferred.promise;
 };
+
+//////////////////////////
+//  INTERNAL FUNCTIONS  //
+//////////////////////////
 
 /**
  * Returns the items from the Summon results

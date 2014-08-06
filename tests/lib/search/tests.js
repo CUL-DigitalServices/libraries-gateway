@@ -111,6 +111,8 @@ var runTests = function(tests) {
 
         // Run the tests as long as tests are available
         if (!tests.length) {
+
+            // Resolve the promise
             return deferred.resolve();
         }
 
@@ -195,8 +197,9 @@ var runTest = function(test, testResult, callback) {
 
             // Catch the thrown error, if any
             .catch(function(response) {
+
                 log().error({'err': response.err}, 'Error while doing API request');
-                testResult.results[response.api] = {'err': response.err};
+                testResult.results[response.api] = response.err;
             })
 
             // Run the next test

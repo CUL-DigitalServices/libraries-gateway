@@ -52,6 +52,8 @@ $(function() {
      */
     var calculateAPIScores = function(results) {
 
+        console.log(results);
+
         // Collect all the used APIs
         var apis = {};
         _.each(results, function(test) {
@@ -70,12 +72,16 @@ $(function() {
                 }
 
                 // Pluck the query time from all the API results
-                scores[api] = result.queryTime;
+                if (result.queryTime) {
+                    scores[api] = result.queryTime;
+                }
             });
 
             // Increase the score of the API with the lowest query time
-            var apiToIncrease = _.min(_.keys(scores), function(key) { return scores[key]; });
-            apis[apiToIncrease]['time']++;
+            if (_.keys(scores).length) {
+                var apiToIncrease = _.min(_.keys(scores), function(key) { return scores[key]; });
+                apis[apiToIncrease]['time']++;
+            }
         });
 
         // Create an template data object
