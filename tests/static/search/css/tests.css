@@ -35,3 +35,7 @@
 .lg-col-increase {
     text-align: right;
 }
+
+#lg-loading-modal .progress {
+    margin-bottom: 0;
+}
