@@ -17,6 +17,7 @@ var _ = require('underscore');
 var q = require('q');
 
 var AquabrowserAPI = require('../../../lib/controllers/api/search/aquabrowser/api');
+var log = require('lg-util/lib/logger').logger();
 
 var Result = require('./model').Result;
 
@@ -31,7 +32,7 @@ var getTestResultData = module.exports.getTestResultData = function(queryString)
     // Request the results using a raw query
     AquabrowserAPI.getResultsByRawQuery(queryString, function(err, results) {
         if (err) {
-            return deferred.reject(err);
+            return deferred.reject({'queryString': queryString, 'err': {'code': 500, 'msg': 'Error while executing Aquabrowser query'}});
         }
 
         // Store the number of results found
@@ -45,6 +46,9 @@ var getTestResultData = module.exports.getTestResultData = function(queryString)
         // Pluck the results from the rhow esponse
         var items = getItemsFromResults(results.root.results);
 
+        // Since Aquabrowser doesn't allow us to limit the number of results, we're doing it ourselves
+        items = items.slice(0,5);
+
         // Return the results for the Aquabrowser API request
         deferred.resolve(new Result(queryString, null, numResults, items));
     });
@@ -52,6 +56,10 @@ var getTestResultData = module.exports.getTestResultData = function(queryString)
     // Return a promise
     return deferred.promise;
 };
+
+//////////////////////////
+//  INTERNAL FUNCTIONS  //
+//////////////////////////
 
 /**
  * Returns the items from the Aquabrowser results
@@ -67,6 +75,11 @@ var getItemsFromResults = function(results) {
 
     // Check if items are available
     if (results.record) {
+
+        // Since Aquabrowser doesn't return an array if only one item was found, we create one ourselves
+        if (!_.isArray(results.record)) {
+            results.record = [ results.record ];
+        }
 
         // Loop the records
         _.each(results.record, function(_record) {
