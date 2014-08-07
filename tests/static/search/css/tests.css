@@ -1,3 +1,9 @@
+#lg-search-progress {
+    height: 10px;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
 #lg-score {
     display: none;
     position: fixed;
@@ -34,8 +40,4 @@
 
 .lg-col-increase {
     text-align: right;
-}
-
-#lg-loading-modal .progress {
-    margin-bottom: 0;
 }
