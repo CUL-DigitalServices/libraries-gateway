@@ -1,0 +1,85 @@
+.lg-main-header {
+    font-family: myriad pro;
+    background: #4678AD;
+    color: #FFF;
+    font-size: 34px;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.lg-search-form {
+    display: flex;
+}
+
+.lg-jumbotron {
+    margin: 0;
+}
+
+.lg-search-form .lg-input-keyword {
+    padding: 22px 15px;
+    font-size: 17px;
+    border-radius: 0;
+    border-right: none;
+    border-left: none;
+    flex: 1;
+}
+
+.lg-btn-types,
+.lg-btn-disciplines,
+.lg-btn-types:hover,
+.lg-btn-disciplines:hover,
+.lg-btn-types:focus,
+.lg-btn-disciplines:focus,
+.lg-btn-types:active,
+.lg-btn-disciplines:active,
+.open > .dropdown-toggle.lg-btn-types {
+    background-color: #7E8E99;
+    border-color: #6D6D6D;
+}
+
+.lg-btn-search {
+    border-left-color: #95B9F0;
+    border-radius: 0 4px 4px 0;
+    padding: 0 50px;
+}
+
+.lg-btn-disciplines {
+    border-radius: 4px 0 0 4px;
+}
+
+.lg-btn-types {
+    border-right-color: #334B58;
+    padding: 12px;
+}
+
+paper-checkbox {
+    padding: 10px;
+}
+
+paper-fab {
+    color: #FFF;
+}
+
+.lg-search-advanced {
+    margin-top: 10px;
+    padding-left: 98px;
+}
+
+.btn-advanced-search {
+    vertical-align: middle;
+}
+
+.lg-search-results {
+    padding-top: 40px;
+    opacity: .8;
+}
+
+.lg-btn-ok {
+    background: #78C05C;
+}
+
+.lg-btn-more {
+    color: blue!important;
+}
