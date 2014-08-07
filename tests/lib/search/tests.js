@@ -75,7 +75,8 @@ var getResults = module.exports.getResults = function(req, res) {
 
         // Return the results
         .then(function() {
-            return res.status(200).send(results);
+            res.status(200).send(results);
+            return results = [];
         })
 
         // Catch the thrown error, if any
@@ -84,7 +85,7 @@ var getResults = module.exports.getResults = function(req, res) {
         })
 
         .done(function() {
-            log().info('Finished running tests');
+            log().info('Finished executing queries');
         });
 };
 
@@ -101,16 +102,18 @@ var getResults = module.exports.getResults = function(req, res) {
 var runTests = function(tests) {
     var deferred = q.defer();
 
+    var _tests = _.clone(tests);
+
     /*!
      * Function that executes the next test
      *
      * @param  {Object[]}   tests       Object containing the test data
      * @api private
      */
-    var next = function(tests) {
+    var next = function(_tests) {
 
         // Run the tests as long as tests are available
-        if (!tests.length) {
+        if (!_tests.length) {
 
             // Resolve the promise
             return deferred.resolve();
@@ -123,7 +126,7 @@ var runTests = function(tests) {
         };
 
         // Run the first test from the collection
-        runTest(tests.shift(), testResult, function(err, testResult) {
+        runTest(_tests.shift(), testResult, function(err, testResult) {
             if (err) {
                 return defer.reject({'code': err.code, 'msg': err.msg});
             }
@@ -132,12 +135,12 @@ var runTests = function(tests) {
             results.push(testResult);
 
             // Execute the next test
-            next(tests);
+            next(_tests);
         });
     };
 
     // Execute the first test
-    next(tests);
+    next(_tests);
 
     // Return a promise
     return deferred.promise;
