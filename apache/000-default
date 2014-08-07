@@ -23,6 +23,9 @@
   # The tests run on a separate app node
   ProxyPass /tests http://localhost:5001 retry=5
 
+  # Websockets
+  ProxyPass /socket.io http://localhost:5001/socket.io
+
   ProxyPass / http://localhost:5000/ retry=5
 
   # ----------------------------------------------------------------------
