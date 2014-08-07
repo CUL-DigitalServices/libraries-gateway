@@ -102,7 +102,7 @@ $(function() {
 
     // Fetch the configuration file
     $.ajax({
-        'url': '/tests/static/widgets/js/config.json'
+        'url': '/tests/static/widgets/data/config.json'
     }).then(function(config) {
         // Set up the discipline columns
         var cols = [];
@@ -112,7 +112,7 @@ $(function() {
         _.each(config.disciplines, function(discipline, i, disciplines) {
             currentCol.push({
                 'label': discipline,
-                'value': discipline.toLowerCase().replace(/\s/g, '+').replace(/&/g, '%26')
+                'value': encodeURIComponent(discipline.toLowerCase().replace(/\s/g, '_'))
             });
             if ((i + 1) % modulo === 0 || (i + 1) === disciplines.length) {
                 cols.push(currentCol);
@@ -148,7 +148,8 @@ $(function() {
         }).join('');
 
         $.ajax({
-            'url': '/tests/widgets/getResults?' + queryString
+            'url': 'widgets/getResults?' + queryString,
+            'method': 'GET'
         }).then(function(results) {
             $('.js-results').html(prettyPrint(results.results, {
                 maxDepth: 50

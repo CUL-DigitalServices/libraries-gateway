@@ -51,10 +51,16 @@ var getResults = module.exports.getResults = function(req, res) {
         if (values) {
             if (_.isArray(values)) {
                 _.each(values, function(value) {
-                    if (value) queryString.push(key + '=' + value);
+                    if (value) {
+                        value = value.replace(/&/g, '&amp;');
+                        queryString.push(key + '=' + value);
+                    }
                 });
             } else {
-                if (values) queryString.push(key + '=' + values);
+                if (values) {
+                    values = values.replace(/&/g, '&amp;');
+                    queryString.push(key + '=' + values);
+                }
             }
         }
     });
