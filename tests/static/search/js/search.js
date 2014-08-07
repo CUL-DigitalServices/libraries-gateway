@@ -23,7 +23,7 @@ $(function() {
     var getResults = function() {
 
         // Show the loading modal
-        $('#lg-loading-modal').modal('show');
+        $('#lg-search-progress').show();
 
         // Request the results
         $.ajax({
@@ -51,7 +51,7 @@ $(function() {
 
             // Hide the loading modal
             .always(function() {
-                $('#lg-loading-modal').modal('hide');
+                $('#lg-search-progress').hide();
             });
     };
 
@@ -161,6 +161,9 @@ $(function() {
      * Initialize the application
      */
     var init = function() {
+
+        // Hide the progress bar
+        $('#lg-search-progress').hide();
 
         // Set some top-level variables for the templates
         _.templateSettings.variable = "lg";
