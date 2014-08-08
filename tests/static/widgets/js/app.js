@@ -129,6 +129,10 @@ $(function() {
     });
     $(document).on('ajaxStart', NProgress.start).on('ajaxStop', NProgress.done);
 
+    $('.js-btn-back').on('click', function() {
+        window.location.href = '/tests';
+    });
+
     // Setup form submit
     $('form').on('submit', function(e) {
         var queryString = $(this).serialize();
