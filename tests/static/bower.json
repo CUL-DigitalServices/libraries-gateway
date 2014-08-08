@@ -1,0 +1,15 @@
+{
+  "name": "search-prototypes",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "lodash": "latest",
+    "prettyprint": "latest",
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "polymer": "latest",
+    "nprogress": "latest",
+    "core-elements": "Polymer/core-elements#latest",
+    "paper-elements": "Polymer/paper-elements#latest"
+  }
+}
