@@ -254,7 +254,7 @@ var doAPIRequest = function(test, currentTestNumber, numTests, title) {
     var deferred = q.defer();
 
     // Log the current test
-    //log().info(util.format('Running test (%s/%s) of \'%s\' for %s', currentTestNumber, numTests, title, test.api));
+    log().info(util.format('Running test (%s/%s) of \'%s\' for %s', currentTestNumber, numTests, title, test.api));
 
     // Determine which API should be used
     var apiUtil = requestUtils[test.api];

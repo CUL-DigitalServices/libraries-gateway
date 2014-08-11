@@ -31,6 +31,8 @@ $(function() {
         // Show the progress bar
         $('#lg-search-progress').show();
 
+        $('#lg-score').hide();
+
         // Request the API results
         socket.emit('getResults');
     };
@@ -53,12 +55,14 @@ $(function() {
                 // Check whether the API has already been added or not
                 if (!apis[api]) {
                     apis[api] = {
-                        'time': 0
+                        'fastest': 0,
+                        'total': 0
                     }
                 }
 
                 // Pluck the query time from all the API results
                 if (result.queryTime) {
+                    apis[api]['total'] += result.queryTime;
                     scores[api] = result.queryTime;
                 }
             });
@@ -66,18 +70,59 @@ $(function() {
             // Increase the score of the API with the lowest query time
             if (_.keys(scores).length) {
                 var apiToIncrease = _.min(_.keys(scores), function(key) { return scores[key]; });
-                apis[apiToIncrease]['time']++;
+                apis[apiToIncrease]['fastest']++;
             }
         });
 
-        // Create an template data object
-        var templateData = {
-            'apis': apis,
-            'results': results
-        };
+        // Calculate more stuff
+        if (results.length) {
+            _.each(apis, function(api) {
+                api['fastest'] = String(Math.round((api['fastest'] / results.length) * 100)) + '%';
+                if (api['total']) {
+                    api['average'] = String(Math.ceil(api['total'] / results.length)) + 'ms';
+                    api['total'] = String(api['total']) + 'ms';
+                }
+            });
+        }
 
-        // Render the score template
-        renderTemplate('.tplScore', '#lg-score', templateData);
+        // Empty the container
+        $('#lg-score').html('');
+
+        // Construct the first row
+        var row = '<div class="row row-title">';
+        row += '<div class="col col-md-4"> </div>';
+        _.each(_.keys(apis), function(api) {
+            row += '<div class="col col-title col-md-4">' + api +'</div>';
+        });
+        row += '</div>';
+        $('#lg-score').append(row);
+
+        // Fetch the rownames
+        var rownames = [];
+        _.each(apis, function(val, api) {
+            rownames.push(_.keys(val));
+        });
+        rownames = _.chain(_.flatten(rownames)).uniq().value();
+
+        // Construct the data rows
+        _.each(rownames, function(val) {
+            row = '<div class="row row-data">';
+            row += '<div class="col col-title col-md-4">' + val + '</div>';
+            _.each(apis, function(api) {
+                row += '<div class="col col-md-4">' + api[val] + '</div>';
+            });
+            row += '</div>';
+            $('#lg-score').append(row);
+        });
+
+        // Add an extra row for the relevant items score
+        row = '<div class="row row-data">';
+        row += '<div class="col col-title col-md-4">rel</div>';
+        _.each(apis, function(val, api) {
+            row += '<div class="col col-md-4 col-rel-' + api + '">0</div>';
+        });
+        row +='</div>';
+        $('#lg-score').append(row);
 
         // Show the container
         $('#lg-score').show();
@@ -95,10 +140,11 @@ $(function() {
         var api = $(event.currentTarget).attr('data-api');
 
         // Remove the button
-        $(event.currentTarget).css('visibility', 'hidden');
+        var testIndex = $(event.currentTarget).attr('data-test-index');
+        $('.btnIncreaseRelativityScore[data-test-index=' + testIndex +']').css('visibility', 'hidden');
 
         // Find the element to update
-        var apiEl = $('#lg-col-score-' + api).find('.score-rel').find('.val');
+        var apiEl = $('#lg-score').find('.col-rel-' + api);
 
         // Calculate the new score
         var newScore = Number($(apiEl).html()) +1;
