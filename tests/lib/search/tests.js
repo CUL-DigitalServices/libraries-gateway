@@ -82,16 +82,15 @@ var getResults = module.exports.getResults = function() {
         // Return the results
         .then(function() {
             return deferred.resolve(results);
-        })
 
-        // Return the progress of the executed queries
-        .progress(function(length) {
-            deferred.notify(1 - Number(length / numTests))
-        })
-
-        // Catch the thrown error, if any
-        .catch(function(err) {
+        // Error handler
+        }, function(err) {
             return deferred.reject(err);
+
+        // Progress handler
+        }, function(opts) {
+            deferred.notify(JSON.stringify({'total': (1 - Number(opts.length / numTests))}));
+            opts.continue();
         })
 
         .done(function() {
@@ -141,21 +140,23 @@ var runTests = function(tests) {
             'results': {}
         };
 
-        // Run the first test from the collection
-        runTest(_tests.shift(), testResult, function(err, testResult) {
-            if (err) {
+        // Run the first test from the collection as long as tests are available
+        runTest(_tests.shift(), testResult)
+
+            .then(function() {
+
+                // Send out a progress event
+                deferred.notify({
+                    'length': _tests.length,
+                    'continue': function() {
+                        results.push(testResult);
+                        next(_tests);
+                    }
+                });
+
+            }, function(err) {
                 return defer.reject({'code': err.code, 'msg': err.msg});
-            }
-
-            // Send out a progress event
-            deferred.notify(_tests.length);
-
-            // Save the testresults
-            results.push(testResult);
-
-            // Execute the next test
-            next(_tests);
-        });
+            });
     };
 
     // Execute the first test
@@ -176,6 +177,7 @@ var runTests = function(tests) {
  * @api private
  */
 var runTest = function(test, testResult, callback) {
+    var deferred = q.defer();
 
     // Set the test's title
     testResult.title = test.title;
@@ -190,7 +192,7 @@ var runTest = function(test, testResult, callback) {
 
     } catch(err) {
         log().error({'code': 500, 'msg': err}, 'Error while creating a test object');
-        return callback({'code': 500, 'msg': err});
+        return deferred.reject({'code': 500, 'msg': err});
     }
 
     /*!
@@ -203,7 +205,7 @@ var runTest = function(test, testResult, callback) {
 
         // Cache the results and invoke the callback function if all the request have been sent
         if (!test.length) {
-            return callback(null, testResult);
+            return deferred.resolve(testResult);
         }
 
         // Calculate the current test number
@@ -232,6 +234,9 @@ var runTest = function(test, testResult, callback) {
 
     // Execute the first test
     next(test);
+
+    // Return a promise
+    return deferred.promise;
 };
 
 /**

@@ -1,3 +1,7 @@
+.lg-col-increase {
+    text-align: right;
+}
+
 #lg-search-progress {
     height: 10px;
     margin-bottom: 0;
@@ -11,7 +15,7 @@
     background-color: #FAFAFA;
     border: 1px solid #EEEEEE;
     z-index: 1000;
-    min-width: 198px;
+    min-width: 328px;
 }
 
 #lg-score .row {
@@ -19,25 +23,36 @@
     margin: 0;
 }
 
+#lg-score .row-title {
+    border-bottom: 1px solid #EEEEEE;
+}
+
+#lg-score .row-data:nth-child(even) {
+    background-color: #F9F9F9;
+}
+
+#lg-score .row-data:hover {
+    background-color: #F3F3F3;
+}
+
 #lg-score .row .col {
     padding: 3px 0;
-    margin: 0;
-}
-
-#lg-score .row .col:nth-child(even) {
-    background-color: #FDFDFD;
-}
-
-#lg-score .row .col p {
-    padding: 3px 5px;
     margin: 0;
     text-align: center;
 }
 
-#lg-score .lg-col-apis {
+#lg-score .row .col:first-child {
+    padding-right: 3px;
+}
+
+#lg-score .row .col:not(:last-child) {
+    border-right: 1px solid #EEEEEE;
+}
+
+#lg-score .row .col-title {
     font-weight: bold;
 }
 
-.lg-col-increase {
+#lg-score .row-data .col-title{
     text-align: right;
 }
