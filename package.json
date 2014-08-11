@@ -21,6 +21,7 @@
     "q": "latest",
     "request": "latest",
     "slug": "latest",
+    "socket.io": "latest",
     "swagger-express": "latest",
     "timeago": "latest",
     "twitter-text": "latest",

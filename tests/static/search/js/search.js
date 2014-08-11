@@ -15,6 +15,9 @@
 
 $(function() {
 
+    // Cache the socket
+    var socket = null;
+
     /**
      * Fetch the results
      *
@@ -22,45 +25,20 @@ $(function() {
      */
     var getResults = function() {
 
+        // Disable the button
+        $('#btnGetResults').addClass('disabled');
+
         // Show the loading modal
-        $('#lg-search-progress').show();
+        $('#lg-search-progress').show().css('width', '0');
 
-        // Request the results
-        $.ajax({
-            'url': 'comparison/getResults',
-            'method': 'post'
-        })
-
-            // Display the results
-            .done(function(results) {
-
-                // Calculate which API has the lowest elapsed time
-                calculateAPIScores(results);
-
-                // Render the results template
-                renderTemplate('.tplResults', '#lg-results', {'results': results});
-
-                // Increase the relativity score of an API
-                $('.btnIncreaseRelativityScore').on('click', increaseAPIScore);
-            })
-
-            // Catch the thrown error, if any
-            .fail(function(err) {
-                console.log(err);
-            })
-
-            // Hide the loading modal
-            .always(function() {
-                $('#lg-search-progress').hide();
-            });
+        // Request the API results
+        socket.emit('getResults');
     };
 
     /**
      * Function that calculates the scores for the API's
      */
     var calculateAPIScores = function(results) {
-
-        console.log(results);
 
         // Collect all the used APIs
         var apis = {};
@@ -147,6 +125,66 @@ $(function() {
     };
 
     /**
+     * Initializes the UI
+     */
+    var initUI = function() {
+
+        // Hide the progress bar
+        $('#lg-search-progress').hide().css('width', '0');
+
+        // Set some top-level variables for the templates
+        _.templateSettings.variable = "lg";
+    };
+
+    /**
+     * Initializes the web sockets
+     */
+    var initSockets = function() {
+
+        // Connect with the server
+        socket = io.connect('http://localhost:5001');
+
+        // When the socket server returns an error event
+        socket.on('onError', function(err) {
+
+            // Disable the button
+            $('#btnGetResults').removeClass('disabled');
+
+            // Hide the progress bar
+            $('#lg-search-progress').hide().css('width', '100%');
+        });
+
+        // When the socket server returns a progress event
+        socket.on('onProgress', function(progress) {
+            $('#lg-search-progress').animate({
+                'width': String(Math.floor(progress * 100) + '%')
+            });
+        }, 200);
+
+        // When the socket server returns a results event
+        socket.on('getResults', function(results) {
+
+            // Parse the results
+            results = JSON.parse(results);
+
+            // Calculate which API has the lowest elapsed time
+            calculateAPIScores(results);
+
+            // Render the results template
+            renderTemplate('.tplResults', '#lg-results', {'results': results});
+
+            // Increase the relativity score of an API
+            $('.btnIncreaseRelativityScore').on('click', increaseAPIScore);
+
+            // Disable the button
+            $('#btnGetResults').removeClass('disabled');
+
+            // Hide the progress bar
+            $('#lg-search-progress').hide().css('width', '0');
+        });
+    };
+
+    /**
      * Initialize the event listeners
      *
      * @api private
@@ -162,11 +200,11 @@ $(function() {
      */
     var init = function() {
 
-        // Hide the progress bar
-        $('#lg-search-progress').hide();
+        // Initialize the UI
+        initUI();
 
-        // Set some top-level variables for the templates
-        _.templateSettings.variable = "lg";
+        // Initialize the websockets
+        initSockets();
 
         // Initialize event listeners
         addBinding();

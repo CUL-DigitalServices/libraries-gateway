@@ -36,6 +36,8 @@ var init = function() {
     // Create a new Express server
     Server.createServer(SERVER, PORT)
 
+        .then(createServerCompleteHandler)
+
         // Register the routes for the server
         .then(registerRoutes)
 
@@ -47,23 +49,66 @@ var init = function() {
 };
 
 /**
- * Register the routes for the created server
+ * Caches the created application and socket server
  *
- * @param  {Express}    app     The Express server the routes should be registered for
+ * @param  {Object}     promise         The promised object
+ * @param  {Express}    promise.app     The Express server the routes should be registered for
+ * @param  {Socket}     promise.io      The socket server object
  * @api private
  */
-var registerRoutes = function(app) {
+var createServerCompleteHandler = function(promise) {
+
+    // Cache the created application server
+    app = promise.app;
+
+    // Cache the created socket server
+    io = promise.io;
+
+    // Register the events after the connection has been established
+    io.sockets.on('connection', function(socket) {
+        log().info('client connected');
+
+        // When the client requests the API results
+        socket.on('getResults', function() {
+            log().info('client requested sockets');
+
+            // Fetch the results
+            SearchTest.getResults()
+
+                // Emit the results to the client
+                .then(function(results) {
+                    socket.emit('getResults', JSON.stringify(results));
+                })
+
+                // Emit the current progress of the queries
+                .progress(function(progress) {
+                    socket.emit('onProgress', progress);
+                })
+
+                // Emit an error to the client
+                .catch(function(err) {
+                    socket.emit('onError', JSON.stringify(err));
+                });
+        });
+    });
+};
+
+/**
+ * Register the routes for the created server
+ *
+ * @api private
+ */
+var registerRoutes = function() {
+
+    // Register the static folders
+    app.use('/static', express.static(__dirname + '/static'));
 
     // Comparison
     app.get('/comparison', SearchTest.getContent);
-    app.post('/comparison/getResults', SearchTest.getResults);
 
     // Widgets
     app.get('/widgets', WidgetTest.getContent);
     app.get('/widgets/getResults', WidgetTest.getResults);
-
-    // Register the static folders
-    app.use('/static', express.static(__dirname + '/static'));
 
     // Return the tests html file
     app.get('/', function(req, res) {

@@ -10,6 +10,10 @@ if [ "$EUID" -ne "0" ]; then
   exit 1
 fi
 
+# Stop the libraries gateway service
+echo "Stopping librariesgateway service..."
+service librariesgateway stop
+
 # Run some check to see if the prerequisites are installed
 git --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Git not installed"; exit 2; }
 node --version > /dev/null 2>&1 || { echo >&2 "Installation aborted: Node not installed"; exit 3; }
@@ -23,7 +27,7 @@ git pull origin master
 
 # Install Bower packages
 echo "Installing Bower packages..."
-bower install
+bower install --allow-root
 
 # Install Node packages
 echo "Installing Node packages..."
@@ -33,30 +37,15 @@ npm install -d
 echo "Compiling the LESS file..."
 grunt less:dev
 echo "Creating a production build..."
-grunt build:"../build"
+grunt build:"../libraries-gateway"
 
 # Change current directory to the build directory
-cd "../build"
+cd "../libraries-gateway"
 
 # Copy the configurations file
 echo "Copying the configurations file"
 cp "../config_private.js" "config_private.js"
 
-# Keep track of the running Node processes
-if [ -f librariesgateway.pid ]; then
-    # Get the running node process from the PID-file
-    pid=$(cat librariesgateway.pid)
-    # Kill the node process if it's already running
-    if ps -p $pid > /dev/null
-    then
-        echo "Terminating current Node process..."
-        kill -9 $pid
-    fi
-fi
-
-# Run the Node application and redirect any output to output.log
-echo "Spinning up Node application..."
-nohup node app.js > output.log 2>&1 &
-
-# Store the process id in the libraries gateway PID-file
-echo $! > librariesgateway.pid
+# Start the libraries gateway service
+echo "Starting librariesgateway service..."
+service librariesgateway start

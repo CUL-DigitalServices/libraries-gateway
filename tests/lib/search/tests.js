@@ -67,26 +67,42 @@ var getContent = module.exports.getContent = function(req, res) {
 
 /**
  * Start running the tests to get the API results
+ *
+ * @return  {Result[]}          The results from the APIs
  */
-var getResults = module.exports.getResults = function(req, res) {
+var getResults = module.exports.getResults = function() {
+    var deferred = q.defer();
+
+    // Cache the number of tests to execute
+    var numTests = tests.length;
 
     // Run the tests (promise)
     runTests(tests)
 
         // Return the results
         .then(function() {
-            res.status(200).send(results);
-            return results = [];
+            return deferred.resolve(results);
+        })
+
+        // Return the progress of the executed queries
+        .progress(function(length) {
+            deferred.notify(1 - Number(length / numTests))
         })
 
         // Catch the thrown error, if any
         .catch(function(err) {
-            return res.status(err.code).send(err.msg);
+            return deferred.reject(err);
         })
 
         .done(function() {
             log().info('Finished executing queries');
+
+            // Reset the results
+            results = [];
         });
+
+    // Return a promise
+    return deferred.promise;
 };
 
 //////////////////////////
@@ -130,6 +146,9 @@ var runTests = function(tests) {
             if (err) {
                 return defer.reject({'code': err.code, 'msg': err.msg});
             }
+
+            // Send out a progress event
+            deferred.notify(_tests.length);
 
             // Save the testresults
             results.push(testResult);
