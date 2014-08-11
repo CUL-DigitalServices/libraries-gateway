@@ -28,8 +28,8 @@ $(function() {
         // Disable the button
         $('#btnGetResults').addClass('disabled');
 
-        // Show the loading modal
-        $('#lg-search-progress').show().css('width', '0');
+        // Show the progress bar
+        $('#lg-search-progress').show();
 
         // Request the API results
         socket.emit('getResults');
@@ -129,8 +129,8 @@ $(function() {
      */
     var initUI = function() {
 
-        // Hide the progress bar
-        $('#lg-search-progress').hide().css('width', '0');
+        // Reset the progress bar
+        resetProgressBar();
 
         // Set some top-level variables for the templates
         _.templateSettings.variable = "lg";
@@ -150,38 +150,52 @@ $(function() {
             // Disable the button
             $('#btnGetResults').removeClass('disabled');
 
-            // Hide the progress bar
-            $('#lg-search-progress').hide().css('width', '100%');
+            // Reset the progress bar
+            resetProgressBar();
         });
 
         // When the socket server returns a progress event
         socket.on('onProgress', function(progress) {
+            progress = JSON.parse(progress);
+
+            // Animate the progress bar
             $('#lg-search-progress').animate({
-                'width': String(Math.floor(progress * 100) + '%')
+                'width': String(Math.floor(progress.total * 100) + '%')
             });
-        }, 200);
+        });
 
         // When the socket server returns a results event
         socket.on('getResults', function(results) {
 
-            // Parse the results
-            results = JSON.parse(results);
+            // Animate the progress bar before displaying the results
+            $('#lg-search-progress').animate({'width': '100%'}, 200, 'linear', function() {
 
-            // Calculate which API has the lowest elapsed time
-            calculateAPIScores(results);
+                // Parse the results
+                results = JSON.parse(results);
 
-            // Render the results template
-            renderTemplate('.tplResults', '#lg-results', {'results': results});
+                // Calculate which API has the lowest elapsed time
+                calculateAPIScores(results);
 
-            // Increase the relativity score of an API
-            $('.btnIncreaseRelativityScore').on('click', increaseAPIScore);
+                // Render the results template
+                renderTemplate('.tplResults', '#lg-results', {'results': results});
 
-            // Disable the button
-            $('#btnGetResults').removeClass('disabled');
+                // Increase the relativity score of an API
+                $('.btnIncreaseRelativityScore').on('click', increaseAPIScore);
 
-            // Hide the progress bar
-            $('#lg-search-progress').hide().css('width', '0');
+                // Disable the button
+                $('#btnGetResults').removeClass('disabled');
+
+                // Reset the progress bar
+                resetProgressBar();
+            });
         });
+    };
+
+    /**
+     * Reset the progress bar
+     */
+    var resetProgressBar = function() {
+        $('#lg-search-progress').hide().css('width', 0);
     };
 
     /**
