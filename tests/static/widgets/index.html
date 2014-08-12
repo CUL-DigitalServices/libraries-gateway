@@ -57,7 +57,7 @@
                 <!-- Jumbotron-->
                 <div class="jumbotron lg-jumbotron">
                     <div class="container">
-                        <form class="lg-search-form">
+                        <form class="lg-search-form lg-search-form-basic">
                             <button type="button" class="btn btn-primary lg-btn-disciplines js-btn-disciplines">Subjects</button>
                             <input type="text" name="s.q" placeholder="Search everything in all subjects" class="form-control lg-input-keyword">
                             <div class="btn-group lg-dropdown-selector-type js-type-dropdown pull-left">
@@ -89,8 +89,48 @@
                 <!-- Jumbotron-->
                 <div class="jumbotron lg-jumbotron">
                     <div class="container">
-                        <form class="lg-search-form">
-                            <p>Advanced</p>
+                        <form class="lg-search-form lg-search-form-advanced">
+                            <div class="form-group">
+                                <label for="txtQuery" class="col-sm-2 control-label">Keyword:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="s.q" class="form-control" id="txtQuery" placeholder="e.g. Darwin">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtAuthor" class="col-sm-2 control-label">Author:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="t.AuthorCombined" class="form-control" id="txtAuthor" placeholder="e.g. Fitzgerald">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtTitle" class="col-sm-2 control-label">Title:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="t.TitleCombined" class="form-control" id="txtTitle" placeholder="e.g. The Great Gatsby">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtISBN" class="col-sm-2 control-label">ISBN:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="t.isbn" class="form-control" id="txtISBN" placeholder="e.g. 9780684830421">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtISSN" class="col-sm-2 control-label">ISSN:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="t.issn" class="form-control" id="txtISSN" placeholder="e.g. 0022-0795">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtPublication" class="col-sm-2 control-label">Publication title:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="t.publicationtitle" class="form-control" id="txtPublication" placeholder="e.g. Journal Of Endocrinology">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-default">Search</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

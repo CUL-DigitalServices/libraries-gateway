@@ -115,6 +115,12 @@ $(function() {
         $('paper-dialog')[0].toggle();
     });
 
+    // Clear the results container and the forms when switching tabs
+    $('.lg-widgets-tabs a').click(function() {
+        $('form').trigger('reset');
+        $('.js-results').html('');
+    });
+
     // Fetch the configuration file
     $.ajax({
         'url': '/tests/static/widgets/data/config.json'
