@@ -87,16 +87,14 @@ var getItemsFromResults = function(results) {
             // Create a new record object
             var item = {
                 'title': null,
+                'url': null,
                 'authors': null,
                 'contenttype': null
             };
 
             if (_record.d && _record.d[0]) {
-
-                // Get the title
                 item.title = getTitleFromRecord(_record.d[0]);
-
-                // Get the authors
+                item.url = getUrlFromRecord(_record.d[0]);
                 item.authors = getAuthorsFromRecord(_record.d[0]);
             }
 
@@ -115,38 +113,6 @@ var getItemsFromResults = function(results) {
 };
 
 /**
- * Function that plucks the record's title
- *
- * @param  {Object}     record      Object containing record data
- * @return {String}                 The record's title
- * @api private
- */
-var getTitleFromRecord = function(record) {
-    var title = null;
-    if (record['df245'] && record['df245']['df245']) {
-        title = [];
-        _.each(record['df245']['df245'], function(key) {
-            if (key.key === 'a') {
-                if (key['exact']) {
-                    title.push(key['exact']);
-                }
-                if (key['_']) {
-                    title.push(key['_']);
-                }
-            } else if (key.key === 'b') {
-                title.push(key['_']);
-            } else if (key.key === 'c') {
-                title.push(key['_']);
-            }
-        });
-        if (title.length) {
-            title = title.join(' ');
-        }
-    }
-    return title;
-};
-
-/**
  * Function that plucks the record's authors
  *
  * @param  {Object}     record      Object containing record data
@@ -159,9 +125,6 @@ var getAuthorsFromRecord = function(record) {
         authors = [];
         _.each(record['df100']['df100'], function(key) {
             if (key.key === 'a') {
-                if (key['exact']) {
-                    authors.push(key['exact']);
-                }
                 if (key['_']) {
                     authors.push(key['_']);
                 }
@@ -177,6 +140,56 @@ var getAuthorsFromRecord = function(record) {
 };
 
 /**
+ * Function that plucks the record's title
+ *
+ * @param  {Object}     record      Object containing record data
+ * @return {String}                 The record's title
+ * @api private
+ */
+var getTitleFromRecord = function(record) {
+    var title = null;
+    if (record['df245'] && record['df245']['df245']) {
+        title = [];
+        _.each(record['df245']['df245'], function(key) {
+            if (key.key === 'a') {
+                if (key['_']) {
+                    title.push(key['_']);
+                }
+            } else if (key.key === 'b') {
+                title.push(key['_']);
+            } else if (key.key === 'c') {
+                title.push(key['_']);
+            } else if (key.key === 'h') {
+                title.push(key['_']);
+            }
+        });
+        if (title.length) {
+            title = title.join(' ');
+        }
+    }
+    return title;
+};
+
+/**
+ * Function that plubs the record's external url
+ *
+ * @param  {Object}     record      Object containing record data
+ * @return {String}                 The record's url
+ * @api private
+ */
+var getUrlFromRecord = function(record) {
+    var url = null;
+    if (record['df856'] && record['df856']['df856']) {
+        _.each(record['df856']['df856'], function(key) {
+            if (key.key === 'u') {
+                url = key['_'];
+            }
+        });
+    }
+    return url;
+};
+
+/**
  * Function that plucks the record's content type
  *
  * @param  {Object}     record      Object containing record data
@@ -187,6 +200,9 @@ var getContentTypeFromRecord = function(record) {
     var contenttype = null;
     if (record['material_t']) {
         contenttype = record['material_t'];
+        if (_.isArray(contenttype)) {
+            contenttype = contenttype.join(', ');
+        }
     }
     return contenttype;
 };
