@@ -185,7 +185,7 @@ var runTest = function(test, testResult, callback) {
     try {
 
         // Create a test object
-        test = _.map(test.api, function(query, api) { return {'api': api, 'query': query}; });
+        test = _.map(test.api, function(query, api) { return {'api': api, 'expectedId': query.expectedId, 'query': query.queryString}; });
 
         // Cache the number of API's that are specified
         var numTests = test.length;
@@ -221,7 +221,6 @@ var runTest = function(test, testResult, callback) {
 
             // Catch the thrown error, if any
             .catch(function(response) {
-
                 log().error({'err': response.err}, 'Error while doing API request');
                 testResult.results[response.api] = response.err;
             })
@@ -283,6 +282,9 @@ var doAPIRequest = function(test, currentTestNumber, numTests, title) {
 
             // Calculate the elapsed time
             result.queryTime = Date.now() - startDate;
+
+            // Add the expectedId to the API result object
+            result.expectedId = test.expectedId;
 
             // Resolve the promise
             deferred.resolve({'api': test.api, 'result': result});

@@ -86,11 +86,14 @@ var getItemsFromResults = function(results) {
 
             // Create a new record object
             var item = {
+                'id': null,
                 'title': null,
                 'url': null,
                 'authors': null,
                 'contenttype': null
             };
+
+            item.id = _record.extID;
 
             if (_record.d && _record.d[0]) {
                 item.title = getTitleFromRecord(_record.d[0]);
@@ -98,7 +101,6 @@ var getItemsFromResults = function(results) {
                 item.authors = getAuthorsFromRecord(_record.d[0]);
             }
 
-            // Get the record's content type
             if (_record.fields && _record.fields[0]) {
                 item.contenttype = getContentTypeFromRecord(_record.fields[0]);
             }
