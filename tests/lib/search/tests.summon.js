@@ -83,6 +83,7 @@ var getItemsFromResults = function(records) {
 
             // Create a new item object
             var item = {
+                'id': stripValue(_record.ID),
                 'title': stripValue(_record.Title),
                 'url': _record.link,
                 'authors': stripValue(_record.Author),

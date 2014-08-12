@@ -3,267 +3,495 @@
         {
             "title": "A very short introduction to Machiavelli by Quentin Skinner",
             "api": {
-                "aquabrowser": "q=A very short introduction to Machiavelli by Quentin Skinner&output=xml",
-                "summon": "s.ps=5&s.q=A very short introduction to Machiavelli by Quentin Skinner"
+                "aquabrowser": {
+                    "expectedId": "|eresources|335117",
+                    "queryString": "q=A very short introduction to Machiavelli by Quentin Skinner&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=A very short introduction to Machiavelli by Quentin Skinner"
+                }
             }
         },
         {
             "title": "Nature Cell Biology",
             "api": {
-                "aquabrowser": "q=Nature Cell Biology&output=xml",
-                "summon": "s.ps=5&s.q=Nature Cell Biology"
+                "aquabrowser": {
+                    "expectedId": "|eresources|23504",
+                    "queryString": "q=Nature Cell Biology&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Nature Cell Biology"
+                }
             }
         },
         {
             "title": "Nature Cell Biology with eJournal as format",
             "api": {
-                "aquabrowser": "q=Nature Cell Biology&ref=5806964&output=xml",
-                "summon": "s.fvf=ContentType,eJournal,false&s.ps=5&s.q=Nature Cell Biology"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Nature Cell Biology&ref=5806964&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.fvf=ContentType,eJournal,false&s.ps=5&s.q=Nature Cell Biology"
+                }
             }
         },
         {
             "title": "Making building codes an effective tool for earthquake hazard mitigation by Raymond J. Burby and Peter J. May",
             "api": {
-                "aquabrowser": "q=Making building codes an effective tool for earthquake hazard mitigation by Raymond J. Burby and Peter J. May&output=xml",
-                "summon": "s.ps=5&s.q=Making building codes an effective tool for earthquake hazard mitigation by Raymond J. Burby and Peter J. May"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Making building codes an effective tool for earthquake hazard mitigation by Raymond J. Burby and Peter J. May&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Making building codes an effective tool for earthquake hazard mitigation by Raymond J. Burby and Peter J. May"
+                }
             }
         },
         {
             "title": "Burlington Magazine",
             "api": {
-                "aquabrowser": "q=Burlington Magazine&output=xml",
-                "summon": "s.ps=5&s.q=Burlington Magazine"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Burlington Magazine&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Burlington Magazine"
+                }
             }
         },
         {
             "title": "The material renaissance / edited by Michelle O'Malley and Evelyn Welch (2010)",
             "api": {
-                "aquabrowser": "q=The material renaissance / edited by Michelle O'Malley and Evelyn Welch (2010)&output=xml",
-                "summon": "s.ps=5&s.q=The material renaissance / edited by Michelle O'Malley and Evelyn Welch (2010)"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=The material renaissance / edited by Michelle O'Malley and Evelyn Welch (2010)&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=The material renaissance / edited by Michelle O'Malley and Evelyn Welch (2010)"
+                }
             }
         },
         {
             "title": "Soren Kierkegaard’s Fear and trembling, Penguin 2005",
             "api": {
-                "aquabrowser": "q=Soren Kierkegaard’s Fear and trembling, Penguin 2005&output=xml",
-                "summon": "s.ps=5&s.q=Soren Kierkegaard’s Fear and trembling, Penguin 2005"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Soren Kierkegaard’s Fear and trembling, Penguin 2005&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Soren Kierkegaard’s Fear and trembling, Penguin 2005"
+                }
             }
         },
         {
             "title": "Mikhail Lermontov Hero of our time",
             "api": {
-                "aquabrowser": "q=Mikhail Lermontov Hero of our time&output=xml",
-                "summon": "s.ps=5&s.q=Mikhail Lermontov Hero of our time"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Mikhail Lermontov Hero of our time&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Mikhail Lermontov Hero of our time"
+                }
             }
         },
         {
             "title": "Thomas Cranmer's Register. Paul Ayris, Ph.D. 1985",
             "api": {
-                "aquabrowser": "q=Thomas Cranmer's Register. Paul Ayris, Ph.D. 1985&output=xml",
-                "summon": "s.ps=5&s.q=Thomas Cranmer's Register. Paul Ayris, Ph.D. 1985"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Thomas Cranmer's Register. Paul Ayris, Ph.D. 1985&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Thomas Cranmer's Register. Paul Ayris, Ph.D. 1985"
+                }
             }
         },
         {
             "title": "trevithick involuntary unemployment",
             "api": {
-                "aquabrowser": "q=trevithick involuntary unemployment&output=xml",
-                "summon": "s.ps=5&s.q=trevithick involuntary unemployment"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=trevithick involuntary unemployment&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=trevithick involuntary unemployment"
+                }
             }
         },
         {
             "title": "myers reconstructing black past",
             "api": {
-                "aquabrowser": "q=myers reconstructing black past&output=xml",
-                "summon": "s.ps=5&s.q=myers reconstructing black past"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=myers reconstructing black past&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=myers reconstructing black past"
+                }
             }
         },
         {
             "title": "anderson imagined communities",
             "api": {
-                "aquabrowser": "q=anderson imagined communities&output=xml",
-                "summon": "s.ps=5&s.q=anderson imagined communities"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=anderson imagined communities&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=anderson imagined communities"
+                }
             }
         },
         {
             "title": "dialectic of enlightenment",
             "api": {
-                "aquabrowser": "q=dialectic of enlightenment&output=xml",
-                "summon": "s.ps=5&s.q=dialectic of enlightenment"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=dialectic of enlightenment&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=dialectic of enlightenment"
+                }
             }
         },
         {
             "title": "the ethics and politics of humanitarian intervention",
             "api": {
-                "aquabrowser": "q=the ethics and politics of humanitarian intervention&output=xml",
-                "summon": "s.ps=5&s.q=the ethics and politics of humanitarian intervention"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=the ethics and politics of humanitarian intervention&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=the ethics and politics of humanitarian intervention"
+                }
             }
         },
         {
             "title": "the human motor: energy, fatigue, and the origins of modernity",
             "api": {
-                "aquabrowser": "q=the human motor: energy, fatigue, and the origins of modernity&output=xml",
-                "summon": "s.ps=5&s.q=the human motor: energy, fatigue, and the origins of modernity"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=the human motor: energy, fatigue, and the origins of modernity&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=the human motor: energy, fatigue, and the origins of modernity"
+                }
             }
         },
         {
             "title": "sources of japanese tradition",
             "api": {
-                "aquabrowser": "q=sources of japanese tradition&output=xml",
-                "summon": "s.ps=5&s.q=sources of japanese tradition"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=sources of japanese tradition&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=sources of japanese tradition"
+                }
             }
         },
         {
             "title": "governing the commons",
             "api": {
-                "aquabrowser": "q=governing the commons&output=xml",
-                "summon": "s.ps=5&s.q=governing the commons"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=governing the commons&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=governing the commons"
+                }
             }
         },
         {
             "title": "development as freedom",
             "api": {
-                "aquabrowser": "q=development as freedom&output=xml",
-                "summon": "s.ps=5&s.q=development as freedom"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=development as freedom&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=development as freedom"
+                }
             }
         },
         {
             "title": "troilus criseyde",
             "api": {
-                "aquabrowser": "q=troilus criseyde&output=xml",
-                "summon": "s.ps=5&s.q=troilus criseyde"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=troilus criseyde&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=troilus criseyde"
+                }
             }
         },
         {
             "title": "eastward ho jonson marston chapman",
             "api": {
-                "aquabrowser": "q=eastward ho jonson marston chapman&output=xml",
-                "summon": "s.ps=5&s.q=eastward ho jonson marston chapman"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=eastward ho jonson marston chapman&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=eastward ho jonson marston chapman"
+                }
             }
         },
         {
             "title": "hilbig provisorium",
             "api": {
-                "aquabrowser": "q=hilbig provisorium&output=xml",
-                "summon": "s.ps=5&s.q=hilbig provisorium"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=hilbig provisorium&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=hilbig provisorium"
+                }
             }
         },
         {
             "title": "the conditions of agricultural growth",
             "api": {
-                "aquabrowser": "q=the conditions of agricultural growth&output=xml",
-                "summon": "s.ps=5&s.q=the conditions of agricultural growth"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=the conditions of agricultural growth&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=the conditions of agricultural growth"
+                }
             }
         },
         {
             "title": "equality tawney",
             "api": {
-                "aquabrowser": "q=equality tawney&output=xml",
-                "summon": "s.ps=5&s.q=equality tawney"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=equality tawney&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=equality tawney"
+                }
             }
         },
         {
             "title": "judith butler gender trouble",
             "api": {
-                "aquabrowser": "q=judith butler gender trouble&output=xml",
-                "summon": "s.ps=5&s.q=judith butler gender trouble"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=judith butler gender trouble&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=judith butler gender trouble"
+                }
             }
         },
         {
             "title": "gilroy managing the underclass",
             "api": {
-                "aquabrowser": "q=gilroy managing the underclass&output=xml",
-                "summon": "s.ps=5&s.q=gilroy managing the underclass"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=gilroy managing the underclass&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=gilroy managing the underclass"
+                }
             }
         },
         {
             "title": "certeau, the writing of history",
             "api": {
-                "aquabrowser": "q=certeau, the writing of history&output=xml",
-                "summon": "s.ps=5&s.q=certeau, the writing of history"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=certeau, the writing of history&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=certeau, the writing of history"
+                }
             }
         },
         {
             "title": "reflections on things at hand",
             "api": {
-                "aquabrowser": "q=reflections on things at hand&output=xml",
-                "summon": "s.ps=5&s.q=reflections on things at hand"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=reflections on things at hand&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=reflections on things at hand"
+                }
             }
         },
         {
             "title": "customs in common",
             "api": {
-                "aquabrowser": "q=customs in common&output=xml",
-                "summon": "s.ps=5&s.q=customs in common"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=customs in common&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=customs in common"
+                }
             }
         },
         {
             "title": "money and the space economy",
             "api": {
-                "aquabrowser": "q=money and the space economy&output=xml",
-                "summon": "s.ps=5&s.q=money and the space economy"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=money and the space economy&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=money and the space economy"
+                }
             }
         },
         {
             "title": "prosperity without growth",
             "api": {
-                "aquabrowser": "q=prosperity without growth&output=xml",
-                "summon": "s.ps=5&s.q=prosperity without growth"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=prosperity without growth&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=prosperity without growth"
+                }
             }
         },
         {
             "title": "seeing like a state",
             "api": {
-                "aquabrowser": "q=seeing like a state&output=xml",
-                "summon": "s.ps=5&s.q=seeing like a state"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=seeing like a state&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=seeing like a state"
+                }
             }
         },
         {
             "title": "the monk",
             "api": {
-                "aquabrowser": "q=the monk&output=xml",
-                "summon": "s.ps=5&s.q=the monk"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=the monk&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=the monk"
+                }
             }
         },
         {
             "title": "symbols in action",
             "api": {
-                "aquabrowser": "q=symbols in action&output=xml",
-                "summon": "s.ps=5&s.q=symbols in action"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=symbols in action&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=symbols in action"
+                }
             }
         },
         {
             "title": "wounded cities",
             "api": {
-                "aquabrowser": "q=wounded cities&output=xml",
-                "summon": "s.ps=5&s.q=wounded cities"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=wounded cities&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=wounded cities"
+                }
             }
         },
         {
             "title": "saving strangers: humanitarian intervention in international society",
             "api": {
-                "aquabrowser": "q=saving strangers: humanitarian intervention in international society&output=xml",
-                "summon": "s.ps=5&s.q=saving strangers: humanitarian intervention in international society"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=saving strangers: humanitarian intervention in international society&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=saving strangers: humanitarian intervention in international society"
+                }
             }
         },
         {
             "title": "the new psychology of love",
             "api": {
-                "aquabrowser": "q=the new psychology of love&output=xml",
-                "summon": "s.ps=5&s.q=the new psychology of love"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=the new psychology of love&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=the new psychology of love"
+                }
             }
         },
         {
             "title": "saving strangers",
             "api": {
-                "aquabrowser": "q=saving strangers&output=xml",
-                "summon": "s.ps=5&s.q=saving strangers"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=saving strangers&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=saving strangers"
+                }
             }
         },
         {
             "title": "Clowder of cats",
             "api": {
-                "aquabrowser": "q=Clowder of cats&output=xml",
-                "summon": "s.ps=5&s.q=Clowder of cats"
+                "aquabrowser": {
+                    "expectedId": "",
+                    "queryString": "q=Clowder of cats&output=xml"
+                },
+                "summon": {
+                    "expectedId": "",
+                    "queryString": "s.ps=5&s.q=Clowder of cats"
+                }
             }
         }
     ]

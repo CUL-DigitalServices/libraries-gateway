@@ -1,7 +1,3 @@
-.lg-col-increase {
-    text-align: right;
-}
-
 #lg-search-progress {
     height: 10px;
     margin-bottom: 0;
@@ -55,4 +51,13 @@
 
 #lg-score .row-data .col-title{
     text-align: right;
+}
+
+.lg-col-increase {
+    text-align: right;
+}
+
+.lg-results-list li{
+    margin-bottom: 15px;
+    padding: 3px 10px;
 }
