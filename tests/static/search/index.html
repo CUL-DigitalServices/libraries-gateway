@@ -67,7 +67,14 @@
                         <ol>
                             <% _.each(api.items, function(item, resultIndex) { %>
                             <li class="query-<%- testIndex %>-<%- resultIndex %>">
-                                <strong><%- item.title %></strong><br>
+                                <% if (item.url) { %>
+                                <a href="<%- item.url %>" target="_blank" title="<%- item.title %>">
+                                <% } %>
+                                <strong><%- item.title %></strong>
+                                <% if (item.url) { %>
+                                </a>
+                                <% } %>
+                                <br>
                                 <%- item.authors %><br>
                                 <%- item.contenttype %><br><br>
                             </li>
