@@ -1,3 +1,8 @@
+
+/**
+ * Panel
+ */
+
 .lg-widgets-panel {
     margin-top: 50px;
 }
@@ -5,6 +10,7 @@
 /**
  * Bootstrap tabs
  */
+
 .lg-widgets-tabs {
     padding-top: 15px;
 }
@@ -34,14 +40,19 @@
 }
 
 /**
- * Page specific elements
+ * Page specific components
  */
+
 .lg-main-header {
     font-family: Helvetica, Arial;
     background: #4678AD;
     color: #FFF;
     font-size: 34px;
 }
+
+/**
+ * Basic form components
+ */
 
 .btn {
     border-radius: 0;
@@ -120,4 +131,16 @@ paper-fab {
 
 .lg-btn-more {
     color: blue!important;
+}
+
+/**
+ * Advanced form components
+ */
+
+.lg-search-form-advanced  {
+    display: block;
+}
+
+.lg-search-form-advanced .form-group {
+    padding: 15px 0;
 }
