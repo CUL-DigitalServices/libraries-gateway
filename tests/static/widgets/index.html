@@ -27,40 +27,82 @@
     <link rel="stylesheet" href="/tests/static/widgets/css/styles.css">
 </head>
 <body fullbleed layout vertical>
-    <core-header-panel flex mode="seamed">
-        <core-toolbar class="lg-main-header medium-tall">
-            <paper-icon-button icon="arrow-back" class="js-btn-back" fill></paper-icon-button>
-            <div class="middle indent"><core-icon icon="search"></core-icon> Summon search</div>
-        </core-toolbar>
 
-        <div class="jumbotron lg-jumbotron">
-            <div class="container">
-                <form class="lg-search-form">
-                    <button type="button" class="btn btn-primary lg-btn-disciplines js-btn-disciplines">Subjects</button>
-                    <input type="text" name="s.q" placeholder="Search everything in all subjects" class="form-control lg-input-keyword">
-                    <div class="btn-group lg-dropdown-selector-type js-type-dropdown pull-left">
-                        <button type="button" class="btn btn-primary dropdown-toggle lg-btn-types" data-toggle="dropdown">
-                            <span class="js-value" data-value="">All types</span> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="js-option" data-value="">All types</a></li>
-                            <li><a href="#" class="js-option" data-value="ContentType,Book / eBook,false">Book / eBook</a></li>
-                            <li><a href="#" class="js-option" data-value="ContentType,Conference Proceeding,false">Conference Proceeding</a></li>
-                            <li><a href="#" class="js-option" data-value="ContentType,Journal / eJournal,false">Journal / eJournal</a></li>
-                            <li><a href="#" class="js-option" data-value="ContentType,Manuscript,false">Manuscript</a></li>
-                            <li><a href="#" class="js-option" data-value="ContentType,Reference,false">Reference</a></li>
-                            <li><a href="#" class="lg-btn-more">More...</a></li>
-                        </ul>
+    <!-- Navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/tests">Cambridge Libraries</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main panel -->
+    <core-header-panel flex mode="seamed" class="lg-widgets-panel">
+
+        <!-- Nav tabs -->
+        <div class="container lg-widgets-tabs">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#basic" role="tab" data-toggle="tab">Basic</a></li>
+              <li><a href="#advanced" role="tab" data-toggle="tab">Advanced</a></li>
+            </ul>
+        </div>
+
+        <!-- Panels-->
+        <div class="tab-content lg-widgets-tab-content">
+
+            <!-- Basic -->
+            <div class="tab-pane active" id="basic">
+
+                <!-- Jumbotron-->
+                <div class="jumbotron lg-jumbotron">
+                    <div class="container">
+                        <form class="lg-search-form">
+                            <button type="button" class="btn btn-primary lg-btn-disciplines js-btn-disciplines">Subjects</button>
+                            <input type="text" name="s.q" placeholder="Search everything in all subjects" class="form-control lg-input-keyword">
+                            <div class="btn-group lg-dropdown-selector-type js-type-dropdown pull-left">
+                                <button type="button" class="btn btn-primary dropdown-toggle lg-btn-types" data-toggle="dropdown">
+                                    <span class="js-value" data-value="">All types</span> <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="js-option" data-value="">All types</a></li>
+                                    <li><a href="#" class="js-option" data-value="ContentType,Book / eBook,false">Book / eBook</a></li>
+                                    <li><a href="#" class="js-option" data-value="ContentType,Conference Proceeding,false">Conference Proceeding</a></li>
+                                    <li><a href="#" class="js-option" data-value="ContentType,Journal / eJournal,false">Journal / eJournal</a></li>
+                                    <li><a href="#" class="js-option" data-value="ContentType,Manuscript,false">Manuscript</a></li>
+                                    <li><a href="#" class="js-option" data-value="ContentType,Reference,false">Reference</a></li>
+                                    <li><a href="#" class="lg-btn-more">More...</a></li>
+                                </ul>
+                            </div>
+                            <input type="submit" value="Search" class="btn btn-primary lg-btn-search pull-left">
+                        </form>
+                        <div class="lg-search-advanced">
+                            <paper-checkbox class="js-checkbox-fulltext" label="Items with full text only"></paper-checkbox>
+                        </div>
                     </div>
-                    <input type="submit" value="Search" class="btn btn-primary lg-btn-search pull-left">
-                </form>
-                <div class="lg-search-advanced">
-                    <paper-checkbox class="js-checkbox-fulltext" label="Items with full text only"></paper-checkbox>
-                    <paper-icon-button class="btn-advanced-search" label="Advanced search"></paper-icon-button>
+                </div>
+            </div>
+
+            <!-- Advanced-->
+            <div class="tab-pane" id="advanced">
+
+                <!-- Jumbotron-->
+                <div class="jumbotron lg-jumbotron">
+                    <div class="container">
+                        <form class="lg-search-form">
+                            <p>Advanced</p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Container -->
+        <div class="js-content">
+            <div class="container js-results lg-search-results"><!-- --></div>
+        </div>
+
+        <!-- Disciplines dialog -->
         <paper-dialog class="js-dialog-disciplines" transition="paper-dialog-transition-bottom" backdrop>
             <div class="js-disciplines" layout horizontal>
                 <template class="tpl-disciplines" is="auto-binding" repeat="{{ column in columns }}">
@@ -74,9 +116,5 @@
             <paper-fab class="lg-btn-ok" affirmative icon="done"></paper-fab>
         </paper-dialog>
 
-        <div class="js-content">
-            <div class="container js-results lg-search-results">
-            </div>
-        </div>
     </core-header-panel>
 </body>

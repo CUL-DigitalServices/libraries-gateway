@@ -14,6 +14,7 @@
  */
 
 $(function() {
+    'use strict';
 
     /**
      * Function that submits the form data to the REST API endpoint

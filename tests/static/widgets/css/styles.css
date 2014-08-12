@@ -1,3 +1,41 @@
+.lg-widgets-panel {
+    margin-top: 50px;
+}
+
+/**
+ * Bootstrap tabs
+ */
+.lg-widgets-tabs {
+    padding-top: 15px;
+}
+
+.lg-widgets-tabs .nav {
+    border-bottom: none;
+}
+
+.lg-widgets-tabs .nav li a {
+    color: #555;
+}
+
+.lg-widgets-tabs .nav li a,
+.lg-widgets-tabs .nav li a:hover{
+    border-color: #DDD;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+}
+
+.lg-widgets-tabs .nav li.active a,
+.lg-widgets-tabs .nav li a:hover{
+    background-color: #EEE;
+}
+
+.lg-widgets-tab-content {
+    border: 1px solid #DDD;
+}
+
+/**
+ * Page specific elements
+ */
 .lg-main-header {
     font-family: Helvetica, Arial;
     background: #4678AD;
@@ -64,7 +102,7 @@ paper-fab {
 
 .lg-search-advanced {
     margin-top: 10px;
-    padding-left: 98px;
+    padding-left: 86px;
 }
 
 .btn-advanced-search {

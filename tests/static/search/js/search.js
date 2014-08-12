@@ -14,6 +14,7 @@
  */
 
 $(function() {
+    'use strict';
 
     // Cache the socket
     var socket = null;
