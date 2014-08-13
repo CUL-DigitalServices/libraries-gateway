@@ -117,7 +117,6 @@ $(function() {
 
     // Clear the results container and the forms when switching tabs
     $('.lg-widgets-tabs a').click(function() {
-        $('form').trigger('reset');
         $('.js-results').html('');
     });
 
@@ -156,9 +155,28 @@ $(function() {
 
     // Setup form submit
     $('form').on('submit', function(e) {
-        var queryString = $(this).serialize();
-        var typeValue = typeDropdown.getValue();
 
+        // Serialize the form values
+        var parameters = $(this).serialize().split('&');
+
+        // Construct the correct query string
+        var queryString = [];
+        _.each(parameters, function(parameter) {
+            parameter = _.without(parameter.split('='), '');
+            if (parameter[1]) {
+                var key = parameter[0].split('.')[1];
+                var value = parameter[1];
+                if (key !== 'q') {
+                    queryString.push('s.q=' + key + ':(' + value + ')');
+                } else {
+                    queryString.push('s.q=' + value);
+                }
+            }
+        });
+        queryString = queryString.join('&');
+
+        // Add the content type
+        var typeValue = typeDropdown.getValue();
         if (typeValue) {
             queryString += '&s.fvf=' + typeValue;
         }
@@ -176,6 +194,7 @@ $(function() {
             'url': 'widgets/getResults?' + queryString,
             'method': 'GET'
         }).then(function(results) {
+            $('form').trigger('reset');
             $('.js-results').html(prettyPrint(results.results, {
                 maxDepth: 50
             }));
