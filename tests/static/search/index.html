@@ -67,9 +67,11 @@
                         <ol class="lg-results-list">
                             <% _.each(api.items, function(item, resultIndex) { %>
                             <li class="query-<%- testIndex %>-<%- resultIndex %><% if (item.id === api.expectedId) {%> bg-success<%} %>">
-                                <% if (item.url) { %><a href="<%- item.url %>" target="_blank" title="<%- item.title %>"><% } %><strong><%- item.title %></strong><% if (item.url) { %></a><% } %><br>
+                                <a href="<%- item.url %>" target="_blank" title="<%- item.title %>">
+                                <strong><%- item.title %></strong><br>
                                 <%- item.authors %><br>
                                 <%- item.contenttype %><br>
+                                </a>
                             </li>
                             <% });%>
                         </ol>
