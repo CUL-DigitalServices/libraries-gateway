@@ -97,7 +97,7 @@ var getItemsFromResults = function(results) {
 
             if (_record.d && _record.d[0]) {
                 item.title = getTitleFromRecord(_record.d[0]);
-                item.url = getUrlFromRecord(_record.d[0]);
+                item.url = 'http://search.lib.cam.ac.uk/?itemid=' + item.id;
                 item.authors = getAuthorsFromRecord(_record.d[0]);
             }
 

@@ -61,3 +61,18 @@
     margin-bottom: 15px;
     padding: 3px 10px;
 }
+
+.lg-results-list li:not(.bg-success):hover{
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+.lg-results-list li.bg-success:hover{
+    background-color: #BCE9AA;
+}
+
+.lg-results-list li a {
+    color: #111;
+    display: block;
+    text-decoration: none;
+}
